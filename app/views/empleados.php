@@ -37,11 +37,18 @@
 
   <!-- Table -->
   <table class="table">
-    <td>
-      <tr>Nombre</tr>
-      <tr>Dirección</tr>
-      <tr>Teléfono</tr>
-    </td>
+    <tr>
+      <td>ID</td>
+      <td>Nombre</td>
+      <td>Puesto</td>
+      <td>Departamento</td>
+      <td>Empresa</td>
+      <td>Email</td>
+      <td>Banco</td>
+      <td>Cta Bancaria</td>
+      <td>CLABE</td>
+      <td>Sueldo</td>
+    </tr>
   </table>
 </div>
 

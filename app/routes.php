@@ -11,10 +11,9 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('login');
-});
+	Route::get('/', function(){return View::make('login');});
+
+	Route::get('/empleados', function(){return View::make('empleados');});
 
 // route to process the form
 Route::post('login', array('uses' => 'HomeController@doLogin'));
