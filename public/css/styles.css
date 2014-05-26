@@ -1,14 +1,14 @@
 /* FUENTES DANILO BLACK */
 
 /* first for IE 4–8 */
-@font-face {font-family: KievitSlabWeb; src: url("KievitSlabWeb.eot");}
-@font-face {font-family: KievitSlabWeb-Light; src: url("KievitSlabWeb-Light.eot");}
-@font-face {font-family: KievitSlabWeb-Bold;src: url("KievitWeb-Bold.eot");}
+@font-face {font-family: KievitSlabWeb; src: url("../fonts/KievitSlabWeb.eot");}
+@font-face {font-family: KievitSlabWeb-Light; src: url("../fonts/KievitSlabWeb-Light.eot");}
+@font-face {font-family: KievitSlabWeb-Bold;src: url("../fonts/KievitWeb-Bold.eot");}
 
 /* then for WOFF-capable browsers */
-@font-face {font-family: KievitSlabWeb;src: url("KievitSlabWeb.woff") format("woff");}
-@font-face {font-family: KievitSlabWeb-Light;src: url("KievitSlabWeb-Light.woff") format("woff");}
-@font-face {font-family: KievitSlabWeb-Bold;src: url("KievitWeb-Bold.woff") format("woff");}
+@font-face {font-family: KievitSlabWeb;src: url("../fonts/KievitSlabWeb.woff") format("woff");}
+@font-face {font-family: KievitSlabWeb-Light;src: url("../fonts/KievitSlabWeb-Light.woff") format("woff");}
+@font-face {font-family: KievitSlabWeb-Bold;src: url("../fonts/KievitWeb-Bold.woff") format("woff");}
 /* // Document CSS // */
 
 body {

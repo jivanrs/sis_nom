@@ -24,6 +24,9 @@ class HomeController extends BaseController {
 	{
 		// show the form
 		return View::make('login');
+
+
+
 	}
 
 	public function doLogin()
@@ -31,8 +34,8 @@ class HomeController extends BaseController {
 		// process the form
 		// validate the info, create rules for the inputs
 		$rules = array(
-			'usuario'    => 'required|user', // make sure the email is an actual email
-			'password' => 'required|alphaNum|min:3' // password can only be alphanumeric and has to be greater than 3 characters
+			'usuario'    => 'required|alphaNum', 
+			'password' => 'required|alphaNum|min:3'
 		);
 
 		// run the validation rules on the inputs from the form
@@ -48,26 +51,29 @@ class HomeController extends BaseController {
 			// create our user data for the authentication
 			$userdata = array(
 				'Usuario' 	=> Input::get('usuario'),
-				'Password' 	=> Input::get('password')
+				'password' 	=> Input::get('password')
 			);
 
 			// attempt to do the login
-			if (Auth::attempt($userdata)) {
+			if (Auth::attempt($userdata, Input::get('chkBox'))) {
 
-				// validation successful!
-				// redirect them to the secure section or whatever
-				// return Redirect::to('secure');
-				// for now we'll just echo success (even though echoing in a controller is bad)
-				echo 'SUCCESS!';
+				return View::make('empleados');
 
 			} else {	 	
-
-				// validation not successful, send back to form	
-				return Redirect::to('login');
+				
+				return Redirect::to('/')->with('login_error',true);
 
 			}
 
 		}
 	}
+
+	public function doLogout()
+	{
+		Auth::logout(); // log the user out of our application
+		return Redirect::to('login'); // redirect the user to the login screen
+	}
+
+
 
 }

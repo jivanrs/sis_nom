@@ -21,3 +21,11 @@ Route::get('/', function()
 
 	// route to process the form
 	Route::post('login', array('uses' => 'HomeController@doLogin'));
+
+	// route to logout
+	Route::get('logout', array('uses' => 'HomeController@doLogout'));
+
+	Route::get('profile', array('before' => 'auth.basic', function()
+	{
+	    return View::make('login');
+	}));

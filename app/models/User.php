@@ -17,7 +17,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 *
 	 * @var array
 	 */
-	protected $hidden = array('Password');
+	protected $hidden = array('password');
 
 	/**
 	 * There is no timestamp on this table
