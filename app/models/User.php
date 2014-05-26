@@ -10,14 +10,21 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 *
 	 * @var string
 	 */
-	protected $table = 'users';
+	protected $table = 'usuarios';
 
 	/**
 	 * The attributes excluded from the model's JSON form.
 	 *
 	 * @var array
 	 */
-	protected $hidden = array('password');
+	protected $hidden = array('Password');
+
+	/**
+	 * There is no timestamp on this table
+	 *
+	 * @var bool
+	 */
+	public $timestamps = false;
 
 	/**
 	 * Get the unique identifier for the user.
