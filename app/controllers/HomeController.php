@@ -15,20 +15,6 @@ class HomeController extends BaseController {
 	|
 	*/
 
-	public function showWelcome()
-	{
-		return View::make('hello');
-	}
-
-	public function showLogin()
-	{
-		// show the form
-		return View::make('login');
-
-
-
-	}
-
 	public function doLogin()
 	{
 		// process the form
@@ -57,7 +43,7 @@ class HomeController extends BaseController {
 			// attempt to do the login
 			if (Auth::attempt($userdata, Input::get('chkBox'))) {
 
-				return View::make('empleados');
+				return View::make('hello');
 
 			} else {	 	
 				
@@ -74,6 +60,15 @@ class HomeController extends BaseController {
 		return Redirect::to('login'); // redirect the user to the login screen
 	}
 
+	public function lista_usuarios(){ 
+		$usuarios = User::all(); 
+		return View::make('usuario.lista_usuarios', array('usuarios' => $usuarios)); 
+	}
+
+	public function detalles_usuario($id_usuario){ 
+		$empleados = DB::table('usuarios')->lists('Nombre', 'name');
+		return View::make('empleado.show_Empleado', array('empleados' => $empleados)); 
+	}
 
 
 }

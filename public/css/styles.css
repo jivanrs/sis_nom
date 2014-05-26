@@ -13,7 +13,7 @@
 
 body {
   background-color: #eee;
-  font-family: 'KievitSlabWeb'; 
+  font-family: 'KievitSlabWeb' !important; 
   font-weight: normal;
 }
 .header{ 
