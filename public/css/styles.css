@@ -1,0 +1,64 @@
+/* FUENTES DANILO BLACK */
+
+/* first for IE 4–8 */
+@font-face {font-family: KievitSlabWeb; src: url("KievitSlabWeb.eot");}
+@font-face {font-family: KievitSlabWeb-Light; src: url("KievitSlabWeb-Light.eot");}
+@font-face {font-family: KievitSlabWeb-Bold;src: url("KievitWeb-Bold.eot");}
+
+/* then for WOFF-capable browsers */
+@font-face {font-family: KievitSlabWeb;src: url("KievitSlabWeb.woff") format("woff");}
+@font-face {font-family: KievitSlabWeb-Light;src: url("KievitSlabWeb-Light.woff") format("woff");}
+@font-face {font-family: KievitSlabWeb-Bold;src: url("KievitWeb-Bold.woff") format("woff");}
+/* // Document CSS // */
+
+body {
+  background-color: #eee;
+  font-family: 'KievitSlabWeb'; 
+  font-weight: normal;
+}
+.header{ 
+  width:100%; 
+  height:120px;
+  background: #6699CC;
+}
+h1{ color: #6699CC;font-size: 49px;font-weight: normal;
+}
+.content-header{width:880px; margin:  0 auto; height: 120px;}
+.logotipo{width: 100px;}
+.logodb{float: left;width: 360px;}
+.logodanilo{float: right !important;width: 100px;margin-top: 17px;}
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
