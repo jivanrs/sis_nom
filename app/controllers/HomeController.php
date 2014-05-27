@@ -49,7 +49,7 @@ class HomeController extends BaseController {
 			// attempt to do the login
 			if (Auth::attempt($userdata, Input::has('chkBox') ? true : false)) {
 
-				$empleados = empleados::getEmpleadosInfo();
+				$empleados = empleado::EmpleadosInfo();
 
 				return View::make('empleados', array('empleados' => $empleados)); 
 
@@ -70,7 +70,7 @@ class HomeController extends BaseController {
 
 	public function getempleadosMain(){ 
 		
-		$empleados = empleados::getEmpleadosInfo();
+		$empleados = empleado::EmpleadosInfo();
 
 		return View::make('empleados', array('empleados' => $empleados)); 
 
