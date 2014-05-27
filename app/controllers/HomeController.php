@@ -15,6 +15,12 @@ class HomeController extends BaseController {
 	|
 	*/
 
+	public function showLogin()
+	{
+		// show the form
+		return View::make('login');
+	}
+
 	public function doLogin()
 	{
 		// process the form
@@ -41,7 +47,7 @@ class HomeController extends BaseController {
 			);
 
 			// attempt to do the login
-			if (Auth::attempt($userdata, Input::get('chkBox'))) {
+			if (Auth::attempt($userdata, Input::has('chkBox') ? true : false)) {
 
 				$empleados = DB::table('empleado')
 		        ->leftJoin('empresa', 'empresa.idEmpresa', '=', 'empleado.emp_idEmpresa_FK')
@@ -66,14 +72,16 @@ class HomeController extends BaseController {
 		return Redirect::to('login'); // redirect the user to the login screen
 	}
 
-	public function lista_usuarios(){ 
-		$usuarios = User::all(); 
-		return View::make('usuario.lista_usuarios', array('usuarios' => $usuarios)); 
-	}
+	public function getempleadosMain(){ 
+		
+		$empleados = DB::table('empleado')
+		        ->leftJoin('empresa', 'empresa.idEmpresa', '=', 'empleado.emp_idEmpresa_FK')
+		        ->leftJoin('departamento', 'departamento.idDepartamento', '=', 'empleado.emp_idDeparameto_FK')
+		        ->leftJoin('tipoperiodo', 'tipoperiodo.idTipoPeriodo', '=', 'empleado.emp_idTipoPeriodo_FK')
+		        ->get();
 
-	public function detalles_usuario($id_usuario){ 
-		$empleados = DB::table('usuarios')->lists('Nombre', 'name');
-		return View::make('empleado.show_Empleado', array('empleados' => $empleados)); 
+		return View::make('empleados', array('empleados' => $empleados)); 
+
 	}
 
 

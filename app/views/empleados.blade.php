@@ -34,7 +34,8 @@
   <div class="panel-body">
     <p>Lista completa de empleados de DB Digital</p>
   </div>
-
+  <!-- LOGOUT BUTTON -->
+  <a href="{{ URL::to('logout') }}">Logout</a>
   <!-- Table -->
   <table class="table">
     <tr>
