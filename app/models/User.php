@@ -27,13 +27,20 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public $timestamps = false;
 
 	/**
+	 * I changed the id to idUsuarios
+	 *
+	 * @var int
+	 */
+	protected $primaryKey = 'Usuario';
+
+	/**
 	 * Get the unique identifier for the user.
 	 *
 	 * @return mixed
 	 */
 	public function getAuthIdentifier()
 	{
-		return $this->getKey();
+		return $this->Usuario;
 	}
 
 	/**
@@ -84,7 +91,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	public function getReminderEmail()
 	{
-		return $this->email;
+		return $this->Usuario;
 	}
 
 }

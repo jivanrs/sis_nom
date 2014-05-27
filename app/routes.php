@@ -11,7 +11,15 @@
 |
 */
 
-Route::get('/', function(){return View::make('login');});
+Route::get('/', function(){
+	if (Auth::check())
+	{
+	    return View::make('hello');
+	}
+	else{
+		return View::make('login');
+	}
+});
 
 // route to login view
 Route::get('login', array('uses' => 'HomeController@showLogin'));
@@ -22,9 +30,9 @@ Route::post('login', array('uses' => 'HomeController@doLogin'));
 // route to logout
 Route::get('logout', array('uses' => 'HomeController@doLogout'));
 
+
 Route::get('empleados', array('before' => 'auth', function()
 {
 
-   	return View::make('hello');
-
+   	
 }));
