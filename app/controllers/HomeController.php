@@ -43,7 +43,13 @@ class HomeController extends BaseController {
 			// attempt to do the login
 			if (Auth::attempt($userdata, Input::get('chkBox'))) {
 
-				return View::make('hello');
+				$empleados = DB::table('empleado')
+		        ->leftJoin('empresa', 'empresa.idEmpresa', '=', 'empleado.emp_idEmpresa_FK')
+		        ->leftJoin('departamento', 'departamento.idDepartamento', '=', 'empleado.emp_idDeparameto_FK')
+		        ->leftJoin('tipoperiodo', 'tipoperiodo.idTipoPeriodo', '=', 'empleado.emp_idTipoPeriodo_FK')
+		        ->get();
+
+				return View::make('empleados', array('empleados' => $empleados)); 
 
 			} else {	 	
 				
