@@ -19,11 +19,12 @@ class empleados extends Eloquent
 
 	public function getEmpleadosInfo()
 	{
-		$empleados = DB::table('empleado')
-        ->leftJoin('empresa', 'empresa.idEmpresa', '=', 'empleado.emp_idEmpresa_FK')
-        ->leftJoin('departamento', 'departamento.idEmpresa', '=', 'empleado.emp_idDeparameto_FK')
-        ->leftJoin('tipoperiodo', 'tipoperiodo.idEmpresa', '=', 'empleado.emp_idTipoPeriodo_FK')
-        ->get();
+		
+		DB::table('empleado')
+		        ->leftJoin('empresa', 'empresa.idEmpresa', '=', 'empleado.emp_idEmpresa_FK')
+		        ->leftJoin('departamento', 'departamento.idDepartamento', '=', 'empleado.emp_idDeparameto_FK')
+		        ->leftJoin('tipoperiodo', 'tipoperiodo.idTipoPeriodo', '=', 'empleado.emp_idTipoPeriodo_FK')
+		        ->get();
 
         return $empleados;
 	}
