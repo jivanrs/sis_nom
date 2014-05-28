@@ -21,6 +21,8 @@ Route::get('/', function(){
 	}
 });
 
+Route::get('pagos', function(){return View::make('pagos');});
+
 // route to login view
 Route::get('login', array('uses' => 'HomeController@showLogin'));
 

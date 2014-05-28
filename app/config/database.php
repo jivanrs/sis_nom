@@ -57,7 +57,7 @@ return array(
 			'host'      => 'localhost',
 			'database'  => 'sistema_nomina',
 			'username'  => 'root',
-			'password'  => '',
+			'password'  => 'root',
 			'charset'   => 'latin1',
 			'collation' => 'latin1_spanish_ci',
 			'prefix'    => '',

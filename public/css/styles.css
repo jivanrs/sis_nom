@@ -23,6 +23,8 @@ body {
 }
 h1{ color: #6699CC;font-size: 49px;font-weight: normal;
 }
+.mt20{margin-top: 20px !important;}
+.panel-default > .panel-heading{overflow: hidden;}
 .content-header{width:880px; margin:  0 auto; height: 120px;}
 .logotipo{width: 100px;}
 .logodb{float: left;width: 360px;}

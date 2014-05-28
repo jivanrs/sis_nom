@@ -33,9 +33,6 @@
     <div class="panel panel-default mt20">
     <div class="panel-heading">
       <div class="col-md-3 col-md-offset-8">
-        <button class="btn btn-default" type="button">Nuevo</button>
-        <button class="btn btn-default" type="button">Editar</button>
-        <button class="btn btn-default" type="button">Eliminar</button>
       </div>
       
       <div class="col-md-1">
@@ -50,37 +47,63 @@
   </div>
   <div class="row">
   <div class="panel panel-default">
-  <div class="panel-heading">Lista de Empleados</div>
+  <div class="panel-heading">Pagos</div>
   <div class="panel-body">
-    <p>Lista completa de empleados de DB Digital</p>
+    <p>Lista de empleados para realizar pagos completos o parciales</p>
   </div>
 
   <!-- Table -->
   <table class="table">
     <tr>
+      <td></td>
       <td>ID</td>
       <td>Nombre</td>
       <td>Puesto</td>
       <td>Departamento</td>
       <td>Empresa</td>
-      <td>Email</td>
-      <td>Banco</td>
-      <td>Cta Bancaria</td>
-      <td>CLABE</td>
       <td>Sueldo</td>
     </tr>
     @foreach($empleados as $empleado)
       <tr>
+        <td><input type="checkbox"></td>
         <td>{{ $empleado->idEmpleado }} </td>
         <td>{{ $empleado->Nombre }} </td>
         <td>{{ $empleado->Puesto }} </td>
         <td>{{ $empleado->Nombre_Depto }} </td>
         <td>{{ $empleado->Nombre_Empresa }} </td>
-        <td>{{ $empleado->Email }} </td>
-        <td>{{ $empleado->Banco }} </td>
-        <td>{{ $empleado->Cta_Bancaria }} </td>
-        <td>{{ $empleado->CLABE_Bancaria }} </td>
         <td>{{ $empleado->SueldoBase }} </td>
+      </tr>
+    @endforeach
+  </table>
+  <div class="col-md-3 col-md-offset-8">
+    <button class="btn btn-default" type="button">Filtrar</button>
+  </div>
+
+  <table class="table">
+    <tr>
+      <td></td>
+      <td>ID</td>
+      <td>Nombre</td>
+      <td>Puesto</td>
+      <td>Departamento</td>
+      <td>Empresa</td>
+      <td>Sueldo</td>
+      <td>Saldo Pendiente</td>
+      <td>Pago</td>
+      <td></td>
+    </tr>
+    @foreach($empleados as $empleado)
+      <tr>
+        <td><input type="checkbox"></td>
+        <td>{{ $empleado->idEmpleado }} </td>
+        <td>{{ $empleado->Nombre }} </td>
+        <td>{{ $empleado->Puesto }} </td>
+        <td>{{ $empleado->Nombre_Depto }} </td>
+        <td>{{ $empleado->Nombre_Empresa }} </td>
+        <td>{{ $empleado->SueldoBase }} </td>
+        <td>$ 2500.00</td>
+        <td><input class="form-control" type="text" placeholder="$ Monto"></td>
+        <td><button class="btn btn-default" type="button">Pagar</button></td>
       </tr>
     @endforeach
   </table>
