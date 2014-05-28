@@ -1,6 +1,6 @@
 <?php
 
-class empleado extends Eloquent
+class Empleado extends Eloquent
 {
 
 	/**

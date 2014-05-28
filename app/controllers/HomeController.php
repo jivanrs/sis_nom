@@ -49,9 +49,9 @@ class HomeController extends BaseController {
 			// attempt to do the login
 			if (Auth::attempt($userdata, Input::has('chkBox') ? true : false)) {
 
-				$empleados = empleado::EmpleadosInfo();
+				$empleados = Empleado::EmpleadosInfo();
 
-				return View::make('empleados', array('empleados' => $empleados)); 
+				return View::make('empleados')->with('empleados', $empleados); 
 
 			} else {	 	
 				
@@ -66,14 +66,6 @@ class HomeController extends BaseController {
 	{
 		Auth::logout(); // log the user out of our application
 		return Redirect::to('login'); // redirect the user to the login screen
-	}
-
-	public function getempleadosMain(){ 
-		
-		$empleados = empleado::EmpleadosInfo();
-
-		return View::make('empleados', array('empleados' => $empleados)); 
-
 	}
 
 
