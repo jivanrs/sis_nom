@@ -78,7 +78,8 @@
   <div class="col-md-3 col-md-offset-8">
     <button class="btn btn-default" type="button">Filtrar</button>
   </div>
-
+</div>
+<div class="panel panel-default">
   <table class="table">
     <tr>
       <td></td>
@@ -109,7 +110,6 @@
   </table>
 </div>
 </div>
-
 </div> 
 <!-- /container -->
 
