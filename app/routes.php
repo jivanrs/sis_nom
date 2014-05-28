@@ -21,7 +21,7 @@ Route::get('/', function(){
 	}
 });
 
-Route::get('pagos/{fecha}/{tipoPeriodo}', array('uses' => 'PagosController@index'));
+Route::get('pagos', array('uses' => 'PagosController@index'));
 
 // route to login view
 Route::get('login', array('uses' => 'HomeController@showLogin'));

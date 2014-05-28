@@ -70,6 +70,7 @@
             <td>{{ $empleado->Nombre_Depto }} </td>
             <td>{{ $empleado->Nombre_Empresa }} </td>
             <td>{{ $empleado->SueldoBase }} </td>
+            <td>{{ $empleado->restante }} </td>
           </tr>
         @endforeach
         

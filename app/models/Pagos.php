@@ -21,11 +21,19 @@ class Pagos extends Eloquent
 	{
 
 		$pagos = DB::table('empleado')
-		        ->leftJoin('empresa', 'empresa.idEmpresa', '=', 'empleado.pag_idEmpresa_FK')
-		        ->leftJoin('departamento', 'departamento.idDepartamento', '=', 'pagos.pag_idDepartamento_FK')
-		        ->leftJoin('periodo', 'periodo.idPeriodo', '=', 'pagos.pag_idPeriodo_FK')
-		        ->leftJoin('recibos', 'recibos.idRecibos', '=', 'pagos.pag_idRecibos_FK')
+		        ->leftJoin('empresa', 'empresa.idEmpresa', '=', 'empleado.emp_idEmpresa_FK')
+		        ->leftJoin('departamento', 'departamento.idDepartamento', '=', 'empleado.emp_idDeparameto_FK')
+		        ->leftJoin('tipoperiodo', 'tipoperiodo.idTipoPeriodo', '=', 'empleado.emp_idTipoPeriodo_FK')
+		        ->leftJoin(
+		        	DB::table('recibos')
+		        	->leftJoin('empleado', 'empleado.idEmpleado', '=', 'recibos.rec_idEmpleado_FK')
+		        	->select(DB::raw('idRecibos, rec_idEmpleado_FK, SUM(SueldoBase) as Restante'))
+		        	->groupBy('rec_idEmpleado_FK')
+		        	->get()
+		        	,'recibos', 'recibos.rec_idEmpleado_FK', '=', 'empleado.idEmpleado')
+		        ->select('idEmpleado', 'Nombre', 'Nombre_Depto', 'Nombre_Empresa', 'Puesto', 'SueldoBase', 'Restante')
 		        ->get();
+;
 
         return $pagos;
 	}
