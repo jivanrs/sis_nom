@@ -21,7 +21,7 @@ Route::get('/', function(){
 	}
 });
 
-Route::get('pagos', function(){return View::make('pagos');});
+//Route::get('pagos', function(){return View::make('pagos');});
 
 // route to login view
 Route::get('login', array('uses' => 'HomeController@showLogin'));
@@ -32,7 +32,12 @@ Route::post('login', array('uses' => 'HomeController@doLogin'));
 // route to logout
 Route::get('logout', array('uses' => 'HomeController@doLogout'));
 
+Route::group(array('before' => 'auth.custom'), function(){
 
-Route::get('empleados', array('before' => 'auth', array('uses' => 'EmpleadosController@index')));
+	Route::get('empleados', 'EmpleadosController@index');
+	Route::get('pagos', 'PagosController@index');
 
-//Route::get('pagos', array('uses' => 'PagosController@index'));
+});
+
+//usuario: jfeuchter
+//password: 321000
