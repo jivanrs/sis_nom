@@ -17,6 +17,8 @@ class Empleado extends Eloquent
 	 */
 	public $timestamps = false;
 
+	protected $guarded = array('id', 'idEmpleado');
+
 	public function scopeEmpleadosInfo()
 	{
 
