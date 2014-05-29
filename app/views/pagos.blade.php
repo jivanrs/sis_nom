@@ -63,9 +63,6 @@
           <td>Sueldo Base</td>
           <td>Sueldo Pendiente</td>
         </tr>
-<<<<<<< HEAD
-        
-=======
         @foreach($empleados as $empleado)
           <tr>
             <td></td>
@@ -78,7 +75,6 @@
             <td>{{ $empleado->Restante }} </td>
           </tr>
         @endforeach
->>>>>>> FETCH_HEAD
         
       </table>
       <div class="col-md-3 col-md-offset-8">

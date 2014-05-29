@@ -36,37 +36,6 @@ class Pagos extends Eloquent
 		        ->select('idEmpleado', 'Nombre', 'Nombre_Depto', 'Nombre_Empresa', 'Puesto', 'SueldoBase', 'Restante')
 		        ->get();
 
-		 /*DB::table('users')
-        ->select('first_name', 'TotalCatches.*')
-
-        ->leftjoin(DB::raw('SELECT rec_idEmpleado_FK, SUM( SueldoBase ) AS Restante
-						FROM `recibos`
-						INNER JOIN empleado ON rec_idEmpleado_FK = idEmpleado
-						GROUP BY rec_idEmpleado_FK'), 
-        				function($join)
-				        {
-				            $join->on('idEmpleado', '=', 'rec_idEmpleado_FK');
-				        })
-        ->orderBy('TotalCatches.CatchesPerDay', 'DESC')
-        ->get();
-
-        DB::table('recibos')
-		        	->leftJoin('empleado', 'empleado.idEmpleado', '=', 'recibos.rec_idEmpleado_FK')
-		        	->select(DB::raw('rec_idEmpleado_FK, SUM(SueldoBase) as Restante'))
-		        	->groupBy('rec_idEmpleado_FK')
-		        	->get()
-		        	,'recibos', 'recibos.rec_idEmpleado_FK', '=', 'empleado.idEmpleado')
-
-		DB::table('users')
-        ->select('first_name', 'TotalCatches.*')
-
-        ->join(DB::raw('(SELECT user_id, COUNT(user_id) TotalCatch, DATEDIFF(NOW(), MIN(created_at)) Days, COUNT(user_id)/DATEDIFF(NOW(), MIN(created_at)) CatchesPerDay FROM `catch-text` GROUP BY user_id) TotalCatches'), function($join)
-        {
-            $join->on('users.id', '=', 'TotalCatches.user_id');
-        })
-        ->orderBy('TotalCatches.CatchesPerDay', 'DESC')
-        ->get();*/
-
         return $pagos;
 	}
 	
