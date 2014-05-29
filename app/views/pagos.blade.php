@@ -60,9 +60,25 @@
           <td>Puesto</td>
           <td>Departamento</td>
           <td>Empresa</td>
-          <td>Sueldo</td>
+          <td>Sueldo Base</td>
+          <td>Sueldo Pendiente</td>
         </tr>
+<<<<<<< HEAD
         
+=======
+        @foreach($empleados as $empleado)
+          <tr>
+            <td></td>
+            <td>{{ $empleado->idEmpleado }} </td>
+            <td>{{ $empleado->Nombre }} </td>
+            <td>{{ $empleado->Puesto }} </td>
+            <td>{{ $empleado->Nombre_Depto }} </td>
+            <td>{{ $empleado->Nombre_Empresa }} </td>
+            <td>{{ $empleado->SueldoBase }} </td>
+            <td>{{ $empleado->Restante }} </td>
+          </tr>
+        @endforeach
+>>>>>>> FETCH_HEAD
         
       </table>
       <div class="col-md-3 col-md-offset-8">
