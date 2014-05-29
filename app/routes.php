@@ -21,7 +21,7 @@ Route::get('/', function(){
 	}
 });
 
-Route::get('pagos', array('uses' => 'PagosController@index'));
+Route::get('pagos', function(){return View::make('pagos');});
 
 // route to login view
 Route::get('login', array('uses' => 'HomeController@showLogin'));
@@ -34,3 +34,5 @@ Route::get('logout', array('uses' => 'HomeController@doLogout'));
 
 
 Route::get('empleados', array('before' => 'auth', array('uses' => 'EmpleadosController@index')));
+
+//Route::get('pagos', array('uses' => 'PagosController@index'));

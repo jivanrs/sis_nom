@@ -62,17 +62,7 @@
           <td>Empresa</td>
           <td>Sueldo</td>
         </tr>
-        @foreach($empleados as $empleado)
-          <tr>
-            <td>{{ $empleado->idEmpleado }} </td>
-            <td>{{ $empleado->Nombre }} </td>
-            <td>{{ $empleado->Puesto }} </td>
-            <td>{{ $empleado->Nombre_Depto }} </td>
-            <td>{{ $empleado->Nombre_Empresa }} </td>
-            <td>{{ $empleado->SueldoBase }} </td>
-            <td>{{ $empleado->restante }} </td>
-          </tr>
-        @endforeach
+        
         
       </table>
       <div class="col-md-3 col-md-offset-8">

@@ -58,6 +58,7 @@
   <!-- Table -->
   <table class="table">
     <tr>
+      <td></td>
       <td>ID</td>
       <td>Nombre</td>
       <td>Puesto</td>
@@ -71,6 +72,7 @@
     </tr>
     @foreach($empleados as $empleado)
       <tr>
+        <td><input type="checkbox"></td>
         <td>{{ $empleado->idEmpleado }} </td>
         <td>{{ $empleado->Nombre }} </td>
         <td>{{ $empleado->Puesto }} </td>
