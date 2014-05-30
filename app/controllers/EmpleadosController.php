@@ -100,6 +100,29 @@ class EmpleadosController extends BaseController {
 		//
 	}
 
+	public function form_eliminar_empleados(){		
+		
+		$empleados = Input::get('empleado');
+		
+		if(is_array($empleados))
+		{
+			$contador = 0;
+
+			//Ciclo para borrar empleados
+			foreach ($empleados as $empleado) {
+								
+				$empleado = Empleado::where('idEmpleado',$empleados[$contador])->first();				
+				$empleado->Activo = 0;
+				$empleado->save();
+				$contador++;
+			}
+
+		}
+
+		return Redirect::to("/empleados");	
+
+	}
+
 
 	/**
 	 * Remove the specified resource from storage.

@@ -218,7 +218,7 @@
         <td>{{ $empleado->Cta_Bancaria }} </td>
         <td>{{ $empleado->CLABE_Bancaria }} </td>
         <td>{{ $empleado->SueldoBase }} </td>
-        <td><button class="btn btn-default" type="button">Editar</button></td>
+        <td><button class="btn btn-default" type="button" id="btn-elim-a">Editar</button></td>
       </tr>
     <?php $contador++; ?>
     @endforeach

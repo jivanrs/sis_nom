@@ -9,6 +9,7 @@ class Empleado extends Eloquent
 	 * @var string
 	 */
 	protected $table = 'empleado';
+	protected $primaryKey = "idEmpleado";
 
 	/**
 	 * There is no timestamp on this table
