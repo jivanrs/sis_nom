@@ -34,6 +34,7 @@ class Pagos extends Eloquent
 				            $join->on('idEmpleado', '=', 'rec_idEmpleado_FK');
 				        })
 		        ->select('idEmpleado', 'Nombre', 'Nombre_Depto', 'Nombre_Empresa', 'Puesto', 'SueldoBase', 'Restante')
+		        ->where('Activo', true)
 		        ->get();
 
         return $pagos;

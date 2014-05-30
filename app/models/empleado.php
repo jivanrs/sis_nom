@@ -27,9 +27,23 @@ class Empleado extends Eloquent
 		        ->leftJoin('departamento', 'departamento.idDepartamento', '=', 'empleado.emp_idDeparameto_FK')
 		        ->leftJoin('tipoperiodo', 'tipoperiodo.idTipoPeriodo', '=', 'empleado.emp_idTipoPeriodo_FK')
 		        ->select('idEmpleado','Nombre', 'Nombre_Depto', 'Nombre_Empresa', 'Puesto', 'SueldoBase', 'Email', 'Banco', 'Cta_Bancaria', 'CLABE_Bancaria')
+		        ->where('Activo', true)
 		        ->get();
 
         return $empleados;
+	}
+
+	public function DeleteEmpleado($ids)
+	{
+		foreach ($ids as $id) {
+
+			DB::table('empleados')
+            ->where('idEmpleado', $id)
+            ->update(array('Activo' => 0));
+
+		}
+
+		return true;
 	}
 	
 

@@ -21,10 +21,10 @@
 <div class="header">
   <div class="content-header">
     <div class="logodb">
-        <a href="index.html"><img src="images/logodb.png" /></a>
+        <a href="{{ URL::to('/') }}"><img src="images/logodb.png" /></a>
     </div>
     <div class="logodanilo">
-        <a href="index.html"><img src="images/logo-db.jpg" /></a>
+        <a href="{{ URL::to('/') }}"><img src="images/logo-db.jpg" /></a>
     </div>
   </div>
 </div>

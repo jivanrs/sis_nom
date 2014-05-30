@@ -37,6 +37,10 @@ Route::group(array('before' => 'auth.custom'), function(){
 	Route::get('empleados', 'EmpleadosController@index');
 	Route::get('empleados/delete', 'EmpleadosController@destroy($id)');
 	Route::get('pagos', 'PagosController@index');
+	Route::get('home', function(){
+		return View::make('home');
+	});
+
 
 });
 

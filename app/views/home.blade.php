@@ -21,10 +21,10 @@
 <div class="header">
   <div class="content-header">
         <div class="logodb">
-            <a href="index.html"><img src="images/logodb.png" /></a>
+            <a href="{{ URL::to('/') }}"><img src="images/logodb.png" /></a>
         </div>
         <div class="logodanilo">
-            <a href="index.html"><img src="images/logo-db.jpg" /></a>
+            <a href="{{ URL::to('/') }}"><img src="images/logo-db.jpg" /></a>
         </div>
     </div>
 </div>
@@ -41,13 +41,13 @@
   <div class="col-md-4">
     <div class="btn-menu">
       <span class="glyphicon glyphicon-user"></span>
-      <span class="glyphicon-class"><a href="">Lista de Empleados</a></span>
+      <span class="glyphicon-class"><a href="{{ URL::to('empleados') }}">Lista de Empleados</a></span>
     </div>
   </div>
   <div class="col-md-4">
     <div class="btn-menu">
       <span class="glyphicon glyphicon-usd"></span>
-      <span class="glyphicon-class"><a href="">Realizar Pago</a></span>
+      <span class="glyphicon-class"><a href="{{ URL::to('pagos') }}">Realizar Pago</a></span>
     </div>
   </div>
   <div class="col-md-4">

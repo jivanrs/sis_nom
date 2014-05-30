@@ -85,9 +85,7 @@ class EmpleadosController extends BaseController {
 
 		try {
 
-			User::destroy($id);
-
-			return index();
+			Empleado::DeleteEmpleado($id);
 			
 		} catch (Exception $e) {
 			
