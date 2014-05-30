@@ -9,6 +9,12 @@
 @font-face {font-family: KievitSlabWeb;src: url("../fonts/KievitSlabWeb.woff") format("woff");}
 @font-face {font-family: KievitSlabWeb-Light;src: url("../fonts/KievitSlabWeb-Light.woff") format("woff");}
 @font-face {font-family: KievitSlabWeb-Bold;src: url("../fonts/KievitWeb-Bold.woff") format("woff");}
+
+
+@font-face {font-family: Glyphicons Halflings;src: url("../fonts/glyphicons-halflings-regular.woff")format("woff");}
+@font-face {font-family: Glyphicons Halflings;src: url("../fonts/glyphicons-halflings-regular.eot");}
+@font-face {font-family: Glyphicons Halflings;src: url("../fonts/glyphicons-halflings-regular.svg");}
+
 /* // Document CSS // */
 
 body {
@@ -21,6 +27,7 @@ body {
   height:120px;
   background: #6699CC;
 }
+
 h1{ color: #6699CC;font-size: 49px;font-weight: normal;
 }
 .mt20{margin-top: 20px !important;}
@@ -29,6 +36,13 @@ h1{ color: #6699CC;font-size: 49px;font-weight: normal;
 .logotipo{width: 100px;}
 .logodb{float: left;width: 360px;}
 .logodanilo{float: right !important;width: 100px;margin-top: 17px;}
+.title-center{text-align: center !important;}
+.title-center h3{margin: 0 !important;}
+.btn-menu{width: 100%; height: 150px; background: #f2f2f2; margin: 50px auto; border-radius: 4px; box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);}
+.btn-menu:hover{background: #e8e5e5;}
+.btn-menu span{ float: left; line-height: 1; text-align: center !important; width: 100%;}
+.glyphicon-class {display: block; text-align: center; word-wrap: break-word; font-size: 20px; padding-top: 20px;}
+.glyphicon{font-family: 'Glyphicons Halflings'; font-size: 40px; padding-top: 30px; color:#6699CC;}
 
 .form-signin {
   max-width: 330px;

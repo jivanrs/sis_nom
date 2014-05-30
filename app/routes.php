@@ -14,14 +14,14 @@
 Route::get('/', function(){
 	if (Auth::check())
 	{
-	    return View::make('hello');
+	    return View::make('home');
 	}
 	else{
 		return View::make('login');
 	}
 });
 
-Route::get('pagos', function(){return View::make('pagos');});
+//Route::get('pagos', function(){return View::make('pagos');});
 
 // route to login view
 Route::get('login', array('uses' => 'HomeController@showLogin'));
@@ -35,4 +35,4 @@ Route::get('logout', array('uses' => 'HomeController@doLogout'));
 
 Route::get('empleados', array('before' => 'auth', array('uses' => 'EmpleadosController@index')));
 
-//Route::get('pagos', array('uses' => 'PagosController@index'));
+Route::get('pagos', array('uses' => 'PagosController@index'));

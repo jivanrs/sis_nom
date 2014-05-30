@@ -49,9 +49,8 @@ class HomeController extends BaseController {
 			// attempt to do the login
 			if (Auth::attempt($userdata, Input::has('chkBox') ? true : false)) {
 
-				$empleados = Empleado::EmpleadosInfo();
 
-				return View::make('empleados')->with('empleados', $empleados); 
+				return View::make('home'); 
 
 			} else {	 	
 				
