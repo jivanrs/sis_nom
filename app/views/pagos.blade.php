@@ -62,6 +62,7 @@
           <td>Empresa</td>
           <td>Sueldo Base</td>
           <td>Sueldo Pendiente</td>
+          <td>Realizar Pago</td>
         </tr>
         @foreach($empleados as $empleado)
           <tr>
@@ -73,6 +74,7 @@
             <td>{{ $empleado->Nombre_Empresa }} </td>
             <td>{{ $empleado->SueldoBase }} </td>
             <td>{{ $empleado->Restante }} </td>
+            <td><button class="btn btn-default" type="button" data-toggle="modal" data-target="#hacerPago">Hacer Pago</button></td>
           </tr>
         @endforeach
         
@@ -81,23 +83,18 @@
         <button class="btn btn-default" type="button">Filtrar</button>
       </div>
     </div>
-    <!-- <div class="panel panel-default">
-      <table class="table">
-        <tr>
-          <td></td>
-          <td>ID</td>
-          <td>Nombre</td>
-          <td>Puesto</td>
-          <td>Departamento</td>
-          <td>Empresa</td>
-          <td>Sueldo</td>
-          <td>Saldo Pendiente</td>
-          <td>Pago</td>
-          <td></td>
-        </tr>
-       
-      </table>
-    </div> -->
+    </div>
+    <!-- Ventana par agregar un empleado nuevo -->
+        <div class="modal fade" id="hacerPago" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <p>Este es el modal</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
   </div>
 </div> 
 <!-- /container -->
