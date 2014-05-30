@@ -32,7 +32,17 @@ Route::post('login', array('uses' => 'HomeController@doLogin'));
 // route to logout
 Route::get('logout', array('uses' => 'HomeController@doLogout'));
 
+Route::group(array('before' => 'auth.custom'), function(){
 
-Route::get('empleados', array('before' => 'auth', array('uses' => 'EmpleadosController@index')));
+	Route::get('empleados', 'EmpleadosController@index');
+	Route::get('empleados/delete', 'EmpleadosController@destroy($id)');
+	Route::get('pagos', 'PagosController@index');
 
+<<<<<<< HEAD
 Route::get('pagos', array('uses' => 'PagosController@index'));
+=======
+});
+
+//usuario: jfeuchter
+//password: 321000
+>>>>>>> FETCH_HEAD
