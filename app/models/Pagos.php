@@ -51,7 +51,7 @@ class Pagos extends Eloquent
 		        ->select('Nombre','Nombre_Empresa', 'Nombre_Depto',  'FechaDePago', 'Pago', 'FechaDeRecibo', 'Periodo')
 		        ->get();
 
-		return $listaEmpleados
+		return $listaEmpleados;
 
 	}
 
@@ -68,7 +68,7 @@ class Pagos extends Eloquent
 		        ->select('Nombre_Empresa', 'Nombre_Depto',  'FechaDePago', 'Pago', 'FechaDeRecibo', 'Periodo')
 		        ->get();
 
-		return $listaEmpresa
+		return $listaEmpresa;
 
 	}
 
@@ -85,7 +85,7 @@ class Pagos extends Eloquent
 		        ->select('Nombre_Empresa', 'Nombre_Depto',  'FechaDePago', 'Pago', 'FechaDeRecibo', 'Periodo')
 		        ->get();
 
-		return $listaDepto
+		return $listaDepto;
 
 	}
 	
