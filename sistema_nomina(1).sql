@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-05-2014 a las 01:05:50
+-- Tiempo de generación: 02-06-2014 a las 17:37:16
 -- Versión del servidor: 5.5.32
 -- Versión de PHP: 5.4.16
 
@@ -67,6 +67,7 @@ CREATE TABLE IF NOT EXISTS `empleado` (
   `CLABE_Bancaria` varchar(45) COLLATE latin1_spanish_ci NOT NULL,
   `SueldoBase` int(11) NOT NULL COMMENT 'Sueldo de Semana o Quincena',
   `emp_idTipoPeriodo_FK` int(11) NOT NULL,
+  `Activo` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`idEmpleado`),
   UNIQUE KEY `idEmpleado_UNIQUE` (`idEmpleado`,`emp_idDeparameto_FK`),
   KEY `idDepartamento_FK_idx` (`emp_idDeparameto_FK`),
@@ -78,9 +79,9 @@ CREATE TABLE IF NOT EXISTS `empleado` (
 -- Volcado de datos para la tabla `empleado`
 --
 
-INSERT INTO `empleado` (`idEmpleado`, `emp_idDeparameto_FK`, `emp_idEmpresa_FK`, `Nombre`, `Direccion`, `Puesto`, `Telefono`, `Celular`, `Extension`, `Email`, `Banco`, `Cta_Bancaria`, `CLABE_Bancaria`, `SueldoBase`, `emp_idTipoPeriodo_FK`) VALUES
-(1, 1, 1, 'Jurgen Feuchter Garcia', 'Holanda 2920 Col. del Carmen Monterrey Nuvo Leon', 'Practicante Desarrollador Web', 83337260, 2147483647, 15, 'jfeuchter@gmail.com', 'Banorte', '2345134513', '23513412351234', 10000, 2),
-(2, 1, 1, 'Juan Cabral', 'Por aculla', 'Desarrollador', 82314114, 812345123, 16, 'juan.cabral@daniloblack.com.mx', 'Banorte', '124512', '41345135', 40000, 1);
+INSERT INTO `empleado` (`idEmpleado`, `emp_idDeparameto_FK`, `emp_idEmpresa_FK`, `Nombre`, `Direccion`, `Puesto`, `Telefono`, `Celular`, `Extension`, `Email`, `Banco`, `Cta_Bancaria`, `CLABE_Bancaria`, `SueldoBase`, `emp_idTipoPeriodo_FK`, `Activo`) VALUES
+(1, 1, 1, 'Jurgen Feuchter Garcia', 'Holanda 2920 Col. del Carmen Monterrey Nuvo Leon', 'Practicante Desarrollador Web', 83337260, 2147483647, 15, 'jfeuchter@gmail.com', 'Banorte', '2345134513', '23513412351234', 10000, 2, 1),
+(2, 1, 1, 'Juan Cabral', 'Por aculla', 'Desarrollador', 82314114, 812345123, 16, 'juan.cabral@daniloblack.com.mx', 'Banorte', '124512', '41345135', 40000, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -112,9 +113,7 @@ INSERT INTO `empresa` (`idEmpresa`, `Nombre_Empresa`) VALUES
 CREATE TABLE IF NOT EXISTS `pagos` (
   `idPagos` int(11) NOT NULL,
   `Pago` double NOT NULL,
-  `Dia` int(11) NOT NULL,
-  `Mes` int(11) NOT NULL,
-  `Año` int(11) NOT NULL,
+  `FechaDePago` date NOT NULL,
   `pag_idEmpleado_FK` int(11) NOT NULL,
   `pag_idEmpresa_FK` int(11) NOT NULL,
   `pag_idDepartamento_FK` int(11) NOT NULL,
@@ -143,7 +142,15 @@ CREATE TABLE IF NOT EXISTS `periodo` (
   PRIMARY KEY (`idPeriodo`),
   UNIQUE KEY `idPeriodo_UNIQUE` (`idPeriodo`),
   KEY `idTipoPeriodo_FK_idx` (`per_idTipoPeriodo_FK`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=3 ;
+
+--
+-- Volcado de datos para la tabla `periodo`
+--
+
+INSERT INTO `periodo` (`idPeriodo`, `Periodo`, `per_idTipoPeriodo_FK`) VALUES
+(1, 'Primera Quincena', 1),
+(2, 'Segunda Quincena', 1);
 
 -- --------------------------------------------------------
 
@@ -153,16 +160,22 @@ CREATE TABLE IF NOT EXISTS `periodo` (
 
 CREATE TABLE IF NOT EXISTS `recibos` (
   `idRecibos` int(11) NOT NULL AUTO_INCREMENT,
-  `Dia` varchar(45) COLLATE latin1_spanish_ci NOT NULL,
-  `Mes` varchar(45) COLLATE latin1_spanish_ci NOT NULL,
-  `Año` varchar(45) COLLATE latin1_spanish_ci NOT NULL,
+  `FechaDeRecivo` date NOT NULL,
   `rec_idPeriodo_FK` int(11) NOT NULL,
   `rec_idEmpleado_FK` int(11) NOT NULL,
   PRIMARY KEY (`idRecibos`),
   UNIQUE KEY `idRecibos_UNIQUE` (`idRecibos`),
-  KEY `idPeriodo_FK_idx` (`rec_idPeriodo_FK`),
-  KEY `rec_idEmpleado_FK` (`rec_idEmpleado_FK`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=1 ;
+  KEY `rec_idEmpleado_FK` (`rec_idEmpleado_FK`),
+  KEY `rec_idPeriodo_FK` (`rec_idPeriodo_FK`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=5 ;
+
+--
+-- Volcado de datos para la tabla `recibos`
+--
+
+INSERT INTO `recibos` (`idRecibos`, `FechaDeRecivo`, `rec_idPeriodo_FK`, `rec_idEmpleado_FK`) VALUES
+(3, '0000-00-00', 1, 1),
+(4, '0000-00-00', 1, 1);
 
 -- --------------------------------------------------------
 
