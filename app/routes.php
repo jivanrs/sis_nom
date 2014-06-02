@@ -39,6 +39,7 @@ Route::group(array('before' => 'auth.custom'), function(){
 	Route::post('eliminar_empleados' , 'EmpleadosController@form_eliminar_empleados');
 	Route::get('empleados/delete', 'EmpleadosController@destroy($id)');
 	Route::get('pagos', 'PagosController@index');
+	Route::get('reportes', 'ReportesController@index');
 	Route::get('home', function(){
 		return View::make('home');
 	});

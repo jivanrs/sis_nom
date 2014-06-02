@@ -53,7 +53,7 @@
   <div class="col-md-4">
     <div class="btn-menu">
       <span class="glyphicon glyphicon-sort-by-attributes"></span>
-      <span class="glyphicon-class"><a href="">Realizar Reporte</a></span>
+      <span class="glyphicon-class"><a href="{{ URL::to('reportes') }}">Realizar Reporte</a></span>
     </div>
   </div>
   </div>
