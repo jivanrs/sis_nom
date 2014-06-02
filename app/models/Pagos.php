@@ -39,6 +39,55 @@ class Pagos extends Eloquent
 
         return $pagos;
 	}
+
+	public function scopeObtenerPagosEmpleados($fechaIni, $fechaFin){
+
+		$listaEmpleados = DB::table('empleados')
+				->leftJoin('empresa', 'empresa.idEmpresa', '=', 'empleado.emp_idEmpresa_FK')
+		        ->leftJoin('departamento', 'departamento.idDepartamento', '=', 'empleado.emp_idDeparameto_FK')
+		        ->leftJoin('pagos', 'pagos.pag_idEmpleado_FK', '=', 'empleado.idEmpleado')
+		        ->leftJoin('periodo', 'periodo.idPeriodo', '=', 'pagos.pag_idPeriodo_FK')
+		        ->whereBetween('FechaDePago', array($fechaIni, $fechaFin))
+		        ->select('Nombre','Nombre_Empresa', 'Nombre_Depto',  'FechaDePago', 'Pago', 'FechaDeRecibo', 'Periodo')
+		        ->get();
+
+		return $listaEmpleados
+
+	}
+
+	public function scopeObtenerPagosEmpresa($fechaIni, $fechaFin){
+
+		$listaEmpresa = DB::table('empleados')
+				->leftJoin('empresa', 'empresa.idEmpresa', '=', 'empleado.emp_idEmpresa_FK')
+		        ->leftJoin('departamento', 'departamento.idDepartamento', '=', 'empleado.emp_idDeparameto_FK')
+		        ->leftJoin('pagos', 'pagos.pag_idEmpleado_FK', '=', 'empleado.idEmpleado')
+		        ->leftJoin('periodo', 'periodo.idPeriodo', '=', 'pagos.pag_idPeriodo_FK')
+		        ->sum('pago')
+		        ->groupBy('Nombre_Empresa')
+		        ->whereBetween('FechaDePago', array($fechaIni, $fechaFin))
+		        ->select('Nombre_Empresa', 'Nombre_Depto',  'FechaDePago', 'Pago', 'FechaDeRecibo', 'Periodo')
+		        ->get();
+
+		return $listaEmpresa
+
+	}
+
+	public function scopeObtenerPagosDepto($fechaIni, $fechaFin){
+
+		$listaDepto = DB::table('empleados')
+				->leftJoin('empresa', 'empresa.idEmpresa', '=', 'empleado.emp_idEmpresa_FK')
+		        ->leftJoin('departamento', 'departamento.idDepartamento', '=', 'empleado.emp_idDeparameto_FK')
+		        ->leftJoin('pagos', 'pagos.pag_idEmpleado_FK', '=', 'empleado.idEmpleado')
+		        ->leftJoin('periodo', 'periodo.idPeriodo', '=', 'pagos.pag_idPeriodo_FK')
+		        ->sum('pago')
+		        ->groupBy('Nombre_Depto')
+		        ->whereBetween('FechaDePago', array($fechaIni, $fechaFin))
+		        ->select('Nombre_Empresa', 'Nombre_Depto',  'FechaDePago', 'Pago', 'FechaDeRecibo', 'Periodo')
+		        ->get();
+
+		return $listaDepto
+
+	}
 	
 
 }
