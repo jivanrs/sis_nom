@@ -24,7 +24,7 @@ class ReportesController extends BaseController {
 	public function reporteEmpresa($fechaIni, $fechaFin)
 	{
 		
-		$empleados = Pagos::ObtenerPagosEmpleados($fechaIni, $fechaFin);
+		$empleados = Pagos::ObtenerPagosEmpresa($fechaIni, $fechaFin);
 
 		return View::make("reportes")->with('empleados', $empleados);
 	}
@@ -32,7 +32,7 @@ class ReportesController extends BaseController {
 	public function reporteDepto($fechaIni, $fechaFin)
 	{
 		
-		$empleados = Pagos::ObtenerPagosEmpleados($fechaIni, $fechaFin);
+		$empleados = Pagos::ObtenerPagosDepto($fechaIni, $fechaFin);
 
 		return View::make("reportes")->with('empleados', $empleados);
 	}
