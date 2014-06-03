@@ -195,7 +195,7 @@
         <td>{{ $empleado->FechaDePago }} </td>
         <td>{{ $empleado->Pago }} </td>
         <td>{{ $empleado->FechaDeRecibo }} </td>
-        <td>{{ $empleado->periodo }} </td>
+        <td>{{ $empleado->Periodo }} </td>
         <td><button class="btn btn-default" type="button" id="btn-elim-a">Editar</button></td>
       </tr>
     <?php $contador++; ?>

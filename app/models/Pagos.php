@@ -25,7 +25,7 @@ class Pagos extends Eloquent
 		        ->leftJoin('departamento', 'departamento.idDepartamento', '=', 'empleado.emp_idDeparameto_FK')
 		        ->leftJoin('tipoperiodo', 'tipoperiodo.idTipoPeriodo', '=', 'empleado.emp_idTipoPeriodo_FK')
 		        ->leftjoin(
-		        		DB::raw('(SELECT rec_idEmpleado_FK, SUM( SueldoBase ) AS Restante
+		        		DB::raw('(SELECT rec_idEmpleado_FK, SUM( PorPagar ) AS Restante
 						FROM `recibos`
 						INNER JOIN empleado ON rec_idEmpleado_FK = idEmpleado
 						GROUP BY rec_idEmpleado_FK) AS recibos1'), 
@@ -35,6 +35,7 @@ class Pagos extends Eloquent
 				        })
 		        ->select('idEmpleado', 'Nombre', 'Nombre_Depto', 'Nombre_Empresa', 'Puesto', 'SueldoBase', 'Restante')
 		        ->where('Activo', true)
+		        //->whereNotNull('Restante') //Se puede usar para mostrar nada a mas a los que se les debe.
 		        ->get();
 
         return $pagos;
@@ -46,10 +47,10 @@ class Pagos extends Eloquent
 				->leftJoin('empresa', 'empresa.idEmpresa', '=', 'empleado.emp_idEmpresa_FK')
 		        ->leftJoin('departamento', 'departamento.idDepartamento', '=', 'empleado.emp_idDeparameto_FK')
 		        ->leftJoin('pagos', 'pagos.pag_idEmpleado_FK', '=', 'empleado.idEmpleado')
-		        ->leftJoin('periodo', 'periodo.idPeriodo', '=', 'pagos.pag_idPeriodo_FK')
 		        ->leftJoin('recibos', 'recibos.idRecibos', '=', 'pagos.pag_idRecibos_FK')
+		        ->leftJoin('periodo', 'periodo.idPeriodo', '=', 'recibos.rec_idPeriodo_FK')
 		        ->whereBetween('FechaDePago', array('2014/04/15', '2014/06/05'))
-		        ->select('Nombre','Nombre_Empresa', 'Nombre_Depto',  'FechaDePago', 'Pago', 'FechaDeRecibo', 'Periodo')
+		        ->select('idEmpleado','Nombre','Nombre_Empresa', 'Nombre_Depto',  'FechaDePago', 'Pago', 'FechaDeRecibo', 'Periodo')
 		        ->get();
 
 		return $listaEmpleados;
