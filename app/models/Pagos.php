@@ -42,12 +42,13 @@ class Pagos extends Eloquent
 
 	public function scopeObtenerPagosEmpleados($fechaIni, $fechaFin){
 
-		$listaEmpleados = DB::table('empleados')
+		$listaEmpleados = DB::table('empleado')
 				->leftJoin('empresa', 'empresa.idEmpresa', '=', 'empleado.emp_idEmpresa_FK')
 		        ->leftJoin('departamento', 'departamento.idDepartamento', '=', 'empleado.emp_idDeparameto_FK')
 		        ->leftJoin('pagos', 'pagos.pag_idEmpleado_FK', '=', 'empleado.idEmpleado')
 		        ->leftJoin('periodo', 'periodo.idPeriodo', '=', 'pagos.pag_idPeriodo_FK')
-		        ->whereBetween('FechaDePago', array($fechaIni, $fechaFin))
+		        ->leftJoin('recibos', 'recibos.idRecibos', '=', 'pagos.pag_idRecibos_FK')
+		        ->whereBetween('FechaDePago', array('2014/04/15', '2014/06/05'))
 		        ->select('Nombre','Nombre_Empresa', 'Nombre_Depto',  'FechaDePago', 'Pago', 'FechaDeRecibo', 'Periodo')
 		        ->get();
 
@@ -57,11 +58,12 @@ class Pagos extends Eloquent
 
 	public function scopeObtenerPagosEmpresa($fechaIni, $fechaFin){
 
-		$listaEmpresa = DB::table('empleados')
+		$listaEmpresa = DB::table('empleado')
 				->leftJoin('empresa', 'empresa.idEmpresa', '=', 'empleado.emp_idEmpresa_FK')
 		        ->leftJoin('departamento', 'departamento.idDepartamento', '=', 'empleado.emp_idDeparameto_FK')
 		        ->leftJoin('pagos', 'pagos.pag_idEmpleado_FK', '=', 'empleado.idEmpleado')
 		        ->leftJoin('periodo', 'periodo.idPeriodo', '=', 'pagos.pag_idPeriodo_FK')
+		        ->leftJoin('recibos', 'recibos.idRecibos', '=', 'pagos.pag_idRecibos_FK')
 		        ->sum('pago')
 		        ->groupBy('Nombre_Empresa')
 		        ->whereBetween('FechaDePago', array($fechaIni, $fechaFin))
@@ -74,11 +76,12 @@ class Pagos extends Eloquent
 
 	public function scopeObtenerPagosDepto($fechaIni, $fechaFin){
 
-		$listaDepto = DB::table('empleados')
+		$listaDepto = DB::table('empleado')
 				->leftJoin('empresa', 'empresa.idEmpresa', '=', 'empleado.emp_idEmpresa_FK')
 		        ->leftJoin('departamento', 'departamento.idDepartamento', '=', 'empleado.emp_idDeparameto_FK')
 		        ->leftJoin('pagos', 'pagos.pag_idEmpleado_FK', '=', 'empleado.idEmpleado')
 		        ->leftJoin('periodo', 'periodo.idPeriodo', '=', 'pagos.pag_idPeriodo_FK')
+		        ->leftJoin('recibos', 'recibos.idRecibos', '=', 'pagos.pag_idRecibos_FK')
 		        ->sum('pago')
 		        ->groupBy('Nombre_Depto')
 		        ->whereBetween('FechaDePago', array($fechaIni, $fechaFin))

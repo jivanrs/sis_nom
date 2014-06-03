@@ -10,7 +10,9 @@ class ReportesController extends BaseController {
 	public function index()
 	{
 
-		return View::make("reportes");
+		$empleado = Pagos::ObtenerPagosEmpleados('2014/04/25', '2014/06/03');
+
+		return View::make("reportes")->with('empleados', $empleado);
 	}
 
 
