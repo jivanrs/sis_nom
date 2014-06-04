@@ -33,20 +33,21 @@ Route::post('login', array('uses' => 'HomeController@doLogin'));
 Route::get('logout', array('uses' => 'HomeController@doLogout'));
 
 Route::group(array('before' => 'auth.custom'), function(){
-
+	
+	Route::get('home', function(){
+		return View::make('home');
+	});
 	Route::get('empleados', 'EmpleadosController@index');
 	Route::post('empleado/crear' , 'EmpleadosController@form_crear_empleado');
 	Route::post('eliminar_empleados' , 'EmpleadosController@form_eliminar_empleados');
 	Route::get('empleados/delete', 'EmpleadosController@destroy($id)');
 	Route::get('pagos', 'PagosController@index');
 	Route::get('reportes', 'ReportesController@index');
-	Route::get('reportes/empleados/{fechaIni}/{fechaFin}', 'ReportesController@reporteEmpleados($fechaIni, $fechaFin)');
-	Route::get('reportes/empresas/{fechaIni}/{fechaFin}', 'ReportesController@reporteEmpresa($fechaIni, $fechaFin)');
-	Route::get('reportes/departamentos/{fechaIni}/{fechaFin}', 'ReportesController@reporteDepto($fechaIni, $fechaFin)');
-	Route::get('home', function(){
-		return View::make('home');
-	});
-
+	Route::post('reportes/empleados/{fechaIni}/{fechaFin}', 'ReportesController@reporteEmpleados($fechaIni, $fechaFin)');
+	Route::post('reportes/empresas/{fechaIni}/{fechaFin}', 'ReportesController@reporteEmpresa($fechaIni, $fechaFin)');
+	Route::post('reportes/departamentos/{fechaIni}/{fechaFin}', 'ReportesController@reporteDepto($fechaIni, $fechaFin)');
+	Route::post('realizarPago/{idEmpleado}', 'PagosController@realisarPago($idEmpleado)');
+	Route::post('realizarPagoEspecial/{idEmpleado}', 'PagosController@realisarPagoEspecial($idEmpleado)');
 
 });
 
