@@ -15,6 +15,27 @@ class PagosController extends BaseController {
 		return View::make("pagos")->with('empleados', $empleados);
 	}
 
+	public function generarNomina($idEmpleados){
+
+		foreach ($idEmpleados as $id) {
+
+			$Recibos = new Recibos;
+
+			// Template : $usuario->Nombre 	= 	Input::get('nombre');
+
+			
+			$Recibos->FechaDeRecibo 		= 	date('Y/m/d H:i:s');
+			$Recibos->rec_idPeriodo_FK		= 	Input::get('rec_idPeriodo_FK');
+			$Recibos->rec_idEmpleado_FK		= 	Input::get('rec_idEmpleado_FK');
+			$Recibos->PorPagar				= 	Input::get('PorPagar');
+			$Recibos->save();	
+
+		}
+
+		return Redirect::to("/Recibos");
+
+	}
+
 
 	/**
 	 * Show the form for creating a new resource.
