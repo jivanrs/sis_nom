@@ -15,20 +15,59 @@ class PagosController extends BaseController {
 
 	public function generarNomina(){
 
-		foreach ($idEmpleados as $id) {
+		$idEmpleados = Input::get('empleados');
 
-			$Recibos = new Recibos;
+		if(is_array($empleados))
+		{
 
-			// Template : $usuario->Nombre 	= 	Input::get('nombre');
+			foreach ($idEmpleados as $id) {
 
-			
-			$Recibos->FechaDeRecibo 		= 	date('Y/m/d H:i:s');
-			$Recibos->rec_idPeriodo_FK		= 	Input::get('rec_idPeriodo_FK');
-			$Recibos->rec_idEmpleado_FK		= 	Input::get('rec_idEmpleado_FK');
-			$Recibos->PorPagar				= 	Input::get('PorPagar');
-			$Recibos->save();	
+				$Recibos = new Recibos;
+				
+				$Recibos->FechaDeRecibo 		= 	date('Y/m/d H:i:s');
+				$Recibos->rec_idPeriodo_FK		= 	Input::get('rec_idPeriodo_FK');
+				$Recibos->rec_idEmpleado_FK		= 	Input::get('rec_idEmpleado_FK');
+				$Recibos->PorPagar				= 	Input::get('PorPagar');
+				$Recibos->save();	
+
+			}
 
 		}
+
+		return Redirect::to("/Recibos");
+
+	}
+
+	public function realisarPago($idEmpleado){
+
+		$recibo = Recibos::where('rec_idEmpleado_FK', $idEmpleado)->first();
+		$idRecibo = $recibo->idRecibos;
+		$recibo->PorPagar = $recibo->PorPagar - Input::get('Pago');
+		$recibo->rec_idPeriodo_FK = Input::get('idPeriodo');
+		$recibo->save();
+
+		$Pago = new Pagos;
+
+		$Pago->Pago 				= Input::get('Pago');
+		$Pago->FechaDePago 			= date('Y/m/d H:i:s');
+		$Pago->pag_idEmpleado_FK	= $idEmpleado;
+		$Pago->pag_idRecibos_FK 	= $idRecibo;
+		$Pago->PagoEspaecial 		= 0;
+		$Pago->save();
+
+		return Redirect::to("/Recibos");
+
+	}
+
+	public function realisarPagoEspecial($idEmpleado){
+
+		$Pago = new Pagos;
+
+		$Pago->Pago 					= Input::get('Pago');
+		$Pago->FechaDePago 				= date('Y/m/d H:i:s');
+		$Pago->pag_idEmpleado_FK 		= $idEmpleado;
+		$Pago->PagoEspaecial			= 1;
+		$Pago->save();
 
 		return Redirect::to("/Recibos");
 
