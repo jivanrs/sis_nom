@@ -28,6 +28,7 @@
     </div>
   </div>
 </div>
+
 <div class="container">
   <div class="row">
     <div class="panel panel-default mt20">
@@ -79,24 +80,20 @@
         @endforeach
         
       </table>
-      <div class="col-md-3 col-md-offset-8">
-        <button class="btn btn-default" type="button">Filtrar</button>
-      </div>
     </div>
-    </div>
-    <!-- Ventana par agregar un empleado nuevo -->
-        <div class="modal fade" id="hacerPago" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <p>Este es el modal</p>
-              </div>
+  </div>
+  <!-- Ventana par agregar un empleado nuevo -->
+      <div class="modal fade" id="hacerPago" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <p>Este es el modal</p>
             </div>
           </div>
-
         </div>
+      </div>
+      
   </div>
-</div> 
 <!-- /container -->
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

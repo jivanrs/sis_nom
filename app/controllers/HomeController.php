@@ -54,7 +54,7 @@ class HomeController extends BaseController {
 
 			} else {	 	
 				
-				return Redirect::to('/')->with('login_error',true);
+				return Redirect::to('/')->with('flash_message', 'El usuario o contraseña esta equibocado.');
 
 			}
 

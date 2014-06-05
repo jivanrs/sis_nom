@@ -21,16 +21,21 @@
 <div class="header">
   <div class="content-header">
         <div class="logodb">
-            <a href="index.html"><img src="images/logodb.png" /></a>
+            <a href="/"><img src="images/logodb.png" /></a>
         </div>
         <div class="logodanilo">
-            <a href="index.html"><img src="images/logo-db.jpg" /></a>
+            <a href="/"><img src="images/logo-db.jpg" /></a>
         </div>
     </div>
 </div>
 <div class="container">
   <form class="form-signin" role="form" action ="login" method="post">
     <h2 class="form-signin-heading">Ingresa tus datos</h2>
+    @if (Session::get('flash_message'))
+      <div class="flash">
+        {{ Session::get('flash_message') }}
+      </div>
+    @endif
     <input type="user" class="form-control" placeholder="Usuario" required autofocus name="usuario">
     <input type="password" class="form-control" placeholder="Password" required name="password">
     <label class="checkbox">

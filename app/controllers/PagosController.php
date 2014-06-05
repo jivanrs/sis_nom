@@ -10,7 +10,10 @@ class PagosController extends BaseController {
 	public function index()
 	{
 
-		return View::make("pagos");
+		$empleados = Pagos::PagosInfo();
+
+		return View::make("pagos")->with('empleados', $empleados);
+		
 	}
 
 	public function generarNomina(){
