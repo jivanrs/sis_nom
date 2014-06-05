@@ -41,6 +41,7 @@ Route::group(array('before' => 'auth.custom'), function(){
 	Route::get('pagos', 'PagosController@index');
 	Route::get('reportes', 'ReportesController@index');
 	Route::get('reportes/empleados/{fechaIni}/{fechaFin}', 'ReportesController@reporteEmpleados($fechaIni, $fechaFin)');
+	Route::get('generarNomina', 'PagosController@generarNomina()');
 	Route::get('reportes/empresas/{fechaIni}/{fechaFin}', 'ReportesController@reporteEmpresa($fechaIni, $fechaFin)');
 	Route::get('reportes/departamentos/{fechaIni}/{fechaFin}', 'ReportesController@reporteDepto($fechaIni, $fechaFin)');
 	Route::get('home', function(){

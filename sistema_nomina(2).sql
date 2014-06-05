@@ -19,8 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `sistema_nomina`
 --
-CREATE DATABASE IF NOT EXISTS `dbpagos` DEFAULT CHARACTER SET latin1 COLLATE latin1_spanish_ci;
-USE `dbpagos`;
+CREATE DATABASE IF NOT EXISTS `sistema_nomina` DEFAULT CHARACTER SET latin1 COLLATE latin1_spanish_ci;
+USE `sistema_nomina`;
 
 -- --------------------------------------------------------
 

@@ -171,41 +171,6 @@
 </div>
 <!-- /container -->
 
-<!-- Table -->
-  <table class="table">
-    <tr>
-      <td></td>
-      <td>Nombre</td>
-      <td>Empresa</td>
-      <td>Departamento</td>
-      <td>Fecha de Pago</td>
-      <td>Pago</td>
-      <td>Fecha de Recibo</td>
-      <td>Periodo</td>
-    </tr>
-    <?php $contador = 0; ?>
-
-    {{Form::open(array('url'=>'eliminar_empleados'))}}
-    @foreach($empleados as $empleado)
-      <tr>
-        <td><input type="checkbox" name="empleado[]" id="chk_emp-{{$empleado->idEmpleado}}" value="{{$empleado->idEmpleado}}"></td>
-        <td>{{ $empleado->Nombre }} </td>
-        <td>{{ $empleado->Nombre_Empresa }}</td>
-        <td>{{ $empleado->Nombre_Depto }}</td>
-        <td>{{ $empleado->FechaDePago }} </td>
-        <td>{{ $empleado->Pago }} </td>
-        <td>{{ $empleado->FechaDeRecibo }} </td>
-        <td>{{ $empleado->Periodo }} </td>
-        <td><button class="btn btn-default" type="button" id="btn-elim-a">Editar</button></td>
-      </tr>
-    <?php $contador++; ?>
-    @endforeach
-
-    <button class="btn btn-default" type="submit" id="btn-elim-b" style="display:none;" >Eliminar</button>
-
-    {{Form::close()}}
-  </table>
-
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
