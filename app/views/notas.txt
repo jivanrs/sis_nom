@@ -19,3 +19,9 @@
     <![endif]-->
 
   </head>
+  
+
+  <!--             <?php 
+              $recibos_empleado = Recibos::where('rec_idEmpleado_FK',$empleados[$contador])->first();   
+              $pagos_empleado   = Pagos::where('pag_idEmpleado_FK',$empleados[$contador])->first();   
+             ?> -->

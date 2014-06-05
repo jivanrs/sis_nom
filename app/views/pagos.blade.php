@@ -67,32 +67,107 @@
         </tr>
         @foreach($empleados as $empleado)
           <tr>
-            <td><input type="checkbox"></td>
+            <td><input type="checkbox" value="{{$empleado->idEmpleado}}"></td>
             <td>{{ $empleado->idEmpleado }} </td>
             <td>{{ $empleado->Nombre }} </td>
             <td>{{ $empleado->Puesto }} </td>
             <td>{{ $empleado->Nombre_Depto }} </td>
             <td>{{ $empleado->Nombre_Empresa }} </td>
             <td>{{ $empleado->SueldoBase }} </td>
+
+
+
             <td>{{ $empleado->Restante }} </td>
-            <td><button class="btn btn-default" type="button" data-toggle="modal" data-target="#hacerPago">Hacer Pago</button></td>
+
+            <td><button class="btn btn-default" type="button" data-toggle="modal" data-target="#hacerPago-{{$empleado->idEmpleado}}">Hacer Pago</button></td>
           </tr>
         @endforeach
         
       </table>
     </div>
   </div>
+
+  @foreach($empleados as $empleado)
   <!-- Ventana par agregar un empleado nuevo -->
-      <div class="modal fade" id="hacerPago" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal fade" id="hacerPago-{{$empleado->idEmpleado}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <p>Este es el modal</p>
+              <table class="table">
+
+
+                  {{Form::open(array('url'=>'realizarPago'))}}
+
+
+                  <td>{{ $empleado->Nombre }} </td>
+                </tr>
+                <tr>
+                  <td>{{ $empleado->Nombre_Depto }} </td>
+                </tr>
+                <tr>
+                  <td>{{ $empleado->Nombre_Empresa }} </td>
+                </tr>
+                <tr>  
+                  <td>{{ $empleado->SueldoBase }} </td>
+                </tr>
+
+                <td>{{Form::label('sueldo','Realizar Pago')}}</td>
+                <td>{{Form::text('Pago','')}}</td>
+
+                <input type="hidden" name="empleado_id" value="{{ $empleado->idEmpleado }}">
+
+                <input type="hidden" name="empresa_id" value="{{ $empleado->emp_idEmpresa_FK }}">
+
+                <input type="hidden" name="dep_id" value="{{ $empleado->emp_idDeparameto_FK }}">
+
+                <tr>
+                  <td>
+                    <select name="periodo_id">
+                      <option value="1">Primera quincena</option>
+                      <option value="2">Segunda quincena</option>
+                    </select>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <select name="tipo_pago">
+                      <option value="0">Regular</option>
+                      <option value="1">Bono especial</option>
+                    </select>
+                  </td>
+                </tr>
+   
+                <tr>
+                  <td>Recibo</td>
+
+                  <td>
+
+                    <?php 
+                        $recibos = Recibos::where('rec_idEmpleado_FK',$empleado->idEmpleado)->get();
+                     ?>
+
+                    <select name="recibo_id">
+                      @foreach($recibos as $r)
+                        <option value="{{$r->idRecibos}}">{{$r->FechaDeRecibo}}</option>
+                      @endforeach
+                    </select>
+                  </td>
+                </tr> 
+
+                <input type="hidden" name="tipo_periodo_id" value="{{ $empleado->emp_idTipoPeriodo_FK }}">
+
+                  <td><button type="submit" class="btn btn-primary">Relizar Pago</button></td>
+                </tr>
+                {{ Form::close() }}
+        
+            </table>
             </div>
           </div>
         </div>
-      </div>
-      
+      </div> <!-- FIN DEL MODAL -->
+      @endforeach
+
   </div>
 <!-- /container -->
 

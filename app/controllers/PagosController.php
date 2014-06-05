@@ -41,28 +41,31 @@ class PagosController extends BaseController {
 
 	}
 
-	public function realisarPago($idEmpleado){
+	public function realizarPago(){
 
-		$recibo = Recibos::where('rec_idEmpleado_FK', $idEmpleado)->first();
-		$idRecibo = $recibo->idRecibos;
-		$recibo->PorPagar = $recibo->PorPagar - Input::get('Pago');
-		$recibo->rec_idPeriodo_FK = Input::get('idPeriodo');
-		$recibo->save();
+		$recibos = Recibos::where('idRecibos', Input::get('recibo_id'))->first();
+		$Deuda = $recibos->PorPagar;
+		$recibos->PorPagar = $Deuda - Input::get('Pago');
+		$recibos->save();
 
-		$Pago = new Pagos;
+		$pago = new Pagos;
 
-		$Pago->Pago 				= Input::get('Pago');
-		$Pago->FechaDePago 			= date('Y/m/d H:i:s');
-		$Pago->pag_idEmpleado_FK	= $idEmpleado;
-		$Pago->pag_idRecibos_FK 	= $idRecibo;
-		$Pago->PagoEspaecial 		= 0;
-		$Pago->save();
+		$pago->Pago = Input::get('Pago');
+		$pago->FechaDePago = date('Y/m/d H:i:s');
+		$pago->pag_idEmpleado_FK = Input::get('empleado_id');
+		$pago->pag_idEmpresa_FK = Input::get('empresa_id');
+		$pago->pag_idDepartamento_FK = Input::get('dep_id');
+		$pago->pag_idPeriodo_FK = Input::get('periodo_id');
+		$pago->PagoEspecial = Input::get('tipo_pago');
+		$pago->pag_idRecibos_FK = Input::get('recibo_id');
 
-		return Redirect::to("/Recibos");
+		$pago->save();
+		return Redirect::to("/pagos");
 
 	}
 
-	public function realisarPagoEspecial($idEmpleado){
+	public function realizarPagoEspecial($idEmpleado){
+
 
 		$Pago = new Pagos;
 
@@ -75,7 +78,24 @@ class PagosController extends BaseController {
 		return Redirect::to("/Recibos");
 
 	}
+public function hacer_pago($id_empleado){
+		$empleado = Empleado::find($id_empleado); 
+		return View::make('pagos', array('empleado' => $empleado)); 
+	}
 
+	public function pago_empleado(){
+
+		// return Input::all();
+		$empleado = pagos::where('idEmpleado',Input::get('idEmpleado'))->first();
+		$empleado->emp_idDeparameto_FK 		= 	Input::get('emp_idDeparameto_FK');	
+		$empleado->emp_idEmpresa_FK 		= 	Input::get('emp_idEmpresa_FK');
+		$empleado->Nombre 					= 	Input::get('Nombre');
+		$empleado->SueldoBase 				= 	Input::get('SueldoBase');
+		$empleado->emp_idTipoPeriodo_FK 	= 	Input::get('emp_idTipoPeriodo_FK');
+
+		$empleado->save();
+		return Redirect::to("/pagos");	
+	}
 
 	/**
 	 * Show the form for creating a new resource.

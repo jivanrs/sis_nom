@@ -84,7 +84,7 @@ class EmpleadosController extends BaseController {
 			//Ciclo para borrar empleados
 			foreach ($empleados as $empleado) {
 								
-				$empleado = Empleado::where('idEmpleado',$empleados[$contador])->first();				
+				$empleado = Empleado::where('idEmpleado',$empleados[$contador])->first();		
 				$empleado->Activo = 0;
 				$empleado->save();
 				$contador++;

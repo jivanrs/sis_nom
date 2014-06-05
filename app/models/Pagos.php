@@ -33,7 +33,7 @@ class Pagos extends Eloquent
 				        {
 				            $join->on('idEmpleado', '=', 'rec_idEmpleado_FK');
 				        })
-		        ->select('idEmpleado', 'Nombre', 'Nombre_Depto', 'Nombre_Empresa', 'Puesto', 'SueldoBase', 'Restante')
+		        ->select('idEmpleado', 'Nombre', 'Nombre_Depto', 'Nombre_Empresa', 'Puesto', 'SueldoBase', 'Restante','emp_idTipoPeriodo_FK', 'emp_idEmpresa_FK','emp_idDeparameto_FK')
 		        ->where('Activo', true)
 		        //->whereNotNull('Restante') //Se puede usar para mostrar nada a mas a los que se les debe.
 		        ->get();

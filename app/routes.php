@@ -50,8 +50,11 @@ Route::group(array('before' => 'auth.custom'), function(){
 	Route::post('reportes/empleados/{fechaIni}/{fechaFin}', 'ReportesController@reporteEmpleados($fechaIni, $fechaFin)');
 	Route::post('reportes/empresas/{fechaIni}/{fechaFin}', 'ReportesController@reporteEmpresa($fechaIni, $fechaFin)');
 	Route::post('reportes/departamentos/{fechaIni}/{fechaFin}', 'ReportesController@reporteDepto($fechaIni, $fechaFin)');
-	Route::post('realizarPago/{idEmpleado}', 'PagosController@realisarPago($idEmpleado)');
-	Route::post('realizarPagoEspecial/{idEmpleado}', 'PagosController@realisarPagoEspecial($idEmpleado)');
+	
+	// Route::post('realizarPago/{idEmpleado}', 'PagosController@realizarPago($idEmpleado)');
+	Route::post('realizarPago', 'PagosController@realizarPago');
+	
+	Route::post('realizarPagoEspecial/{idEmpleado}', 'PagosController@realizarPagoEspecial($idEmpleado)');
 	Route::get('generarNomina', 'PagosController@generarNomina()');
 
 });
