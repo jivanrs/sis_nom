@@ -20,6 +20,25 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <script>
+    $(document).ready(function(){
+      
+      $('#btn-elim-a').click(function(){
+        $('#btn-elim-b').click();
+      });
+    });
+
+    var departamento       = $('#sel_dep_v').attr('value');
+    var empresa            = $('#sel_emp_v').attr('value');
+    var tipo_periodo       = $('#sel_per_v').attr('value');
+
+    $('#sel_dep option[value="'+departamento+'"]').attr("selected", "selected");
+    $('#sel_emp option[value="'+empresa+'"]').attr("selected", "selected");
+    $('#sel_per option[value="'+tipo_periodo+'"]').attr("selected", "selected");
+    
+    </script>
+
+
   </head>
   <body>
     <!--Header-->
@@ -158,15 +177,6 @@
           </div>
         </div>
 
-          <script>
-          $(document).ready(function(){
-            
-            $('#btn-elim-a').click(function(){
-              $('#btn-elim-b').click();
-            });
-          });
-          </script>
-
         <button class="btn btn-default" type="submit" id="btn-elim-a" >Eliminar</button>
 
       </div>
@@ -220,7 +230,8 @@
         <td>{{ $empleado->Cta_Bancaria }} </td>
         <td>{{ $empleado->CLABE_Bancaria }} </td>
         <td>{{ $empleado->SueldoBase }} </td>
-        <td><a href="editar_empleado/{{$empleado->idEmpleado}}"><button class="btn btn-default" type="button" id="btn-elim-a">Editar</button></a></td>
+        <!-- <td><a href="editar_empleado/{{$empleado->idEmpleado}}"><button class="btn btn-default" type="button" id="btn-elim-a">Editar</button></a></td> -->
+        <td><button class="btn btn-default" type="button" data-toggle="modal" data-target="#myModal-{{ $empleado->idEmpleado }}">Editar</button></td>
       </tr>
     <?php $contador++; ?>
     @endforeach
@@ -230,6 +241,135 @@
     {{Form::close()}}
   </table>
 </div>
+
+    @foreach($empleados as $empleado)
+      <?php 
+        $empleado = Empleado::find($empleado->idEmpleado);  
+      ?>
+        <div class="modal fade" id="myModal-{{$empleado->idEmpleado}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          {{Form::open(array('url'=>'actualizar_empleado'))}}
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Editar Empleado</h4> 
+              </div>
+
+              <div class="modal-body" style="padding-bottom: 0;">
+                <table class="table">
+                  
+                <input type="hidden" name="idEmpleado" id="empleado_id" value="{{$empleado->idEmpleado}}">          
+
+                  <tr>
+                    <td>{{Form::label('departamento','Departamento')}}</td>
+                    <td>
+                      
+                      <input type="hidden" id="sel_dep_v-{{$empleado->idEmpleado}}" value="{{$empleado->emp_idDeparameto_FK}}">
+
+                      <select name="emp_idDeparameto_FK">
+                        @foreach($departamentos as $departamento)
+                        <option value="{{$departamento->idDepartamento}}">{{$departamento->Nombre_Depto}}</option>
+                        @endforeach
+                      </select>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>{{Form::label('empresa','Empresa')}}</td>
+                    <td>
+
+                      <input type="hidden" id="sel_emp_v-{{$empleado->idEmpleado}}" value="{{$empleado->emp_idEmpresa_FK}}">
+
+                      <select name="emp_idEmpresa_FK">                 
+                        @foreach($empresas as $empresa)
+                        <option value="{{$empresa->idEmpresa}}">{{$empresa->Nombre_Empresa}}</option>
+                        @endforeach
+                      </select>
+                    </td>
+                  </tr>
+                 
+                  <tr>
+                    <td>{{Form::label('nombre','Nombre')}}</td>
+                    <td>{{Form::text('Nombre',$empleado->Nombre)}}</td>
+                  </tr>
+                                   
+                  <tr>
+                    <td>{{Form::label('direccion','Direccion')}}</td>
+                    <td>{{Form::text('Direccion',$empleado->Direccion)}}</td>
+                  </tr>
+
+                  <tr>
+                    <td>{{Form::label('puesto','Puesto')}}</td>
+                    <td>{{Form::text('Puesto',$empleado->Puesto)}}</td>
+                  </tr>
+                  
+                  <tr>
+                    <td>{{Form::label('telefono','Telefono')}}</td>
+                    <td>{{Form::text('Telefono',$empleado->Telefono)}}</td>
+                  </tr>
+                  
+                  <tr>
+                    <td>{{Form::label('celular','Celular')}}</td>
+                    <td>{{Form::text('Celular',$empleado->Celular)}}</td>
+                  </tr>
+               
+                  <tr>
+                    <td>{{Form::label('extension','Extension')}}</td>
+                    <td>{{Form::text('Extension',$empleado->Extension)}}</td>
+                  </tr>
+                                    
+                  <tr>
+                    <td>{{Form::label('email','Email')}}</td>
+                    <td>{{Form::email('Email',$empleado->Email)}}</td>
+                  </tr>
+               
+                  <tr>
+                    <td>{{Form::label('banco','Banco')}}</td>
+                    <td>{{Form::text('Banco',$empleado->Banco)}}</td>
+                  </tr>
+               
+                  <tr>
+                    <td>{{Form::label('cta_bancaria','Cuenta Bancaria')}}</td>
+                    <td>{{Form::text('Cta_Bancaria',$empleado->Cta_Bancaria)}}</td>
+                  </tr>
+                                                                              
+                  <tr>
+                    <td>{{Form::label('clabe_bancaria','CLABE Bancaria')}}</td>
+                    <td>{{Form::text('CLABE_Bancaria',$empleado->CLABE_Bancaria)}}</td>
+                  </tr>
+                                                                                                   
+                  <tr>
+                    <td>{{Form::label('sueldo_base','Sueldo Base')}}</td>
+                    <td>{{Form::text('SueldoBase',$empleado->SueldoBase)}}</td>
+                  </tr>   
+
+                  <tr>
+                    <td>{{Form::label('tipo_periodo','Tipo de Periodo')}}</td>
+                    <td>
+
+                      <input type="hidden" id="sel_per_v-{{$empleado->idEmpleado}}" value="{{$empleado->emp_idTipoPeriodo_FK}}">
+
+                      <select name="emp_idTipoPeriodo_FK">                 
+                        @foreach($tipos as $tipo)
+                        <option value="{{$tipo->idTipoPeriodo}}">{{$tipo->TipoPeriodo}}</option>
+                        @endforeach
+                      </select>
+                    </td>
+                  </tr>
+
+                </table>                
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+              </div>
+            </div>
+          </div>
+          {{Form::close()}}
+        </div>
+    @endforeach
+
 </div>
 
 </div> 

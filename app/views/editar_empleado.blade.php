@@ -89,6 +89,7 @@
       <tr>
         <td>{{Form::label('departamento','Departamento')}}</td>
         <td>
+          
           <input type="hidden" id="sel_dep_v" value="{{$empleado->emp_idDeparameto_FK}}">
 
           <select id="sel_dep" name="emp_idDeparameto_FK">

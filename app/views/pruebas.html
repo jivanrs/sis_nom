@@ -1,0 +1,32 @@
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          {{Form::open(array('url'=>'empleado/crear'))}}
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Empleado nuevo</h4> 
+              </div>
+
+              <div class="modal-body" style="padding-bottom: 0;">
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+              </div>
+            </div>
+          </div>
+          {{Form::close()}}
+        </div>
+
+
+
+    <div id="prueba_inputs">
+      {{Form::open(array('url'=>'prueba'))}}
+      <?php 
+        $empleado_nuevo = Empleado::find($empleado->idEmpleado);  
+        echo $empleado_nuevo->Nombre;
+      ?>
+      
+      {{Form::close()}}
+    </div>        
