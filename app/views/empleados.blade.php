@@ -57,6 +57,7 @@
               <div class="modal-body" style="padding-bottom: 0;">
                 {{Form::open(array('url'=>'empleado/crear'))}}
                 <table class="table">
+                  
                   <tr>
                     <td>{{Form::label('departamento','Departamento')}}</td>
                     <td>
@@ -144,6 +145,7 @@
                       </select>
                     </td>
                   </tr>
+
                 </table>
               </div>
 
@@ -218,7 +220,7 @@
         <td>{{ $empleado->Cta_Bancaria }} </td>
         <td>{{ $empleado->CLABE_Bancaria }} </td>
         <td>{{ $empleado->SueldoBase }} </td>
-        <td><button class="btn btn-default" type="button" id="btn-elim-a">Editar</button></td>
+        <td><a href="editar_empleado/{{$empleado->idEmpleado}}"><button class="btn btn-default" type="button" id="btn-elim-a">Editar</button></a></td>
       </tr>
     <?php $contador++; ?>
     @endforeach

@@ -16,27 +16,6 @@ class EmpleadosController extends BaseController {
 	}
 
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
-
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
-
 	public function form_crear_empleado(){		
 		
 		$empleado = new Empleado;
@@ -65,39 +44,33 @@ class EmpleadosController extends BaseController {
 
 	}
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
+
+	public function editar_empleado($id_empleado){
+		$empleado = Empleado::find($id_empleado); 
+		return View::make('editar_empleado', array('empleado' => $empleado)); 
 	}
 
+	public function actualizar_empleado(){
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
+		// return Input::all();
+		$empleado = Empleado::where('idEmpleado',Input::get('idEmpleado'))->first();
+		$empleado->emp_idDeparameto_FK 		= 	Input::get('emp_idDeparameto_FK');	
+		$empleado->emp_idEmpresa_FK 		= 	Input::get('emp_idEmpresa_FK');
+		$empleado->Nombre 					= 	Input::get('Nombre');
+		$empleado->Direccion 				= 	Input::get('Direccion');
+		$empleado->Puesto 					= 	Input::get('Puesto');
+		$empleado->Telefono 				= 	Input::get('Telefono');
+		$empleado->Celular 					= 	Input::get('Celular');
+		$empleado->Extension 				= 	Input::get('Extension');
+		$empleado->Email 					= 	Input::get('Email');
+		$empleado->Banco 					= 	Input::get('Banco');
+		$empleado->Cta_Bancaria 			= 	Input::get('Cta_Bancaria');
+		$empleado->CLABE_Bancaria 			= 	Input::get('CLABE_Bancaria');
+		$empleado->SueldoBase 				= 	Input::get('SueldoBase');
+		$empleado->emp_idTipoPeriodo_FK 	= 	Input::get('emp_idTipoPeriodo_FK');
 
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
+		$empleado->save();
+		return Redirect::to("/empleados");	
 	}
 
 	public function form_eliminar_empleados(){		
