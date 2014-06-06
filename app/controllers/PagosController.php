@@ -20,24 +20,32 @@ class PagosController extends BaseController {
 
 		$idEmpleados = Input::get('empleados');
 
-		if(is_array($empleados))
+		if(is_array($idEmpleados))
 		{
 
 			foreach ($idEmpleados as $id) {
 
+				$Empleado = Empleado::where('idEmpleado', $id)->first();
+				$PorPagar = $Empleado->SueldoBase / 2;
+
 				$Recibos = new Recibos;
 				
 				$Recibos->FechaDeRecibo 		= 	date('Y/m/d H:i:s');
-				$Recibos->rec_idPeriodo_FK		= 	Input::get('rec_idPeriodo_FK');
-				$Recibos->rec_idEmpleado_FK		= 	Input::get('rec_idEmpleado_FK');
-				$Recibos->PorPagar				= 	Input::get('PorPagar');
+				if (date('d') > 15) {
+					$Recibos->rec_idPeriodo_FK		= 	2;
+				}
+				else{
+					$Recibos->rec_idPeriodo_FK		= 	1;
+				}
+				$Recibos->rec_idEmpleado_FK		= 	$id;
+				$Recibos->PorPagar				= 	$PorPagar;
 				$Recibos->save();	
 
 			}
 
 		}
 
-		return Redirect::to("/Recibos");
+		return Redirect::to("/pagos");
 
 	}
 
@@ -53,14 +61,11 @@ class PagosController extends BaseController {
 		$pago->Pago = Input::get('Pago');
 		$pago->FechaDePago = date('Y/m/d H:i:s');
 		$pago->pag_idEmpleado_FK = Input::get('empleado_id');
-		$pago->pag_idEmpresa_FK = Input::get('empresa_id');
-		$pago->pag_idDepartamento_FK = Input::get('dep_id');
-		$pago->pag_idPeriodo_FK = Input::get('periodo_id');
 		$pago->PagoEspecial = Input::get('tipo_pago');
 		$pago->pag_idRecibos_FK = Input::get('recibo_id');
 
 		$pago->save();
-		
+
 		return Redirect::to("/pagos");
 
 	}

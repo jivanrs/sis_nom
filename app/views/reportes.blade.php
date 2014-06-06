@@ -167,6 +167,43 @@
 
       </div>
     </form>
+
+    @if (Session::get('empleados'))
+        
+      <!-- Table -->
+      <table class="table">
+        <tr>
+          <td></td>
+          <td>ID</td>
+          <td>Nombre</td>
+          <td>Departamento</td>
+          <td>Empresa</td>
+          <td>Fecha de Pago</td>
+          <td>Pago</td>
+          <td>Fecha de Recibo</td>
+          <td>Periodo</td>
+          <td>Pago Espeical</td>
+        </tr>
+
+      @foreach($empleados as $empleado)
+        <tr>
+          <td><input type="checkbox" value="{{$empleado->idEmpleado}}"></td>
+          <td>{{ $empleado->idEmpleado }} </td>
+          <td>{{ $empleado->Nombre }} </td>
+          <td>{{ $empleado->Nombre_Empresa }} </td>
+          <td>{{ $empleado->Nombre_Depto }} </td>
+          <td>{{ $empleado->FechaDePago }} </td>
+          <td>{{ $empleado->Pago }} </td>
+          <td>{{ $empleado->FechaDeRecibo }} </td>
+          <td>{{ $empleado->Periodo }} </td>
+          <td>{{ $empleado->PagoEspecial }} </td>
+        </tr>
+      @endforeach
+
+      </table>
+          
+      @endif
+      
   </div>
 </div>
 <!-- /container -->
