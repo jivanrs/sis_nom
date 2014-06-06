@@ -94,15 +94,12 @@
           <div class="modal-content">
             <div class="modal-header">
               <table class="table">
+                {{Form::open(array('url'=>'realizarPago'))}}
 
-
-                  {{Form::open(array('url'=>'realizarPago'))}}
-
-
-                  <td>{{ $empleado->Nombre }} </td>
+                <td>{{ $empleado->Nombre }} </td>
                 </tr>
                 <tr>
-                  <td>{{ $empleado->Nombre_Depto }} </td>
+                <td>{{ $empleado->Nombre_Depto }} </td>
                 </tr>
                 <tr>
                   <td>{{ $empleado->Nombre_Empresa }} </td>
@@ -115,10 +112,27 @@
                 <td>{{Form::text('Pago','')}}</td>
 
                 <input type="hidden" name="empleado_id" value="{{ $empleado->idEmpleado }}">
-
-                <input type="hidden" name="empresa_id" value="{{ $empleado->emp_idEmpresa_FK }}">
-
-                <input type="hidden" name="dep_id" value="{{ $empleado->emp_idDeparameto_FK }}">
+                 <tr>
+                  <td>
+                    <select name="tipo_pago">
+                      <option value="0">Regular</option>
+                      <option value="1">Bono especial</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Recibo</td>
+                  <td>
+                    <?php 
+                        $recibos = Recibos::where('rec_idEmpleado_FK',$empleado->idEmpleado)->get();
+                     ?>
+                    <select name="recibo_id">
+                      @foreach($recibos as $r)
+                        <option value="{{$r->idRecibos}}">{{$r->FechaDeRecibo}}</option>
+                      @endforeach
+                    </select>
+                  </td>
+                </tr>
 
                 <tr>
                   <td>
@@ -128,32 +142,6 @@
                     </select>
                   </td>
                 </tr>
-
-                <tr>
-                  <td>
-                    <select name="tipo_pago">
-                      <option value="0">Regular</option>
-                      <option value="1">Bono especial</option>
-                    </select>
-                  </td>
-                </tr>
-   
-                <tr>
-                  <td>Recibo</td>
-
-                  <td>
-
-                    <?php 
-                        $recibos = Recibos::where('rec_idEmpleado_FK',$empleado->idEmpleado)->get();
-                     ?>
-
-                    <select name="recibo_id">
-                      @foreach($recibos as $r)
-                        <option value="{{$r->idRecibos}}">{{$r->FechaDeRecibo}}</option>
-                      @endforeach
-                    </select>
-                  </td>
-                </tr> 
 
                 <input type="hidden" name="tipo_periodo_id" value="{{ $empleado->emp_idTipoPeriodo_FK }}">
 
