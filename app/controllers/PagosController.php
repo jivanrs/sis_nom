@@ -60,6 +60,7 @@ class PagosController extends BaseController {
 		$pago->pag_idRecibos_FK = Input::get('recibo_id');
 
 		$pago->save();
+		
 		return Redirect::to("/pagos");
 
 	}
