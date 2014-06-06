@@ -47,6 +47,7 @@ Route::group(array('before' => 'auth.custom'), function(){
 	Route::get('empleados/delete', 'EmpleadosController@destroy($id)');
 	Route::get('pagos', 'PagosController@index');
 	Route::get('reportes', 'ReportesController@index');
+	
 	Route::post('reportes/empleados/{fechaIni}/{fechaFin}', 'ReportesController@reporteEmpleados($fechaIni, $fechaFin)');
 	Route::post('reportes/empresas/{fechaIni}/{fechaFin}', 'ReportesController@reporteEmpresa($fechaIni, $fechaFin)');
 	Route::post('reportes/departamentos/{fechaIni}/{fechaFin}', 'ReportesController@reporteDepto($fechaIni, $fechaFin)');

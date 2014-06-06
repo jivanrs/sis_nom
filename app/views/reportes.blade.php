@@ -168,7 +168,7 @@
       </div>
     </form>
 
-    @if (Session::get('empleados'))
+    @if (is_array($empleados))
         
       <!-- Table -->
       <table class="table">
@@ -176,11 +176,14 @@
           <td></td>
           <td>ID</td>
           <td>Nombre</td>
-          <td>Departamento</td>
+          <td>Tipo de Periodo</td>
           <td>Empresa</td>
+          <td>Departamento</td>
           <td>Fecha de Pago</td>
           <td>Pago</td>
-          <td>Fecha de Recibo</td>
+          <td>Fecha de Nomina</td>
+          <td>Monto</td>
+          <td>Por Pagar</td>
           <td>Periodo</td>
           <td>Pago Espeical</td>
         </tr>
@@ -190,11 +193,14 @@
           <td><input type="checkbox" value="{{$empleado->idEmpleado}}"></td>
           <td>{{ $empleado->idEmpleado }} </td>
           <td>{{ $empleado->Nombre }} </td>
+          <td>{{ $empleado->TipoPeriodo }} </td>
           <td>{{ $empleado->Nombre_Empresa }} </td>
           <td>{{ $empleado->Nombre_Depto }} </td>
           <td>{{ $empleado->FechaDePago }} </td>
           <td>{{ $empleado->Pago }} </td>
           <td>{{ $empleado->FechaDeRecibo }} </td>
+          <td>{{ $empleado->Monto }} </td>
+          <td>{{ $empleado->PorPagar }} </td>
           <td>{{ $empleado->Periodo }} </td>
           <td>{{ $empleado->PagoEspecial }} </td>
         </tr>
@@ -203,7 +209,7 @@
       </table>
           
       @endif
-      
+
   </div>
 </div>
 <!-- /container -->

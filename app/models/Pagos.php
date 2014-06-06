@@ -49,8 +49,11 @@ class Pagos extends Eloquent
 		        ->leftJoin('pagos', 'pagos.pag_idEmpleado_FK', '=', 'empleado.idEmpleado')
 		        ->leftJoin('recibos', 'recibos.idRecibos', '=', 'pagos.pag_idRecibos_FK')
 		        ->leftJoin('periodo', 'periodo.idPeriodo', '=', 'recibos.rec_idPeriodo_FK')
-		        ->whereBetween('FechaDePago', array('2014/04/15', '2014/06/05'))
-		        ->select('idEmpleado','Nombre','Nombre_Empresa', 'Nombre_Depto',  'FechaDePago', 'Pago', 'FechaDeRecibo', 'Periodo', 'PagoEspecial')
+		        ->leftJoin('tipoperiodo', 'tipoperiodo.idTipoPeriodo', '=', 'empleado.emp_idTipoPeriodo_FK')
+		        ->whereBetween('FechaDeRecibo', array('2013-03-05', '2015-06-15'))
+		        ->select('idEmpleado', 'TipoPeriodo', 'Nombre', 'Nombre_Empresa', 'Nombre_Depto',  'FechaDePago', 'Pago', 'FechaDeRecibo', 'Monto', 
+		        	'PorPagar', 'Periodo', 'PagoEspecial')
+		        ->orderBy('Nombre', 'desc')
 		        ->get();
 
 		return $listaEmpleados;
@@ -69,7 +72,7 @@ class Pagos extends Eloquent
 		        ->sum('pago')
 		        ->groupBy('Nombre_Empresa')
 		        ->whereBetween('FechaDePago', array($fechaIni, $fechaFin))
-		        ->select('Nombre_Empresa', 'Nombre_Depto',  'FechaDePago', 'Pago', 'FechaDeRecibo', 'Periodo')
+		        ->select('Nombre_Empresa', 'Nombre_Depto',  'FechaDePago', 'pago', 'FechaDeRecibo', 'Periodo')
 		        ->get();
 
 		return $listaEmpresa;
@@ -88,7 +91,7 @@ class Pagos extends Eloquent
 		        ->sum('pago')
 		        ->groupBy('Nombre_Depto')
 		        ->whereBetween('FechaDePago', array($fechaIni, $fechaFin))
-		        ->select('Nombre_Empresa', 'Nombre_Depto',  'FechaDePago', 'Pago', 'FechaDeRecibo', 'Periodo')
+		        ->select('Nombre_Empresa', 'Nombre_Depto',  'FechaDePago', 'pago', 'FechaDeRecibo', 'Periodo')
 		        ->get();
 
 		return $listaDepto;

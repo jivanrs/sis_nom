@@ -9,8 +9,9 @@ class ReportesController extends BaseController {
 	 */
 	public function index()
 	{
+		$empleados = Pagos::ObtenerPagosEmpleados('2013-03-05', '2015-06-15');
 
-		return View::make("reportes");
+		return View::make("reportes")->with('empleados', $empleados);
 	}
 
 	public function reporteEmpleados($fechaIni, $fechaFin)
@@ -26,7 +27,7 @@ class ReportesController extends BaseController {
 		
 		$empleados = Pagos::ObtenerPagosEmpresa($fechaIni, $fechaFin);
 
-		return View::make("reportes")->with('empleados', $empleados);
+		return View::make("reportes")->with('empresa', $empleados);
 	}
 
 	public function reporteDepto($fechaIni, $fechaFin)
@@ -34,7 +35,7 @@ class ReportesController extends BaseController {
 		
 		$empleados = Pagos::ObtenerPagosDepto($fechaIni, $fechaFin);
 
-		return View::make("reportes")->with('empleados', $empleados);
+		return View::make("reportes")->with('departamento', $empleados);
 	}
 
 
