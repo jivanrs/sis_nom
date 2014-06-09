@@ -68,7 +68,7 @@
       </div>
 
       <!-- Table -->
-      <table class="table">
+      <table class="table table-striped">
         <tr>
           <td></td>
           <td>ID</td>
@@ -94,8 +94,6 @@
             <td>{{ $empleado->Nombre_Empresa }} </td>
             <td>{{ $empleado->SueldoBase }} </td>
 
-
-
             <td>{{ $empleado->Restante }} </td>
 
             <td><button class="btn btn-default" type="button" data-toggle="modal" data-target="#hacerPago-{{$empleado->idEmpleado}}">Hacer Pago</button></td>
@@ -116,59 +114,46 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <table class="table">
+              <div class="panel-heading title-center"><h3>Realizar Pago a Empleado</h3></div>
+              <table class="table table-striped">
                 {{Form::open(array('url'=>'realizarPago'))}}
 
-                <td>{{ $empleado->Nombre }} </td>
-                </tr>
-                <tr>
-                <td>{{ $empleado->Nombre_Depto }} </td>
-                </tr>
-                <tr>
-                  <td>{{ $empleado->Nombre_Empresa }} </td>
-                </tr>
-                <tr>  
-                  <td>{{ $empleado->SueldoBase }} </td>
-                </tr>
+                <tr><td><span class="hacerpago">Empleado: </span>{{ $empleado->Nombre }} </td></tr>
+                <tr><td><span class="hacerpago">Departamento: </span>{{ $empleado->Nombre_Depto }} </td></tr>
+                <tr><td><span class="hacerpago">Empresa: </span>{{ $empleado->Nombre_Empresa }} </td></tr>
+                <tr><td><span class="hacerpago">Sueldo mensual: $ </span>{{ $empleado->SueldoBase }} </td></tr>
 
-                <td>{{Form::label('sueldo','Realizar Pago')}}</td>
-                <td>{{Form::text('Pago','')}}</td>
-
-                <input type="hidden" name="empleado_id" value="{{ $empleado->idEmpleado }}">
+                <tr>
+                  <td><span class="hacerpago">{{Form::label('sueldo','Realizar Pago')}}</span>
+                  <span>{{Form::text('Pago','')}}</span></td>
+                </tr>
                  <tr>
+                  <input type="hidden" name="empleado_id" value="{{ $empleado->idEmpleado }}">
                   <td>
-                    <select name="tipo_pago">
+                    <select name="tipo_pago" style="margin-left: 35px;">
                       <option value="0">Regular</option>
                       <option value="1">Bono especial</option>
                     </select>
                   </td>
                 </tr>
                 <tr>
-                  <td>Recibo</td>
-                  <td>
+                  <td><span class="hacerpago">Recibo</span>
+                    <span>
                     <?php 
-                        $recibos = Recibos::where('rec_idEmpleado_FK',$empleado->idEmpleado)->get();
+                        $recibos = Recibos::where('rec_idEmpleado_FK',$empleado->idEmpleado)
+                        ->where('PorPagar', '!=', ' 0')->get();
                      ?>
-                    <select name="recibo_id">
+                    <select id="recFecha" name="recibo_id">
                       @foreach($recibos as $r)
-                        <option value="{{$r->idRecibos}}">{{$r->FechaDeRecibo}}</option>
+                        <option value="{{$r->idRecibos}}">{{$r->FechaDeRecibo}} / {{$r->PorPagar}}</option>
                       @endforeach
                     </select>
+                    </span>
                   </td>
+                  <!--<td><div id="txtHint"><b></b></div></td>-->
                 </tr>
 
-                <tr>
-                  <td>
-                    <select name="periodo_id">
-                      <option value="1">Primera quincena</option>
-                      <option value="2">Segunda quincena</option>
-                    </select>
-                  </td>
-                </tr>
-
-                <input type="hidden" name="tipo_periodo_id" value="{{ $empleado->emp_idTipoPeriodo_FK }}">
-
-                  <td><button type="submit" class="btn btn-primary">Relizar Pago</button></td>
+                  <td><span class="hacerpago"><button type="submit" class="btn btn-primary">Relizar Pago</button></span></td>
                 </tr>
                 {{ Form::close() }}
         
@@ -186,5 +171,23 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+    <script>
+      $('#recFecha').unbind('change').bind('change',function() {
+      
+         $.ajax({
+                type:"GET",
+                url : "{{URL::to('mostrarPorPagar')}}",
+                data : { id: $(this).val() },
+                async: false,
+                success : function(response) {
+                    document.getElementById("txtHint").innerHTML=response;
+                },
+                error: function() {
+                    //alert('MAL'); 
+                }
+            });
+               
+        });
+    </script>
   </body>
 </html>

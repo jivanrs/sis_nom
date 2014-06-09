@@ -75,7 +75,7 @@
               </div>
               <div class="modal-body" style="padding-bottom: 0;">
                 {{Form::open(array('url'=>'empleado/crear'))}}
-                <table class="table">
+                <table class="table table-striped">
                   
                   <tr>
                     <td>{{Form::label('departamento','Departamento')}}</td>
@@ -200,7 +200,7 @@
 
 
   <!-- Table -->
-  <table class="table">
+  <table class="table table-striped">
     <tr>
       <td></td>
       <td>ID</td>
@@ -213,6 +213,7 @@
       <td>Cta Bancaria</td>
       <td>CLABE</td>
       <td>Sueldo</td>
+      <td></td>
     </tr>
     <?php $contador = 0; ?>
 
@@ -256,7 +257,7 @@
               </div>
 
               <div class="modal-body" style="padding-bottom: 0;">
-                <table class="table">
+                <table class="table table-striped">
                   
                 <input type="hidden" name="idEmpleado" id="empleado_id" value="{{$empleado->idEmpleado}}">          
 

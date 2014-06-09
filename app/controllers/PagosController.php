@@ -32,13 +32,14 @@ class PagosController extends BaseController {
 				
 				$Recibos->FechaDeRecibo 		= 	date('Y/m/d H:i:s');
 				if (date('d') > 15) {
-					$Recibos->rec_idPeriodo_FK		= 	2;
+					$Recibos->rec_idPeriodo_FK	= 	2;
 				}
 				else{
-					$Recibos->rec_idPeriodo_FK		= 	1;
+					$Recibos->rec_idPeriodo_FK	= 	1;
 				}
 				$Recibos->rec_idEmpleado_FK		= 	$id;
 				$Recibos->PorPagar				= 	$PorPagar;
+				$Recibos->Monto 				=   $PorPagar;
 				$Recibos->save();	
 
 			}
@@ -46,6 +47,16 @@ class PagosController extends BaseController {
 		}
 
 		return Redirect::to("/pagos");
+
+	}
+
+	public function mostrarPorPagar(){
+		
+		$id = Input::get('id');
+
+		$recibo = Recibos::where('idRecibos', $id)->first();
+
+		return $recibo->PorPagar;
 
 	}
 

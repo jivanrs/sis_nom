@@ -43,7 +43,7 @@ h1{ color: #6699CC;font-size: 49px;font-weight: normal;
 .btn-menu span{ float: left; line-height: 1; text-align: center !important; width: 100%;}
 .glyphicon-class {display: block; text-align: center; word-wrap: break-word; font-size: 20px; padding-top: 20px;}
 .glyphicon{font-family: 'Glyphicons Halflings'; font-size: 40px; padding-top: 30px; color:#6699CC;}
-
+.hacerpago{font-weight: bold; margin:0 15px 0 35px; color: black;}
 .form-signin {
   max-width: 330px;
   padding: 15px;

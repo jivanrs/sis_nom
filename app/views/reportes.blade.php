@@ -38,179 +38,212 @@
     </div>
   </div>
   <div class="row">
-    <form>
-      <div class="col-md-12">
-        <div class="col-md-3">
-          <label>FILTRAR POR:</label>
-          <div class="btn-group">
-            <button class="btn btn-default" type="button">Default</button>
-            <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
-              <span class="caret"></span><span class="sr-only">Toggle Dropdown</span>
-            </button>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="#">Empleados</a></li>
-              <li><a href="#">Departamento</a></li>
-              <li><a href="#">Empresa</a></li>
-            </ul>
+    <div class="panel panel-default mt20">
+      <div class="panel-body">
+      <form>
+        <div class="col-md-12">
+          <div class="col-md-3">
+            <label>FILTRAR POR:</label>
+            <div class="btn-group">
+              <button class="btn btn-default" type="button">Default</button>
+              <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
+                <span class="caret"></span><span class="sr-only">Toggle Dropdown</span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Empleados</a></li>
+                <li><a href="#">Departamento</a></li>
+                <li><a href="#">Empresa</a></li>
+              </ul>
+            </div>
           </div>
+
+          <div class="col-md-4">
+            <label>DESDE:</label>
+            <div class="btn-group">
+              <button class="btn btn-default" type="button">Año</button>
+              <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
+                <span class="caret"></span><span class="sr-only">Toggle Dropdown</span></button>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">2012</a></li>
+                <li><a href="#">2013</a></li>
+                <li><a href="#">2014</a></li>
+              </ul>
+            </div>
+
+            <div class="btn-group">
+              <button class="btn btn-default" type="button">Mes</button>
+              <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
+                <span class="caret"></span><span class="sr-only">Toggle Dropdown</span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Enero</a></li>
+                <li><a href="#">Febrero</a></li>
+                <li><a href="#">Marzo</a></li>
+                <li><a href="#">Abril</a></li>
+                <li><a href="#">Mayo</a></li>
+                <li><a href="#">Junio</a></li>
+                <li><a href="#">Julio</a></li>
+                <li><a href="#">Agosto</a></li>
+                <li><a href="#">Septiembre</a></li>
+                <li><a href="#">Octubre</a></li>
+                <li><a href="#">Noviembre</a></li>
+                <li><a href="#">Diciembre</a></li>
+              </ul>
+            </div>
+
+            <div class="btn-group">
+              <button class="btn btn-default" type="button">Día</button>
+              <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
+                <span class="caret"></span><span class="sr-only">Toggle Dropdown</span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">01</a></li>
+                <li><a href="#">02</a></li>
+                <li><a href="#">03</a></li>
+                <li><a href="#">04</a></li>
+                <li><a href="#">05</a></li>
+                <li><a href="#">06</a></li>
+                <li><a href="#">07</a></li>
+                <li><a href="#">08</a></li>
+                <li><a href="#">09</a></li>
+                <li><a href="#">10</a></li>
+                <li><a href="#">11</a></li>
+                <li><a href="#">12</a></li>
+                <li><a href="#">13</a></li>
+                <li><a href="#">14</a></li>
+                <li><a href="#">15</a></li>
+                <li><a href="#">16</a></li>
+                <li><a href="#">17</a></li>
+                <li><a href="#">18</a></li>
+                <li><a href="#">19</a></li>
+                <li><a href="#">20</a></li>
+                <li><a href="#">21</a></li>
+                <li><a href="#">22</a></li>
+                <li><a href="#">23</a></li>
+                <li><a href="#">24</a></li>
+                <li><a href="#">25</a></li>
+                <li><a href="#">26</a></li>
+                <li><a href="#">27</a></li>
+                <li><a href="#">28</a></li>
+                <li><a href="#">29</a></li>
+                <li><a href="#">30</a></li>
+                <li><a href="#">31</a></li>
+              </ul>
+            </div>
+
+          </div>
+
+          <div class="col-md-4">
+
+            <label>HASTA:</label>
+            <div class="btn-group">
+              <button class="btn btn-default" type="button">Año</button>
+              <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
+                <span class="caret"></span><span class="sr-only">Toggle Dropdown</span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">2012</a></li>
+                <li><a href="#">2013</a></li>
+                <li><a href="#">2014</a></li>
+              </ul>
+            </div>
+
+            <div class="btn-group">
+              <button class="btn btn-default" type="button">Mes</button>
+              <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
+                <span class="caret"></span><span class="sr-only">Toggle Dropdown</span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Enero</a></li>
+                <li><a href="#">Febrero</a></li>
+                <li><a href="#">Marzo</a></li>
+                <li><a href="#">Abril</a></li>
+                <li><a href="#">Mayo</a></li>
+                <li><a href="#">Junio</a></li>
+                <li><a href="#">Julio</a></li>
+                <li><a href="#">Agosto</a></li>
+                <li><a href="#">Septiembre</a></li>
+                <li><a href="#">Octubre</a></li>
+                <li><a href="#">Noviembre</a></li>
+                <li><a href="#">Diciembre</a></li>
+              </ul>
+            </div>
+
+            <div class="btn-group">
+              <button class="btn btn-default" type="button">Día</button>
+              <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
+                <span class="caret"></span><span class="sr-only">Toggle Dropdown</span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Lunes</a></li>
+                <li><a href="#">Martes</a></li>
+                <li><a href="#">Miercoles</a></li>
+                <li><a href="#">Jueves</a></li>
+                <li><a href="#">Viernes</a></li>
+                <li><a href="#">Sabado</a></li>
+                <li><a href="#">Domingo</a></li>
+              </ul>
+            </div>
+
+          </div>
+
+          <div class="col-md-1">
+          <button type="input" class="btn btn-primary">Enviar</button>
+          </div>
+
         </div>
-
-        <div class="col-md-4">
-          <label>FILTRAR DESDE:</label>
-          <div class="btn-group">
-            <button class="btn btn-default" type="button">Año</button>
-            <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
-              <span class="caret"></span><span class="sr-only">Toggle Dropdown</span></button>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="#">2012</a></li>
-              <li><a href="#">2013</a></li>
-              <li><a href="#">2014</a></li>
-            </ul>
-          </div>
-
-          <div class="btn-group">
-            <button class="btn btn-default" type="button">Mes</button>
-            <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
-              <span class="caret"></span><span class="sr-only">Toggle Dropdown</span>
-            </button>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="#">Enero</a></li>
-              <li><a href="#">Febrero</a></li>
-              <li><a href="#">Marzo</a></li>
-              <li><a href="#">Abril</a></li>
-              <li><a href="#">Mayo</a></li>
-              <li><a href="#">Junio</a></li>
-              <li><a href="#">Julio</a></li>
-              <li><a href="#">Agosto</a></li>
-              <li><a href="#">Septiembre</a></li>
-              <li><a href="#">Octubre</a></li>
-              <li><a href="#">Noviembre</a></li>
-              <li><a href="#">Diciembre</a></li>
-            </ul>
-          </div>
-
-          <div class="btn-group">
-            <button class="btn btn-default" type="button">Día</button>
-            <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
-              <span class="caret"></span><span class="sr-only">Toggle Dropdown</span>
-            </button>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="#">Lunes</a></li>
-              <li><a href="#">Martes</a></li>
-              <li><a href="#">Miercoles</a></li>
-              <li><a href="#">Jueves</a></li>
-              <li><a href="#">Viernes</a></li>
-              <li><a href="#">Sabado</a></li>
-              <li><a href="#">Domingo</a></li>
-            </ul>
-          </div>
-
-        </div>
-
-        <div class="col-md-4">
-
-          <label>FILTRAR HASTA:</label>
-          <div class="btn-group">
-            <button class="btn btn-default" type="button">Año</button>
-            <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
-              <span class="caret"></span><span class="sr-only">Toggle Dropdown</span>
-            </button>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="#">2012</a></li>
-              <li><a href="#">2013</a></li>
-              <li><a href="#">2014</a></li>
-            </ul>
-          </div>
-
-          <div class="btn-group">
-            <button class="btn btn-default" type="button">Mes</button>
-            <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
-              <span class="caret"></span><span class="sr-only">Toggle Dropdown</span>
-            </button>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="#">Enero</a></li>
-              <li><a href="#">Febrero</a></li>
-              <li><a href="#">Marzo</a></li>
-              <li><a href="#">Abril</a></li>
-              <li><a href="#">Mayo</a></li>
-              <li><a href="#">Junio</a></li>
-              <li><a href="#">Julio</a></li>
-              <li><a href="#">Agosto</a></li>
-              <li><a href="#">Septiembre</a></li>
-              <li><a href="#">Octubre</a></li>
-              <li><a href="#">Noviembre</a></li>
-              <li><a href="#">Diciembre</a></li>
-            </ul>
-          </div>
-
-          <div class="btn-group">
-            <button class="btn btn-default" type="button">Día</button>
-            <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
-              <span class="caret"></span><span class="sr-only">Toggle Dropdown</span>
-            </button>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="#">Lunes</a></li>
-              <li><a href="#">Martes</a></li>
-              <li><a href="#">Miercoles</a></li>
-              <li><a href="#">Jueves</a></li>
-              <li><a href="#">Viernes</a></li>
-              <li><a href="#">Sabado</a></li>
-              <li><a href="#">Domingo</a></li>
-            </ul>
-          </div>
-
-        </div>
-
-        <div class="col-md-1">
-        <button type="input" class="btn btn-primary">Enviar</button>
-        </div>
-
+      </form>
       </div>
-    </form>
+    </div>
+    </div>
+    <div class="row">
+      <div class="panel panel-default">
+        <div class="panel-heading">Reportes</div>
+          <div class="panel-body">
+            @if (is_array($empleados))
+                
+              <!-- Table -->
+              <table class="table">
+                <tr>
+                  <td></td>
+                  <td>ID</td>
+                  <td>Nombre</td>
+                  <td>Tipo de Periodo</td>
+                  <td>Empresa</td>
+                  <td>Departamento</td>
+                  <td>Fecha de Pago</td>
+                  <td>Pago</td>
+                  <td>Fecha de Nomina</td>
+                  <td>Monto</td>
+                  <td>Por Pagar</td>
+                  <td>Periodo</td>
+                  <td>Pago Espeical</td>
+                </tr>
 
-    @if (is_array($empleados))
-        
-      <!-- Table -->
-      <table class="table">
-        <tr>
-          <td></td>
-          <td>ID</td>
-          <td>Nombre</td>
-          <td>Tipo de Periodo</td>
-          <td>Empresa</td>
-          <td>Departamento</td>
-          <td>Fecha de Pago</td>
-          <td>Pago</td>
-          <td>Fecha de Nomina</td>
-          <td>Monto</td>
-          <td>Por Pagar</td>
-          <td>Periodo</td>
-          <td>Pago Espeical</td>
-        </tr>
+              @foreach($empleados as $empleado)
+                <tr>
+                  <td><input type="checkbox" value="{{$empleado->idEmpleado}}"></td>
+                  <td>{{ $empleado->idEmpleado }} </td>
+                  <td>{{ $empleado->Nombre }} </td>
+                  <td>{{ $empleado->TipoPeriodo }} </td>
+                  <td>{{ $empleado->Nombre_Empresa }} </td>
+                  <td>{{ $empleado->Nombre_Depto }} </td>
+                  <td>{{ $empleado->FechaDePago }} </td>
+                  <td>{{ $empleado->Pago }} </td>
+                  <td>{{ $empleado->FechaDeRecibo }} </td>
+                  <td>{{ $empleado->Monto }} </td>
+                  <td>{{ $empleado->PorPagar }} </td>
+                  <td>{{ $empleado->Periodo }} </td>
+                  <td>{{ $empleado->PagoEspecial }} </td>
+                </tr>
+              @endforeach
 
-      @foreach($empleados as $empleado)
-        <tr>
-          <td><input type="checkbox" value="{{$empleado->idEmpleado}}"></td>
-          <td>{{ $empleado->idEmpleado }} </td>
-          <td>{{ $empleado->Nombre }} </td>
-          <td>{{ $empleado->TipoPeriodo }} </td>
-          <td>{{ $empleado->Nombre_Empresa }} </td>
-          <td>{{ $empleado->Nombre_Depto }} </td>
-          <td>{{ $empleado->FechaDePago }} </td>
-          <td>{{ $empleado->Pago }} </td>
-          <td>{{ $empleado->FechaDeRecibo }} </td>
-          <td>{{ $empleado->Monto }} </td>
-          <td>{{ $empleado->PorPagar }} </td>
-          <td>{{ $empleado->Periodo }} </td>
-          <td>{{ $empleado->PagoEspecial }} </td>
-        </tr>
-      @endforeach
-
-      </table>
-          
-      @endif
-
-  </div>
+              </table>
+                  
+              @endif
+            </div>
+          </div>
+        </div>
 </div>
 <!-- /container -->
 
