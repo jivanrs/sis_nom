@@ -4,6 +4,7 @@
   <head>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
+  <script src="http:////cdn.datatables.net/1.10.0/js/jquery.dataTables.js"></script>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,6 +13,7 @@
     <link href="css/styles.css" rel="stylesheet">
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://cdn.datatables.net/1.10.0/css/jquery.dataTables.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -26,6 +28,9 @@
       $('#btn-elim-a').click(function(){
         $('#btn-elim-b').click();
       });
+
+      $('#myTable').dataTable();
+
     });
 
     var departamento       = $('#sel_dep_v').attr('value');
@@ -200,21 +205,23 @@
 
 
   <!-- Table -->
-  <table class="table table-striped">
+  <table class="table table-striped" id="myTable">
+    <thead>
     <tr>
-      <td></td>
-      <td>ID</td>
-      <td>Nombre</td>
-      <td>Puesto</td>
-      <td>Departamento</td>
-      <td>Empresa</td>
-      <td>Email</td>
-      <td>Banco</td>
-      <td>Cta Bancaria</td>
-      <td>CLABE</td>
-      <td>Sueldo</td>
-      <td></td>
+      <th></th>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Puesto</th>
+      <th>Departamento</th>
+      <th>Empresa</th>
+      <th>Email</th>
+      <th>Banco</th>
+      <th>Cta Bancaria</th>
+      <th>CLABE</th>
+      <th>Sueldo</th>
+      <th></th>
     </tr>
+    </thead>
     <?php $contador = 0; ?>
 
     {{Form::open(array('url'=>'eliminar_empleados'))}}
