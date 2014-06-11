@@ -31,19 +31,27 @@
 
       $('#myTable').dataTable();
 
-    var departamento       = $('#sel_dep_v').attr('value');
-    var empresa            = $('#sel_emp_v').attr('value');
-    var tipo_periodo       = $('#sel_per_v').attr('value');
-    var empadmin           = $('#sel_empa_v').attr('value');
-
-
-    $('#sel_dep option[value="'+departamento+'"]').attr("selected", "selected");
-    $('#sel_emp option[value="'+empresa+'"]').attr("selected", "selected");
-    $('#sel_per option[value="'+tipo_periodo+'"]').attr("selected", "selected");
-    $('#sel_empa option[value="'+empadmin+'"]').attr("selected", "selected");
-
     });
-    
+
+    function reply_click(clicked_id)
+    {
+        $.get('empleadoData/'+clicked_id , function(data){
+
+          
+          
+        });
+    }
+          /*var departamento       = $('#sel_dep_v').attr('value');
+          var empresa            = $('#sel_emp_v').attr('value');
+          var tipo_periodo       = $('#sel_per_v').attr('value');
+          var empadmin           = $('#sel_empa_v').attr('value');
+
+
+          $('#sel_dep option[value="'+departamento+'"]').attr("selected", "selected");
+          $('#sel_emp option[value="'+empresa+'"]').attr("selected", "selected");
+          $('#sel_per option[value="'+tipo_periodo+'"]').attr("selected", "selected");
+          $('#sel_empa option[value="'+empadmin+'"]').attr("selected", "selected");*/
+
     </script>
 
 
@@ -259,7 +267,8 @@
         <td>{{ $empleado->CLABE_Bancaria }} </td>
         <td>{{ $empleado->SueldoBase }} </td>
         <!-- <td><a href="editar_empleado/{{$empleado->idEmpleado}}"><button class="btn btn-default" type="button" id="btn-elim-a">Editar</button></a></td> -->
-        <td><button class="btn btn-default" type="button" data-toggle="modal" data-target="#myModal-{{ $empleado->idEmpleado }}">Editar</button></td>
+        <td><button class="btn btn-default" type="button" data-toggle="modal" data-target="#myModal-{{ $empleado->idEmpleado }}" 
+          id="{{ $empleado->idEmpleado }}" onClick="reply_click(this.id)">Editar</button></td>
       </tr>
     <?php $contador++; ?>
     @endforeach
@@ -270,10 +279,9 @@
   </table>
 </div>
 
-    @foreach($empleados as $empleado)
-      <?php 
-        $empleado = Empleado::find($empleado->idEmpleado);  
-      ?>
+        <?php 
+          $empleado = Empleado::find($empleado->idEmpleado);  
+        ?>
         <div class="modal fade" id="myModal-{{$empleado->idEmpleado}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           {{Form::open(array('url'=>'actualizar_empleado'))}}
           <div class="modal-dialog">
@@ -415,7 +423,6 @@
           </div>
           {{Form::close()}}
         </div>
-    @endforeach
 
 </div>
 

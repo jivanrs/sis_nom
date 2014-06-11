@@ -44,20 +44,20 @@ Route::group(array('before' => 'auth.custom'), function(){
 
 	Route::post('empleado/crear' , 'EmpleadosController@form_crear_empleado');
 	Route::post('eliminar_empleados' , 'EmpleadosController@form_eliminar_empleados');
-	Route::get('empleados/delete', 'EmpleadosController@destroy($id)');
 	Route::get('pagos', 'PagosController@index');
 	Route::get('reportes', 'ReportesController@index');
 	
-	Route::post('reportes/empleados/{fechaIni}/{fechaFin}', 'ReportesController@reporteEmpleados($fechaIni, $fechaFin)');
-	Route::post('reportes/empresas/{fechaIni}/{fechaFin}', 'ReportesController@reporteEmpresa($fechaIni, $fechaFin)');
-	Route::post('reportes/departamentos/{fechaIni}/{fechaFin}', 'ReportesController@reporteDepto($fechaIni, $fechaFin)');
+	Route::post('reportes/empleados/{fechaIni}/{fechaFin}', 'ReportesController@reporteEmpleados');
+	Route::post('reportes/empresas/{fechaIni}/{fechaFin}', 'ReportesController@reporteEmpresa');
+	Route::post('reportes/departamentos/{fechaIni}/{fechaFin}', 'ReportesController@reporteDepto');
 	
 	// Route::post('realizarPago/{idEmpleado}', 'PagosController@realizarPago($idEmpleado)');
 	Route::post('realizarPago', 'PagosController@realizarPago');
-	Route::post('realizarPagoEspecial/{idEmpleado}', 'PagosController@realizarPagoEspecial($idEmpleado)');
+	Route::post('realizarPagoEspecial/{idEmpleado}', 'PagosController@realizarPagoEspecial');
 	Route::post('generarNomina', 'PagosController@generarNomina');
 	Route::post('mostrarPorPagar', 'PagosController@mostrarPorPagar');
 
+	Route::get('empleadoData/{id}', 'EmpleadosController@empleadoData');
 });
 
 //usuario: jfeuchter
