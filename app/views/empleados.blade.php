@@ -37,7 +37,17 @@
     {
         $.get('empleadoData/'+clicked_id , function(data){
 
-          
+          $('#nombre_in').attr('value',data[0].Nombre);
+          $('#direccion_in').attr('value',data[0].Direccion);
+          $('#puesto_in').attr('value',data[0].Puesto);
+          $('#telefono_in').attr('value',data[0].Telefono);
+          $('#celular_in').attr('value',data[0].Celular);
+          $('#extension_in').attr('value',data[0].Extension);
+          $('#email_in').attr('value',data[0].Email);
+          $('#banco_in').attr('value',data[0].Banco);
+          $('#ctabancaria_in').attr('value',data[0].Cta_Bancaria);
+          $('#clabe_in').attr('value',data[0].CLABE_Bancaria);
+          $('#sueldo_in').attr('value',data[0].SueldoBase);
           
         });
     }
@@ -129,17 +139,17 @@
                  
                   <tr>
                     <td>{{Form::label('nombre','Nombre')}}</td>
-                    <td>{{Form::text('Nombre','')}}</td>
+                    <td>{{Form::text('Nombre','', array('id'=> 'nombre_in'))}}</td>
                   </tr>
                                    
                   <tr>
                     <td>{{Form::label('direccion','Direccion')}}</td>
-                    <td>{{Form::text('Direccion','')}}</td>
+                    <td>{{Form::text('Direccion','', array('id'=> 'direccion_in'))}}</td>
                   </tr>
 
                   <tr>
                     <td>{{Form::label('puesto','Puesto')}}</td>
-                    <td>{{Form::text('Puesto','')}}</td>
+                    <td>{{Form::text('Puesto','', array('id'=> 'puesto_in'))}}</td>
                   </tr>
 
                   <tr>
@@ -149,42 +159,42 @@
                   
                   <tr>
                     <td>{{Form::label('telefono','Telefono')}}</td>
-                    <td>{{Form::text('Telefono','')}}</td>
+                    <td>{{Form::text('Telefono','', array('id'=> 'telefono_in'))}}</td>
                   </tr>
                   
                   <tr>
                     <td>{{Form::label('celular','Celular')}}</td>
-                    <td>{{Form::text('Celular','')}}</td>
+                    <td>{{Form::text('Celular','', array('id'=> 'celular_in'))}}</td>
                   </tr>
                
                   <tr>
                     <td>{{Form::label('extension','Extension')}}</td>
-                    <td>{{Form::text('Extension','')}}</td>
+                    <td>{{Form::text('Extension','', array('id'=> 'extension_in'))}}</td>
                   </tr>
                                     
                   <tr>
                     <td>{{Form::label('email','Email')}}</td>
-                    <td>{{Form::email('Email','')}}</td>
+                    <td>{{Form::email('Email','', array('id'=> 'email_in'))}}</td>
                   </tr>
                
                   <tr>
                     <td>{{Form::label('banco','Banco')}}</td>
-                    <td>{{Form::text('Banco','')}}</td>
+                    <td>{{Form::text('Banco','', array('id'=> 'banco_in'))}}</td>
                   </tr>
                
                   <tr>
                     <td>{{Form::label('cta_bancaria','Cuenta Bancaria')}}</td>
-                    <td>{{Form::text('Cta_Bancaria','')}}</td>
+                    <td>{{Form::text('Cta_Bancaria','', array('id'=> 'ctabancaria_in'))}}</td>
                   </tr>
                                                                               
                   <tr>
                     <td>{{Form::label('clabe_bancaria','CLABE Bancaria')}}</td>
-                    <td>{{Form::text('CLABE_Bancaria','')}}</td>
+                    <td>{{Form::text('CLABE_Bancaria','', array('id'=> 'clabe_in'))}}</td>
                   </tr>
                                                                                                    
                   <tr>
                     <td>{{Form::label('sueldo_base','Sueldo Base')}}</td>
-                    <td>{{Form::text('SueldoBase','')}}</td>
+                    <td>{{Form::text('SueldoBase','', array('id'=> 'sueldo_in'))}}</td>
                   </tr>   
 
                   <tr>
@@ -267,7 +277,7 @@
         <td>{{ $empleado->CLABE_Bancaria }} </td>
         <td>{{ $empleado->SueldoBase }} </td>
         <!-- <td><a href="editar_empleado/{{$empleado->idEmpleado}}"><button class="btn btn-default" type="button" id="btn-elim-a">Editar</button></a></td> -->
-        <td><button class="btn btn-default" type="button" data-toggle="modal" data-target="#myModal-{{ $empleado->idEmpleado }}" 
+        <td><button class="btn btn-default" type="button" data-toggle="modal" data-target="#myModal" 
           id="{{ $empleado->idEmpleado }}" onClick="reply_click(this.id)">Editar</button></td>
       </tr>
     <?php $contador++; ?>
@@ -282,7 +292,7 @@
         <?php 
           $empleado = Empleado::find($empleado->idEmpleado);  
         ?>
-        <div class="modal fade" id="myModal-{{$empleado->idEmpleado}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           {{Form::open(array('url'=>'actualizar_empleado'))}}
           <div class="modal-dialog">
             <div class="modal-content">
