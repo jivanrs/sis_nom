@@ -31,15 +31,18 @@
 
       $('#myTable').dataTable();
 
-    });
-
     var departamento       = $('#sel_dep_v').attr('value');
     var empresa            = $('#sel_emp_v').attr('value');
     var tipo_periodo       = $('#sel_per_v').attr('value');
+    var empadmin           = $('#sel_empa_v').attr('value');
+
 
     $('#sel_dep option[value="'+departamento+'"]').attr("selected", "selected");
     $('#sel_emp option[value="'+empresa+'"]').attr("selected", "selected");
     $('#sel_per option[value="'+tipo_periodo+'"]').attr("selected", "selected");
+    $('#sel_empa option[value="'+empadmin+'"]').attr("selected", "selected");
+
+    });
     
     </script>
 
@@ -76,6 +79,7 @@
                 <?php $departamentos = Departamento::all(); ?>
                 <?php $empresas = Empresa::all(); ?>
                 <?php $tipos = TipoPeriodo::all(); ?>
+                <?php $empadministradora = EmpAdministradora::all(); ?>
 
               </div>
               <div class="modal-body" style="padding-bottom: 0;">
@@ -88,6 +92,17 @@
                       <select name="emp_idDeparameto_FK">
                         @foreach($departamentos as $departamento)
                         <option value="{{$departamento->idDepartamento}}">{{$departamento->Nombre_Depto}}</option>
+                        @endforeach
+                      </select>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>{{Form::label('empadministradora','Empresa Administradora')}}</td>
+                    <td>
+                      <select name="emp_idDeparameto_FK">
+                        @foreach($empadministradora as $emp)
+                        <option value="{{$departamento->idDepartamento}}">{{$emp->EmpAdministradora}}</option>
                         @endforeach
                       </select>
                     </td>
@@ -117,6 +132,11 @@
                   <tr>
                     <td>{{Form::label('puesto','Puesto')}}</td>
                     <td>{{Form::text('Puesto','')}}</td>
+                  </tr>
+
+                  <tr>
+                    <td>{{Form::label('fechaing','Fecha de Ingreso')}}</td>
+                    <td>{{Form::text('Fecha de Ingreso', 'AAAA-MM-DD')}}</td>
                   </tr>
                   
                   <tr>
@@ -283,6 +303,20 @@
                   </tr>
 
                   <tr>
+                    <td>{{Form::label('empadministradora','Empresa Administradora')}}</td>
+                    <td>
+                      
+                      <input type="hidden" id="sel_empa_v-{{$empleado->idEmpleado}}" value="{{$empleado->emp_idEmpAdministradora_FK}}">
+
+                      <select name="emp_idDeparameto_FK">
+                        @foreach($empadministradora as $emp)
+                        <option value="{{$departamento->idDepartamento}}">{{$emp->EmpAdministradora}}</option>
+                        @endforeach
+                      </select>
+                    </td>
+                  </tr>
+
+                  <tr>
                     <td>{{Form::label('empresa','Empresa')}}</td>
                     <td>
 
@@ -299,6 +333,11 @@
                   <tr>
                     <td>{{Form::label('nombre','Nombre')}}</td>
                     <td>{{Form::text('Nombre',$empleado->Nombre)}}</td>
+                  </tr>
+
+                  <tr>
+                    <td>{{Form::label('fechaing','Fecha de Ingreso')}}</td>
+                    <td>{{Form::text('Fecha de Ingreso', $empleado->FechaDeIngreso )}}</td>
                   </tr>
                                    
                   <tr>

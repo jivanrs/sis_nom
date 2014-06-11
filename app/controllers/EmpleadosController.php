@@ -23,20 +23,22 @@ class EmpleadosController extends BaseController {
 		// Template : $usuario->Nombre 	= 	Input::get('nombre');
 
 		
-		$empleado->emp_idDeparameto_FK 		= 	Input::get('emp_idDeparameto_FK');	
-		$empleado->emp_idEmpresa_FK 		= 	Input::get('emp_idEmpresa_FK');
-		$empleado->Nombre 					= 	Input::get('Nombre');
-		$empleado->Direccion 				= 	Input::get('Direccion');
-		$empleado->Puesto 					= 	Input::get('Puesto');
-		$empleado->Telefono 				= 	Input::get('Telefono');
-		$empleado->Celular 					= 	Input::get('Celular');
-		$empleado->Extension 				= 	Input::get('Extension');
-		$empleado->Email 					= 	Input::get('Email');
-		$empleado->Banco 					= 	Input::get('Banco');
-		$empleado->Cta_Bancaria 			= 	Input::get('Cta_Bancaria');
-		$empleado->CLABE_Bancaria 			= 	Input::get('CLABE_Bancaria');
-		$empleado->SueldoBase 				= 	Input::get('SueldoBase');
-		$empleado->emp_idTipoPeriodo_FK 	= 	Input::get('emp_idTipoPeriodo_FK');
+		$empleado->emp_idDeparameto_FK 			= 	Input::get('emp_idDeparameto_FK');	
+		$empleado->emp_idEmpresa_FK 			= 	Input::get('emp_idEmpresa_FK');
+		$empleado->Nombre 						= 	Input::get('Nombre');
+		$empleado->Direccion 					= 	Input::get('Direccion');
+		$empleado->FechaDeIngreso				= 	Input::get('FechaDeIngreso');
+		$empleado->Puesto 						= 	Input::get('Puesto');
+		$empleado->Telefono 					= 	Input::get('Telefono');
+		$empleado->Celular 						= 	Input::get('Celular');
+		$empleado->Extension 					= 	Input::get('Extension');
+		$empleado->Email 						= 	Input::get('Email');
+		$empleado->Banco 						= 	Input::get('Banco');
+		$empleado->Cta_Bancaria 				= 	Input::get('Cta_Bancaria');
+		$empleado->CLABE_Bancaria 				= 	Input::get('CLABE_Bancaria');
+		$empleado->SueldoBase 					= 	Input::get('SueldoBase');
+		$empleado->emp_idTipoPeriodo_FK 		= 	Input::get('emp_idTipoPeriodo_FK');
+		$empleado->emp_idEmpAdministradora_FK 	= 	Input::get('emp_idEmpAdministradora_FK');
 
 		$empleado->save();
 
