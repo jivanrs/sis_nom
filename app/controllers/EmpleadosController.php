@@ -23,7 +23,7 @@ class EmpleadosController extends BaseController {
 		        ->leftJoin('empresa', 'empresa.idEmpresa', '=', 'empleado.emp_idEmpresa_FK')
 		        ->leftJoin('departamento', 'departamento.idDepartamento', '=', 'empleado.emp_idDeparameto_FK')
 		        ->leftJoin('tipoperiodo', 'tipoperiodo.idTipoPeriodo', '=', 'empleado.emp_idTipoPeriodo_FK')
-		        ->leftJoin('empadministradora', 'empadministradora.idEmpAdminstradora', '=', 'empleado.emp_idEmpAdministradora_FK')
+		        ->leftJoin('empadministradora', 'empadministradora.idEmpAdministradora', '=', 'empleado.emp_idEmpAdministradora_FK')
 		        ->select('*')
 		        ->where('idEmpleado', $id)
 		        ->where('Activo', true)
