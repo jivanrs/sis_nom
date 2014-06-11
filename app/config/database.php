@@ -58,8 +58,8 @@ return array(
 			'database'  => 'sistema_nomina',
 			'username'  => 'root',
 			'password'  => 'root',
-			'charset'   => 'latin1',
-			'collation' => 'latin1_spanish_ci',
+			'charset'   => 'utf8',
+			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
 		),
 

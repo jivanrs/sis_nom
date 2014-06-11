@@ -78,6 +78,7 @@ class EmpleadosController extends BaseController {
 		$empleado->emp_idDeparameto_FK 		= 	Input::get('emp_idDeparameto_FK');	
 		$empleado->emp_idEmpresa_FK 		= 	Input::get('emp_idEmpresa_FK');
 		$empleado->Nombre 					= 	Input::get('Nombre');
+		$empleado->FechaDeIngreso 			= 	Input::get('fechaing');
 		$empleado->Direccion 				= 	Input::get('Direccion');
 		$empleado->Puesto 					= 	Input::get('Puesto');
 		$empleado->Telefono 				= 	Input::get('Telefono');

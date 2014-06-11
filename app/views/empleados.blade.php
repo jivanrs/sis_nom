@@ -37,6 +37,7 @@
     {
         $.get('empleadoData/'+clicked_id , function(data){
 
+          $('#empleado_id').attr('value',data[0].idEmpleado);
           $('#nombre_in').attr('value',data[0].Nombre);
           $('#direccion_in').attr('value',data[0].Direccion);
           $('#puesto_in').attr('value',data[0].Puesto);
@@ -315,13 +316,11 @@
               <div class="modal-body" style="padding-bottom: 0;">
                 <table class="table table-striped">
                   
-                <input type="hidden" name="idEmpleado" id="empleado_id" value="{{$empleado->idEmpleado}}">          
+                <input type="hidden" name="idEmpleado" id="empleado_id" value="">          
 
                   <tr>
                     <td>{{Form::label('departamento','Departamento')}}</td>
                     <td>
-                      
-                      <input type="hidden" id="sel_dep_v-{{$empleado->idEmpleado}}" value="{{$empleado->emp_idDeparameto_FK}}">
 
                       <select id="sel_dep" name="emp_idDeparameto_FK">
                         <option value="None">Selecciona Una Opción</option>
@@ -335,8 +334,6 @@
                   <tr>
                     <td>{{Form::label('empadministradora','Empresa Administradora')}}</td>
                     <td>
-                      
-                      <input type="hidden" id="sel_empa_v-{{$empleado->idEmpleado}}" value="{{$empleado->emp_idEmpAdministradora_FK}}">
 
                       <select id="sel_empa" name="emp_idEmpAdministradora_FK">
                         <option value="None">Selecciona Una Opción</option>
@@ -350,8 +347,6 @@
                   <tr>
                     <td>{{Form::label('empresa','Empresa')}}</td>
                     <td>
-
-                      <input type="hidden" id="sel_emp_v-{{$empleado->idEmpleado}}" value="{{$empleado->emp_idEmpresa_FK}}">
 
                       <select id="sel_emp" name="emp_idEmpresa_FK">
                         <option value="None">Selecciona Una Opción</option>                
