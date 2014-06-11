@@ -48,9 +48,16 @@
           $('#ctabancaria_in').attr('value',data[0].Cta_Bancaria);
           $('#clabe_in').attr('value',data[0].CLABE_Bancaria);
           $('#sueldo_in').attr('value',data[0].SueldoBase);
+          $('#fechaing').attr('value',data[0].FechaDeIngreso);
+
+          $('#sel_dep option[value="'+data[0].idDepartamento+'"]').attr("selected", "selected");
+          $('#sel_emp option[value="'+data[0].idEmpresa+'"]').attr("selected", "selected");
+          $('#sel_per option[value="'+data[0].idTipoPeriodo+'"]').attr("selected", "selected");
+          $('#sel_empa option[value="'+data[0].idEmpAdministradora+'"]').attr("selected", "selected");
           
         });
     }
+
           /*var departamento       = $('#sel_dep_v').attr('value');
           var empresa            = $('#sel_emp_v').attr('value');
           var tipo_periodo       = $('#sel_per_v').attr('value');
@@ -83,11 +90,11 @@
     <div class="panel panel-default mt20">
     <div class="panel-heading">
       <div class="col-md-3 col-md-offset-8">
-        <button class="btn btn-default" type="button" data-toggle="modal" data-target="#myModal">Nuevo</button>
+        <button class="btn btn-default" type="button" data-toggle="modal" data-target="#myModalNuevo">Nuevo</button>
 
         
         <!-- Ventana par agregar un empleado nuevo -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal fade" id="myModalNuevo" tabindex="-1" role="dialog" aria-labelledby="myModalNuevo" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -108,6 +115,7 @@
                     <td>{{Form::label('departamento','Departamento')}}</td>
                     <td>
                       <select name="emp_idDeparameto_FK">
+                        <option value="None">Selecciona Una Opción</option>
                         @foreach($departamentos as $departamento)
                         <option value="{{$departamento->idDepartamento}}">{{$departamento->Nombre_Depto}}</option>
                         @endforeach
@@ -119,6 +127,7 @@
                     <td>{{Form::label('empadministradora','Empresa Administradora')}}</td>
                     <td>
                       <select name="emp_idDeparameto_FK">
+                        <option value="None">Selecciona Una Opción</option>
                         @foreach($empadministradora as $emp)
                         <option value="{{$departamento->idDepartamento}}">{{$emp->EmpAdministradora}}</option>
                         @endforeach
@@ -129,7 +138,8 @@
                   <tr>
                     <td>{{Form::label('empresa','Empresa')}}</td>
                     <td>                   
-                      <select name="emp_idEmpresa_FK">                 
+                      <select name="emp_idEmpresa_FK">
+                        <option value="None">Selecciona Una Opción</option>               
                         @foreach($empresas as $empresa)
                         <option value="{{$empresa->idEmpresa}}">{{$empresa->Nombre_Empresa}}</option>
                         @endforeach
@@ -139,17 +149,17 @@
                  
                   <tr>
                     <td>{{Form::label('nombre','Nombre')}}</td>
-                    <td>{{Form::text('Nombre','', array('id'=> 'nombre_in'))}}</td>
+                    <td>{{Form::text('Nombre','')}}</td>
                   </tr>
                                    
                   <tr>
                     <td>{{Form::label('direccion','Direccion')}}</td>
-                    <td>{{Form::text('Direccion','', array('id'=> 'direccion_in'))}}</td>
+                    <td>{{Form::text('Direccion','')}}</td>
                   </tr>
 
                   <tr>
                     <td>{{Form::label('puesto','Puesto')}}</td>
-                    <td>{{Form::text('Puesto','', array('id'=> 'puesto_in'))}}</td>
+                    <td>{{Form::text('Puesto','')}}</td>
                   </tr>
 
                   <tr>
@@ -159,48 +169,49 @@
                   
                   <tr>
                     <td>{{Form::label('telefono','Telefono')}}</td>
-                    <td>{{Form::text('Telefono','', array('id'=> 'telefono_in'))}}</td>
+                    <td>{{Form::text('Telefono','')}}</td>
                   </tr>
                   
                   <tr>
                     <td>{{Form::label('celular','Celular')}}</td>
-                    <td>{{Form::text('Celular','', array('id'=> 'celular_in'))}}</td>
+                    <td>{{Form::text('Celular','')}}</td>
                   </tr>
                
                   <tr>
                     <td>{{Form::label('extension','Extension')}}</td>
-                    <td>{{Form::text('Extension','', array('id'=> 'extension_in'))}}</td>
+                    <td>{{Form::text('Extension','')}}</td>
                   </tr>
                                     
                   <tr>
                     <td>{{Form::label('email','Email')}}</td>
-                    <td>{{Form::email('Email','', array('id'=> 'email_in'))}}</td>
+                    <td>{{Form::email('Email','')}}</td>
                   </tr>
                
                   <tr>
                     <td>{{Form::label('banco','Banco')}}</td>
-                    <td>{{Form::text('Banco','', array('id'=> 'banco_in'))}}</td>
+                    <td>{{Form::text('Banco','')}}</td>
                   </tr>
                
                   <tr>
                     <td>{{Form::label('cta_bancaria','Cuenta Bancaria')}}</td>
-                    <td>{{Form::text('Cta_Bancaria','', array('id'=> 'ctabancaria_in'))}}</td>
+                    <td>{{Form::text('Cta_Bancaria','')}}</td>
                   </tr>
                                                                               
                   <tr>
                     <td>{{Form::label('clabe_bancaria','CLABE Bancaria')}}</td>
-                    <td>{{Form::text('CLABE_Bancaria','', array('id'=> 'clabe_in'))}}</td>
+                    <td>{{Form::text('CLABE_Bancaria','')}}</td>
                   </tr>
                                                                                                    
                   <tr>
                     <td>{{Form::label('sueldo_base','Sueldo Base')}}</td>
-                    <td>{{Form::text('SueldoBase','', array('id'=> 'sueldo_in'))}}</td>
+                    <td>{{Form::text('SueldoBase','')}}</td>
                   </tr>   
 
                   <tr>
                     <td>{{Form::label('tipo_periodo','Tipo de Periodo')}}</td>
                     <td>
-                      <select name="emp_idTipoPeriodo_FK">                 
+                      <select name="emp_idTipoPeriodo_FK">
+                        <option value="None">Selecciona Una Opción</option>
                         @foreach($tipos as $tipo)
                         <option value="{{$tipo->idTipoPeriodo}}">{{$tipo->TipoPeriodo}}</option>
                         @endforeach
@@ -277,7 +288,7 @@
         <td>{{ $empleado->CLABE_Bancaria }} </td>
         <td>{{ $empleado->SueldoBase }} </td>
         <!-- <td><a href="editar_empleado/{{$empleado->idEmpleado}}"><button class="btn btn-default" type="button" id="btn-elim-a">Editar</button></a></td> -->
-        <td><button class="btn btn-default" type="button" data-toggle="modal" data-target="#myModal" 
+        <td><button class="btn btn-default" type="button" data-toggle="modal" data-target="#myModalE" 
           id="{{ $empleado->idEmpleado }}" onClick="reply_click(this.id)">Editar</button></td>
       </tr>
     <?php $contador++; ?>
@@ -292,7 +303,7 @@
         <?php 
           $empleado = Empleado::find($empleado->idEmpleado);  
         ?>
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal fade" id="myModalE" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           {{Form::open(array('url'=>'actualizar_empleado'))}}
           <div class="modal-dialog">
             <div class="modal-content">
@@ -312,7 +323,8 @@
                       
                       <input type="hidden" id="sel_dep_v-{{$empleado->idEmpleado}}" value="{{$empleado->emp_idDeparameto_FK}}">
 
-                      <select name="emp_idDeparameto_FK">
+                      <select id="sel_dep" name="emp_idDeparameto_FK">
+                        <option value="None">Selecciona Una Opción</option>
                         @foreach($departamentos as $departamento)
                         <option value="{{$departamento->idDepartamento}}">{{$departamento->Nombre_Depto}}</option>
                         @endforeach
@@ -326,9 +338,10 @@
                       
                       <input type="hidden" id="sel_empa_v-{{$empleado->idEmpleado}}" value="{{$empleado->emp_idEmpAdministradora_FK}}">
 
-                      <select name="emp_idDeparameto_FK">
+                      <select id="sel_empa" name="emp_idEmpAdministradora_FK">
+                        <option value="None">Selecciona Una Opción</option>
                         @foreach($empadministradora as $emp)
-                        <option value="{{$departamento->idDepartamento}}">{{$emp->EmpAdministradora}}</option>
+                        <option value="{{$emp->idEmpAdministradora}}">{{$emp->EmpAdministradora}}</option>
                         @endforeach
                       </select>
                     </td>
@@ -340,7 +353,8 @@
 
                       <input type="hidden" id="sel_emp_v-{{$empleado->idEmpleado}}" value="{{$empleado->emp_idEmpresa_FK}}">
 
-                      <select name="emp_idEmpresa_FK">                 
+                      <select id="sel_emp" name="emp_idEmpresa_FK">
+                        <option value="None">Selecciona Una Opción</option>                
                         @foreach($empresas as $empresa)
                         <option value="{{$empresa->idEmpresa}}">{{$empresa->Nombre_Empresa}}</option>
                         @endforeach
@@ -350,62 +364,62 @@
                  
                   <tr>
                     <td>{{Form::label('nombre','Nombre')}}</td>
-                    <td>{{Form::text('Nombre',$empleado->Nombre)}}</td>
+                    <td>{{Form::text('Nombre','',array('id'=> 'nombre_in'))}}</td>
                   </tr>
 
                   <tr>
                     <td>{{Form::label('fechaing','Fecha de Ingreso')}}</td>
-                    <td>{{Form::text('Fecha de Ingreso', $empleado->FechaDeIngreso )}}</td>
+                    <td>{{Form::text('Fecha de Ingreso','',array('id'=> 'fechaing'))}}</td>
                   </tr>
                                    
                   <tr>
                     <td>{{Form::label('direccion','Direccion')}}</td>
-                    <td>{{Form::text('Direccion',$empleado->Direccion)}}</td>
+                    <td>{{Form::text('Direccion','', array('id'=> 'direccion_in'))}}</td>
                   </tr>
 
                   <tr>
                     <td>{{Form::label('puesto','Puesto')}}</td>
-                    <td>{{Form::text('Puesto',$empleado->Puesto)}}</td>
+                    <td>{{Form::text('Puesto','', array('id'=> 'puesto_in'))}}</td>
                   </tr>
                   
                   <tr>
                     <td>{{Form::label('telefono','Telefono')}}</td>
-                    <td>{{Form::text('Telefono',$empleado->Telefono)}}</td>
+                    <td>{{Form::text('Telefono','', array('id'=> 'telefono_in'))}}</td>
                   </tr>
                   
                   <tr>
                     <td>{{Form::label('celular','Celular')}}</td>
-                    <td>{{Form::text('Celular',$empleado->Celular)}}</td>
+                    <td>{{Form::text('Celular','', array('id'=> 'celular_in'))}}</td>
                   </tr>
                
                   <tr>
                     <td>{{Form::label('extension','Extension')}}</td>
-                    <td>{{Form::text('Extension',$empleado->Extension)}}</td>
+                    <td>{{Form::text('Extension','', array('id'=> 'extension_in'))}}</td>
                   </tr>
                                     
                   <tr>
                     <td>{{Form::label('email','Email')}}</td>
-                    <td>{{Form::email('Email',$empleado->Email)}}</td>
+                    <td>{{Form::email('Email','', array('id'=> 'email_in'))}}</td>
                   </tr>
                
                   <tr>
                     <td>{{Form::label('banco','Banco')}}</td>
-                    <td>{{Form::text('Banco',$empleado->Banco)}}</td>
+                    <td>{{Form::text('Banco','', array('id'=> 'banco_in'))}}</td>
                   </tr>
                
                   <tr>
                     <td>{{Form::label('cta_bancaria','Cuenta Bancaria')}}</td>
-                    <td>{{Form::text('Cta_Bancaria',$empleado->Cta_Bancaria)}}</td>
+                    <td>{{Form::text('Cta_Bancaria','', array('id'=> 'ctabancaria_in'))}}</td>
                   </tr>
                                                                               
                   <tr>
                     <td>{{Form::label('clabe_bancaria','CLABE Bancaria')}}</td>
-                    <td>{{Form::text('CLABE_Bancaria',$empleado->CLABE_Bancaria)}}</td>
+                    <td>{{Form::text('CLABE_Bancaria','', array('id'=> 'clabe_in'))}}</td>
                   </tr>
                                                                                                    
                   <tr>
                     <td>{{Form::label('sueldo_base','Sueldo Base')}}</td>
-                    <td>{{Form::text('SueldoBase',$empleado->SueldoBase)}}</td>
+                    <td>{{Form::text('SueldoBase','', array('id'=> 'sueldo_in'))}}</td>
                   </tr>   
 
                   <tr>
@@ -414,7 +428,8 @@
 
                       <input type="hidden" id="sel_per_v-{{$empleado->idEmpleado}}" value="{{$empleado->emp_idTipoPeriodo_FK}}">
 
-                      <select name="emp_idTipoPeriodo_FK">                 
+                      <select id="sel_per" name="emp_idTipoPeriodo_FK">
+                        <option value="None">Selecciona Una Opción</option>                 
                         @foreach($tipos as $tipo)
                         <option value="{{$tipo->idTipoPeriodo}}">{{$tipo->TipoPeriodo}}</option>
                         @endforeach
