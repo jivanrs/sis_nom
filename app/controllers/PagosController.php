@@ -18,7 +18,7 @@ class PagosController extends BaseController {
 
 	public function generarNomina(){
 
-		$idEmpleados = Input::get('empleados');
+		$idEmpleados = DB::table('empleado')->lists('idEmpleado');
 
 		if(is_array($idEmpleados))
 		{
@@ -27,6 +27,13 @@ class PagosController extends BaseController {
 
 				$Empleado = Empleado::where('idEmpleado', $id)->first();
 				$PorPagar = $Empleado->SueldoBase / 2;
+				$EmpleadoT = DB::table('empleado')
+		        ->leftJoin('empadministradora', 'empadministradora.idEmpAdministradora', '=', 'empleado.emp_idEmpAdministradora_FK')
+		        ->select('*')
+		        ->where('idEmpleado', $id)
+		        ->where('Activo', true)
+		        ->first();
+				$PorComision = $EmpleadoT->PorComision;
 
 				$Recibos = new Recibos;
 				
@@ -39,7 +46,9 @@ class PagosController extends BaseController {
 				}
 				$Recibos->rec_idEmpleado_FK		= 	$id;
 				$Recibos->PorPagar				= 	$PorPagar;
+				$Recibos->TipoDeRecibo			= 	0;
 				$Recibos->Monto 				=   $PorPagar;
+				$Recibos->Comision				= 	$PorPagar * ($PorComision / 100);
 				$Recibos->save();	
 
 			}
@@ -81,23 +90,11 @@ class PagosController extends BaseController {
 
 	}
 
-	public function realizarPagoEspecial($idEmpleado){
+	public function hacer_pago($id_empleado){
 
-
-		$Pago = new Pagos;
-
-		$Pago->Pago 					= Input::get('Pago');
-		$Pago->FechaDePago 				= date('Y/m/d H:i:s');
-		$Pago->pag_idEmpleado_FK 		= $idEmpleado;
-		$Pago->PagoEspaecial			= 1;
-		$Pago->save();
-
-		return Redirect::to("/Recibos");
-
-	}
-public function hacer_pago($id_empleado){
 		$empleado = Empleado::find($id_empleado); 
 		return View::make('pagos', array('empleado' => $empleado)); 
+
 	}
 
 	public function pago_empleado(){
