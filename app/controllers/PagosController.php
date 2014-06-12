@@ -49,6 +49,51 @@ class PagosController extends BaseController {
 				$Recibos->TipoDeRecibo			= 	0;
 				$Recibos->Monto 				=   $PorPagar;
 				$Recibos->Comision				= 	$PorPagar * ($PorComision / 100);
+				$Recibos->CPorPagar				= 	$PorPagar * ($PorComision / 100);
+				$Recibos->save();	
+
+			}
+
+		}
+
+		return Redirect::to("/pagos");
+
+	}
+
+	public function generarReciboEspecial(){
+
+		$idEmpleados = Input::get('idEmpleados');
+
+		if(is_array($idEmpleados))
+		{
+
+			foreach ($idEmpleados as $id) {
+
+				$Empleado = Empleado::where('idEmpleado', $id)->first();
+				$PorPagar = Input::get('Pago');
+				$EmpleadoT = DB::table('empleado')
+		        ->leftJoin('empadministradora', 'empadministradora.idEmpAdministradora', '=', 'empleado.emp_idEmpAdministradora_FK')
+		        ->select('*')
+		        ->where('idEmpleado', $id)
+		        ->where('Activo', true)
+		        ->first();
+				$PorComision = $EmpleadoT->PorComision;
+
+				$Recibos = new Recibos;
+				
+				$Recibos->FechaDeRecibo 		= 	date('Y/m/d H:i:s');
+				if (date('d') > 15) {
+					$Recibos->rec_idPeriodo_FK	= 	2;
+				}
+				else{
+					$Recibos->rec_idPeriodo_FK	= 	1;
+				}
+				$Recibos->rec_idEmpleado_FK		= 	$id;
+				$Recibos->PorPagar				= 	$PorPagar;
+				$Recibos->TipoDeRecibo			= 	1;
+				$Recibos->Monto 				=   $PorPagar;
+				$Recibos->Comision				= 	$PorPagar * ($PorComision / 100);
+				$Recibos->CPorPagar				= 	$PorPagar * ($PorComision / 100);
 				$Recibos->save();	
 
 			}
@@ -73,15 +118,15 @@ class PagosController extends BaseController {
 
 		$recibos = Recibos::where('idRecibos', Input::get('recibo_id'))->first();
 		$Deuda = $recibos->PorPagar;
+		$Comision = $recibos->Comision;
 		$recibos->PorPagar = $Deuda - Input::get('Pago');
+		$recibos->CPorPagar = $Comision - ($Comision / ($PorPagar / Input::get('Pago')));
 		$recibos->save();
 
 		$pago = new Pagos;
 
 		$pago->Pago = Input::get('Pago');
 		$pago->FechaDePago = date('Y/m/d H:i:s');
-		$pago->pag_idEmpleado_FK = Input::get('empleado_id');
-		$pago->PagoEspecial = Input::get('tipo_pago');
 		$pago->pag_idRecibos_FK = Input::get('recibo_id');
 
 		$pago->save();

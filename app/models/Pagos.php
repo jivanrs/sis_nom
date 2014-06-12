@@ -28,6 +28,7 @@ class Pagos extends Eloquent
 		        		DB::raw('(SELECT rec_idEmpleado_FK, SUM( PorPagar ) AS Restante
 						FROM `recibos`
 						INNER JOIN empleado ON rec_idEmpleado_FK = idEmpleado
+						WHERE TipoDeRecibo = 0
 						GROUP BY rec_idEmpleado_FK) AS recibos1'), 
         				function($join)
 				        {

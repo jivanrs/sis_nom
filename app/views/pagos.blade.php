@@ -141,7 +141,7 @@
                     <span>
                     <?php 
                         $recibos = Recibos::where('rec_idEmpleado_FK',$empleado->idEmpleado)
-                        ->where('PorPagar', '!=', ' 0')->get();
+                        ->where('PorPagar', '!=', ' 0')->where('TipoDeRecibo', '=', '0')->get();
                      ?>
                     <select id="recFecha" name="recibo_id">
                       @foreach($recibos as $r)
