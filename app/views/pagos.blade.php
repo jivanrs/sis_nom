@@ -26,6 +26,51 @@
           $('#btn-gene-b').click();
         });
       });
+      function reply_click(clicked_id)
+      {
+
+          document.getElementById("dropDownListPP").options.length = 0;
+          $('#txtPago').val("");
+
+          $.get('datosPago/'+clicked_id, function(data){
+
+            $('#empleado_id').attr('value',data[0].idEmpleado);
+            document.getElementById('empleado_id').innerHTML = data[0].idEmpleado;
+
+            $('#nombre_in').attr('value',data[0].Nombre);
+            document.getElementById('nombre_in').innerHTML = data[0].Nombre;
+
+            $('#Nombre_Depto').attr('value',data[0].Nombre_Depto);
+            document.getElementById('Nombre_Depto').innerHTML = data[0].Nombre_Depto;
+
+            $('#Nombre_Empresa').attr('value',data[0].Nombre_Empresa);
+            document.getElementById('Nombre_Empresa').innerHTML = data[0].Nombre_Empresa;
+
+            $('#sueldo_in').attr('value',data[0].SueldoBase);
+            document.getElementById('sueldo_in').innerHTML = data[0].SueldoBase;
+            
+          });
+
+          $.get('mostrarPorPagar/'+clicked_id, function(data){
+            
+            var cont = 0 ;
+
+            select = document.getElementById("dropDownListPP");
+
+            var new_options = data;
+
+            /* Insert the new ones from the array above */
+            $.each(new_options, function(value) {
+                option = document.createElement("option");
+                option.value = data[cont].idRecibos;
+                option.innerHTML = data[cont].FechaDeRecibo + ' / ' + data[cont].PorPagar;
+                select.appendChild(option);
+                cont++;
+            });
+            
+          });
+
+      }
     
     </script>
 
@@ -96,7 +141,8 @@
 
             <td>{{ $empleado->Restante }} </td>
 
-            <td><button class="btn btn-default" type="button" data-toggle="modal" data-target="#hacerPago-{{$empleado->idEmpleado}}">Hacer Pago</button></td>
+            <td><button class="btn btn-default" type="button" data-toggle="modal" data-target="#hacerPago"
+              id="{{ $empleado->idEmpleado }}" onClick="reply_click(this.id)">Hacer Pago</button></td>
           </tr>
           <?php $contador++; ?>
         @endforeach
@@ -108,9 +154,9 @@
     </div>
   </div>
 
-  @foreach($empleados as $empleado)
+
   <!-- Ventana par agregar un empleado nuevo -->
-      <div class="modal fade" id="hacerPago-{{$empleado->idEmpleado}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal fade" id="hacerPago" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -118,36 +164,28 @@
               <table class="table table-striped">
                 {{Form::open(array('url'=>'realizarPago'))}}
 
-                <tr><td><span class="hacerpago">Empleado: </span>{{ $empleado->Nombre }} </td></tr>
-                <tr><td><span class="hacerpago">Departamento: </span>{{ $empleado->Nombre_Depto }} </td></tr>
-                <tr><td><span class="hacerpago">Empresa: </span>{{ $empleado->Nombre_Empresa }} </td></tr>
-                <tr><td><span class="hacerpago">Sueldo mensual: $ </span>{{ $empleado->SueldoBase }} </td></tr>
+                <tr><td><span class="hacerpago">Empleado: </span> {{ Form::label('nombre', '', array('id' => 'nombre_in')) }} </td></tr>
+                <tr><td><span class="hacerpago">Departamento: </span> {{ Form::label('Depto', '', array('id' => 'Nombre_Depto')) }} </td></tr>
+                <tr><td><span class="hacerpago">Empresa: </span> {{ Form::label('Empresa', '', array('id' => 'Nombre_Empresa')) }}</td></tr>
+                <tr><td><span class="hacerpago">Sueldo mensual: $ </span> {{ Form::label('sueldo', '', array('id' => 'sueldo_in')) }} </td></tr>
 
                 <tr>
                   <td><span class="hacerpago">{{Form::label('sueldo','Realizar Pago')}}</span>
-                  <span>{{Form::text('Pago','')}}</span></td>
+                  <span>{{Form::text('Pago','',array('id' => 'txtPago'))}}</span></td>
                 </tr>
                  <tr>
-                  <input type="hidden" name="empleado_id" value="{{ $empleado->idEmpleado }}">
+                  <input type="hidden" name="empleado_id" id="empleado_id" value="">
                   <td>
-                    <select name="tipo_pago" style="margin-left: 35px;">
-                      <option value="0">Regular</option>
-                      <option value="1">Bono especial</option>
-                    </select>
                   </td>
                 </tr>
                 <tr>
                   <td><span class="hacerpago">Recibo</span>
                     <span>
-                    <?php 
-                        $recibos = Recibos::where('rec_idEmpleado_FK',$empleado->idEmpleado)
-                        ->where('PorPagar', '!=', ' 0')->where('TipoDeRecibo', '=', '0')->get();
-                     ?>
-                    <select id="recFecha" name="recibo_id">
-                      @foreach($recibos as $r)
-                        <option value="{{$r->idRecibos}}">{{$r->FechaDeRecibo}} / {{$r->PorPagar}}</option>
-                      @endforeach
-                    </select>
+
+                    <select name="recibo_id" id="dropDownListPP">
+                      <option value="None">Seleccionar Opción</option>
+                    </select> 
+                    
                     </span>
                   </td>
                   <!--<td><div id="txtHint"><b></b></div></td>-->
@@ -162,7 +200,6 @@
           </div>
         </div>
       </div> <!-- FIN DEL MODAL -->
-      @endforeach
 
   </div>
 <!-- /container -->
@@ -171,23 +208,5 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
-    <script>
-      $('#recFecha').unbind('change').bind('change',function() {
-      
-         $.ajax({
-                type:"GET",
-                url : "{{URL::to('mostrarPorPagar')}}",
-                data : { id: $(this).val() },
-                async: false,
-                success : function(response) {
-                    document.getElementById("txtHint").innerHTML=response;
-                },
-                error: function() {
-                    //alert('MAL'); 
-                }
-            });
-               
-        });
-    </script>
   </body>
 </html>

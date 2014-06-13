@@ -104,13 +104,12 @@ class PagosController extends BaseController {
 
 	}
 
-	public function mostrarPorPagar(){
+	public function mostrarPorPagar($id){
 		
-		$id = Input::get('id');
+		$recibos = Recibos::where('rec_idEmpleado_FK', $id)
+                        ->where('PorPagar', '!=', ' 0')->where('TipoDeRecibo', '=', '0')->get();
 
-		$recibo = Recibos::where('idRecibos', $id)->first();
-
-		return $recibo->PorPagar;
+        return $recibos;
 
 	}
 
@@ -120,7 +119,7 @@ class PagosController extends BaseController {
 		$Deuda = $recibos->PorPagar;
 		$Comision = $recibos->Comision;
 		$recibos->PorPagar = $Deuda - Input::get('Pago');
-		$recibos->CPorPagar = $Comision - ($Comision / ($PorPagar / Input::get('Pago')));
+		$recibos->CPorPagar = $Comision - ($Comision / ($Deuda / Input::get('Pago')));
 		$recibos->save();
 
 		$pago = new Pagos;
@@ -128,11 +127,28 @@ class PagosController extends BaseController {
 		$pago->Pago = Input::get('Pago');
 		$pago->FechaDePago = date('Y/m/d H:i:s');
 		$pago->pag_idRecibos_FK = Input::get('recibo_id');
+		$Com = $Comision / ($Deuda / Input::get('Pago'));
+		$pago->Comision = $Com;
+		$pago->IVA = ($Com + Input::get('Pago')) * 0.16;
 
 		$pago->save();
 
 		return Redirect::to("/pagos");
 
+	}
+
+	public function datosPago($id){
+
+		$empleados = DB::table('empleado')
+		        ->leftJoin('empresa', 'empresa.idEmpresa', '=', 'empleado.emp_idEmpresa_FK')
+		        ->leftJoin('departamento', 'departamento.idDepartamento', '=', 'empleado.emp_idDeparameto_FK')
+		        ->leftJoin('tipoperiodo', 'tipoperiodo.idTipoPeriodo', '=', 'empleado.emp_idTipoPeriodo_FK')
+		        ->select('idEmpleado','Nombre', 'Nombre_Depto', 'Nombre_Empresa', 'SueldoBase')
+		        ->where('Activo', true)
+		        ->where('idEmpleado', $id)
+		        ->get();
+
+		return $empleados;
 	}
 
 	public function hacer_pago($id_empleado){

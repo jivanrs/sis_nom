@@ -55,7 +55,8 @@ Route::group(array('before' => 'auth.custom'), function(){
 	Route::post('realizarPago', 'PagosController@realizarPago');
 	Route::post('generarNomina', 'PagosController@generarNomina');
 	Route::post('generarReciboE', 'PagosController@generarReciboEspecial');
-	Route::post('mostrarPorPagar', 'PagosController@mostrarPorPagar');
+	Route::get('mostrarPorPagar/{id}', 'PagosController@mostrarPorPagar');
+	Route::get('datosPago/{id}', 'PagosController@datosPago');
 
 	
 
