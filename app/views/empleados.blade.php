@@ -259,12 +259,11 @@
     <thead>
     <tr>
       <th></th>
-      <th>ID</th>
       <th>Nombre</th>
       <th>Puesto</th>
       <th>Departamento</th>
       <th>Empresa</th>
-      <th>E. Administradora</th>
+      <th>Administradora</th>
       <th>Banco</th>
       <th>Cta Bancaria</th>
       <th>CLABE</th>
@@ -278,7 +277,6 @@
     @foreach($empleados as $empleado)
       <tr>
         <td><input type="checkbox" name="empleado[]" id="chk_emp-{{$empleado->idEmpleado}}" value="{{$empleado->idEmpleado}}"></td>
-        <td>{{ $empleado->idEmpleado }} </td>
         <td>{{ $empleado->Nombre }} </td>
         <td>{{ $empleado->Puesto }} </td>
         <td>{{ $empleado->Nombre_Depto }}</td>

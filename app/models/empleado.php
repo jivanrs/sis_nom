@@ -27,7 +27,8 @@ class Empleado extends Eloquent
 		        ->leftJoin('empresa', 'empresa.idEmpresa', '=', 'empleado.emp_idEmpresa_FK')
 		        ->leftJoin('departamento', 'departamento.idDepartamento', '=', 'empleado.emp_idDeparameto_FK')
 		        ->leftJoin('tipoperiodo', 'tipoperiodo.idTipoPeriodo', '=', 'empleado.emp_idTipoPeriodo_FK')
-		        ->select('idEmpleado','Nombre', 'Nombre_Depto', 'Nombre_Empresa', 'Puesto', 'SueldoBase', 'Email', 'Banco', 'Cta_Bancaria', 'CLABE_Bancaria')
+		        ->leftJoin('empadministradora', 'empadministradora.idEmpAdministradora', '=', 'empleado.emp_idEmpAdministradora_FK')
+		        ->select('idEmpleado','Nombre', 'Nombre_Depto', 'Nombre_Empresa', 'EmpAdministradora', 'Puesto', 'SueldoBase', 'Email', 'Banco', 'Cta_Bancaria', 'CLABE_Bancaria')
 		        ->where('Activo', true)
 		        ->get();
 
