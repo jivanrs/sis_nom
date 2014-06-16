@@ -264,7 +264,7 @@
       <th>Puesto</th>
       <th>Departamento</th>
       <th>Empresa</th>
-      <th>Email</th>
+      <th>E. Administradora</th>
       <th>Banco</th>
       <th>Cta Bancaria</th>
       <th>CLABE</th>
@@ -283,7 +283,7 @@
         <td>{{ $empleado->Puesto }} </td>
         <td>{{ $empleado->Nombre_Depto }}</td>
         <td>{{ $empleado->Nombre_Empresa }}</td>
-        <td>{{ $empleado->Email }} </td>
+        <td>{{ $empleado->EmpAdministradora }}</td>
         <td>{{ $empleado->Banco }} </td>
         <td>{{ $empleado->Cta_Bancaria }} </td>
         <td>{{ $empleado->CLABE_Bancaria }} </td>
