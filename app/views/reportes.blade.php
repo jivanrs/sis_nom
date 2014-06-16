@@ -217,7 +217,7 @@
                   <td>Monto</td>
                   <td>Por Pagar</td>
                   <td>Periodo</td>
-                  <td>Pago Espeical</td>
+                  <td>Tipo de Recibo</td>
                 </tr>
 
               @foreach($empleados as $empleado)
@@ -234,7 +234,7 @@
                   <td>{{ $empleado->Monto }} </td>
                   <td>{{ $empleado->PorPagar }} </td>
                   <td>{{ $empleado->Periodo }} </td>
-                  <td>{{ $empleado->PagoEspecial }} </td>
+                  <td>{{ $empleado->TipoDeRecibo }} </td>
                 </tr>
               @endforeach
 
