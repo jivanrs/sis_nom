@@ -41,28 +41,36 @@
       <div class="row">
         <div class="col-md-6">
           <div class="btn-menu">
-            <span class="glyphicon glyphicon-user"></span>
-            <span class="glyphicon-class"><a href="{{ URL::to('empleados') }}">Lista de Empleados</a></span>
+            <a href="{{ URL::to('empleados') }}">
+              <span class="glyphicon glyphicon-user"></span>
+              <span class="glyphicon-class">Lista de Empleados</span>
+            </a>
           </div>
         </div>
         <div class="col-md-6">
           <div class="btn-menu">
-            <span class="glyphicon glyphicon-usd"></span>
-            <span class="glyphicon-class"><a href="{{ URL::to('pagos') }}">Realizar Pago</a></span>
+            <a href="{{ URL::to('pagos') }}">
+              <span class="glyphicon glyphicon-usd"></span>
+              <span class="glyphicon-class">Realizar Pago</span>
+            </a>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-md-6">
           <div class="btn-menu">
-            <span class="glyphicon glyphicon-usd"></span>
-            <span class="glyphicon-class"><a href="{{ URL::to('bonos') }}">Realizar Bono</a></span>
+            <a href="{{ URL::to('bonos') }}">
+              <span class="glyphicon glyphicon-usd"></span>
+              <span class="glyphicon-class">Realizar Bono</span>
+            </a>
           </div>
         </div>
         <div class="col-md-6">
           <div class="btn-menu">
-            <span class="glyphicon glyphicon-sort-by-attributes"></span>
-            <span class="glyphicon-class"><a href="{{ URL::to('reportes') }}">Realizar Reporte</a></span>
+            <a href="{{ URL::to('reportes') }}">
+              <span class="glyphicon glyphicon-sort-by-attributes"></span>
+              <span class="glyphicon-class">Realizar Reporte</span>
+            </a>
           </div>
         </div>
     </div>
