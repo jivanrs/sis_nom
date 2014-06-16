@@ -13,6 +13,16 @@ class PagosController extends BaseController {
 		$empleados = Pagos::PagosInfo();
 
 		return View::make("pagos")->with('empleados', $empleados);
+	
+		
+	}
+	public function bonos()
+	{
+
+		$empleados = Pagos::PagosInfo();
+
+		return View::make("bonos")->with('empleados', $empleados);
+	
 		
 	}
 
@@ -100,7 +110,7 @@ class PagosController extends BaseController {
 
 		}
 
-		return Redirect::to("/pagos");
+		return Redirect::to("/bonos");
 
 	}
 
