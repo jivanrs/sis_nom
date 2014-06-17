@@ -102,6 +102,7 @@ class PagosController extends BaseController {
 				$Recibos->PorPagar				= 	$PorPagar;
 				$Recibos->TipoDeRecibo			= 	1;
 				$Recibos->Monto 				=   $PorPagar;
+				$Recibos->ConceptoBono			=	Input::get('ConceptoBono');
 				$Recibos->Comision				= 	$PorPagar * ($PorComision / 100);
 				$Recibos->CPorPagar				= 	$PorPagar * ($PorComision / 100);
 				$Recibos->save();	

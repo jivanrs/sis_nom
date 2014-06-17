@@ -54,7 +54,8 @@ class Pagos extends Eloquent
 		        ->leftJoin('tipoperiodo', 'tipoperiodo.idTipoPeriodo', '=', 'empleado.emp_idTipoPeriodo_FK')
 		        ->whereBetween('FechaDeRecibo', array('2013-03-05', '2015-06-15'))
 		        ->select('idEmpleado', 'TipoPeriodo', 'Nombre', 'Nombre_Empresa', 'Nombre_Depto',  'FechaDePago', 'Pago', 'FechaDeRecibo', 'Monto', 
-		        	'PorPagar', 'Periodo', 'TipoDeRecibo')
+		        	'PorPagar', 'Periodo', 'TipoDeRecibo', 'SUM(PorPagar) AS Restante')
+		        ->groupBy('Nombre')
 		        ->orderBy('Nombre', 'desc')
 		        ->get();
 
