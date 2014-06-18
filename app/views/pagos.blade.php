@@ -92,13 +92,13 @@
   <div class="row">
     <div class="panel panel-default mt20">
       <div class="panel-heading">
-        <div class="col-md-3 col-md-offset-8">
-          <button class="btn btn-default" type="submit" id="btn-gene-a" >Generar Nomina</button>
+        <div class="col-md-2 col-md-offset-9">
+          <button class="btn btn-info" type="submit" id="btn-gene-a" >Generar Nomina</button>
         </div>
         
         <div class="col-md-1">
           {{ Form::open(array('url' => 'logout', 'method' => 'get')) }} 
-          {{ Form::submit('LogOut', array('class' => 'btn btn-default')) }} 
+          {{ Form::submit('LogOut', array('class' => 'btn btn-primary')) }} 
           {{ Form::close() }}
         </div>
 
@@ -141,7 +141,7 @@
 
             <td>{{ $empleado->Restante }} </td>
 
-            <td><button class="btn btn-default" type="button" data-toggle="modal" data-target="#hacerPago"
+            <td><button class="btn btn-warning" type="button" data-toggle="modal" data-target="#hacerPago"
               id="{{ $empleado->idEmpleado }}" onClick="reply_click(this.id)">Hacer Pago</button></td>
           </tr>
           <?php $contador++; ?>

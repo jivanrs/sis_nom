@@ -90,8 +90,8 @@
   <div class="row">
     <div class="panel panel-default mt20">
     <div class="panel-heading">
-      <div class="col-md-3 col-md-offset-8">
-        <button class="btn btn-default" type="button" data-toggle="modal" data-target="#myModalNuevo">Nuevo</button>
+      <div class="col-md-2 col-md-offset-9">
+        <button class="btn btn-default btn-info" type="button" data-toggle="modal" data-target="#myModalNuevo">Nuevo</button>
 
         
         <!-- Ventana par agregar un empleado nuevo -->
@@ -232,13 +232,13 @@
           </div>
         </div>
 
-        <button class="btn btn-default" type="submit" id="btn-elim-a" >Eliminar</button>
+        <button class="btn btn-default btn-danger" type="submit" id="btn-elim-a" >Eliminar</button>
 
       </div>
       
       <div class="col-md-1">
         {{ Form::open(array('url' => 'logout', 'method' => 'get')) }} 
-        {{ Form::submit('LogOut', array('class' => 'btn btn-default')) }} 
+        {{ Form::submit('LogOut', array('class' => 'btn btn-primary')) }} 
         {{ Form::close() }}
         
       </div>
@@ -287,13 +287,13 @@
         <td>{{ $empleado->CLABE_Bancaria }} </td>
         <td>{{ $empleado->SueldoBase }} </td>
         <!-- <td><a href="editar_empleado/{{$empleado->idEmpleado}}"><button class="btn btn-default" type="button" id="btn-elim-a">Editar</button></a></td> -->
-        <td><button class="btn btn-default" type="button" data-toggle="modal" data-target="#myModalE" 
+        <td><button class="btn btn-warning type="button" data-toggle="modal" data-target="#myModalE" 
           id="{{ $empleado->idEmpleado }}" onClick="reply_click(this.id)">Editar</button></td>
       </tr>
     <?php $contador++; ?>
     @endforeach
 
-    <button class="btn btn-default" type="submit" id="btn-elim-b" style="display:none;" >Eliminar</button>
+    <button class="btn btn-default btn-danger" type="submit" id="btn-elim-b" style="display:none;" >Eliminar</button>
 
     {{Form::close()}}
   </table>
