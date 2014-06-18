@@ -93,7 +93,7 @@
     <div class="panel panel-default mt20">
       <div class="panel-heading">
         <div class="col-md-3 col-md-offset-8">
-          <button class="btn btn-default" type="submit" id="btn-gene-a" >Generar Nomina</button>
+          <button class="btn btn-default" type="submit" id="btn-gene-a" >Generar Abono</button>
         </div>
         
         <div class="col-md-1">
@@ -115,8 +115,7 @@
       <!-- Table -->
       <table class="table table-striped">
         <tr>
-          <td></td>
-          <td>ID</td>
+          <td><input type="checkbox"></td>
           <td>Nombre</td>
           <td>Puesto</td>
           <td>Departamento</td>
@@ -132,7 +131,6 @@
         @foreach($empleados as $empleado)
           <tr>
             <td><input type="checkbox" name="empleados[]" id="chk_emp-{{$empleado->idEmpleado}}" value="{{$empleado->idEmpleado}}"></td>
-            <td>{{ $empleado->idEmpleado }} </td>
             <td>{{ $empleado->Nombre }} </td>
             <td>{{ $empleado->Puesto }} </td>
             <td>{{ $empleado->Nombre_Depto }} </td>
@@ -147,7 +145,7 @@
           <?php $contador++; ?>
         @endforeach
 
-        <button class="btn btn-default" type="submit" id="btn-gene-b" style="display:none;" >Generar Nomina</button>
+        <button class="btn btn-default" type="submit" id="btn-gene-b" style="display:none;" >Generar Abono</button>
         {{Form::close()}}
 
       </table>
