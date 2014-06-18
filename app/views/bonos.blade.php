@@ -29,7 +29,7 @@
       function reply_click(clicked_id)
       {
 
-          document.getElementById("dropDownListPP").options.length = 0;
+          document.getElementById("dropDownListPPE").options.length = 0;
           $('#txtPago').val("");
 
           $.get('datosPago/'+clicked_id, function(data){
@@ -51,11 +51,11 @@
             
           });
 
-          $.get('mostrarPorPagar/'+clicked_id, function(data){
+          $.get('mostrarPorPagarBono/'+clicked_id, function(data){
             
             var cont = 0 ;
 
-            select = document.getElementById("dropDownListPP");
+            select = document.getElementById("dropDownListPPE");
 
             var new_options = data;
 
@@ -160,15 +160,14 @@
             <div class="modal-header">
               <div class="panel-heading title-center"><h3>Realizar Pago de Bono Especial</h3></div>
               <table class="table table-striped">
-                {{Form::open(array('url'=>'realizarPago'))}}
+                {{Form::open(array('url'=>'generarReciboEspecial'))}}
 
                 <tr><td><span class="hacerpago">Empleado: </span> {{ Form::label('nombre', '', array('id' => 'nombre_in')) }} </td></tr>
                 <tr><td><span class="hacerpago">Departamento: </span> {{ Form::label('Depto', '', array('id' => 'Nombre_Depto')) }} </td></tr>
                 <tr><td><span class="hacerpago">Empresa: </span> {{ Form::label('Empresa', '', array('id' => 'Nombre_Empresa')) }}</td></tr>
-                <tr><td><span class="hacerpago">Sueldo mensual: $ </span> {{ Form::label('sueldo', '', array('id' => 'sueldo_in')) }} </td></tr>
-
+                 <tr><td><span class="hacerpago">Concepto del Bono: </span> {{ Form::text('Concepto Bono', '', array('id' => 'ConceptoBono')) }}</td></tr>
                 <tr>
-                  <td><span class="hacerpago">{{Form::label('sueldo','Pagar Bono')}}</span>
+                  <td><span class="hacerpago">{{Form::label('bono','Realizar Bono')}}</span>
                   <span>{{Form::text('Pago','',array('id' => 'txtPago'))}}</span></td>
                 </tr>
                  <tr>
@@ -180,7 +179,7 @@
                   <td><span class="hacerpago">Recibo</span>
                     <span>
 
-                    <select name="recibo_id" id="dropDownListPP">
+                    <select name="recibo_id" id="dropDownListPPE">
                       <option value="None">Seleccionar Opción</option>
                     </select> 
                     

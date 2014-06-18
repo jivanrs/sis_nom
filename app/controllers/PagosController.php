@@ -121,6 +121,14 @@ class PagosController extends BaseController {
                         ->where('PorPagar', '!=', ' 0')->where('TipoDeRecibo', '=', '0')->get();
 
         return $recibos;
+    }
+
+    public function mostrarPorPagarBono($id){
+		
+		$recibos = Recibos::where('rec_idEmpleado_FK', $id)
+                        ->where('PorPagar', '!=', ' 0')->where('TipoDeRecibo', '=', '1')->get();
+
+        return $recibos;
 
 	}
 
