@@ -34,7 +34,8 @@ class Pagos extends Eloquent
 				        {
 				            $join->on('idEmpleado', '=', 'rec_idEmpleado_FK');
 				        })
-		        ->select('idEmpleado', 'Nombre', 'Nombre_Depto', 'Nombre_Empresa', 'Puesto', 'SueldoBase', 'Restante','emp_idTipoPeriodo_FK', 'emp_idEmpresa_FK','emp_idDeparameto_FK')
+		        ->select('idEmpleado', 'Nombre', 'Nombre_Depto', 'Nombre_Empresa', 'Puesto', 'SueldoBase', 'Restante',
+		        	'emp_idTipoPeriodo_FK', 'emp_idEmpresa_FK','emp_idDeparameto_FK')
 		        ->orderBy('Restante', 'desc')
 		        ->where('Activo', true)
 		        //->whereNotNull('Restante') //Se puede usar para mostrar nada a mas a los que se les debe.
@@ -54,8 +55,7 @@ class Pagos extends Eloquent
 		        ->leftJoin('tipoperiodo', 'tipoperiodo.idTipoPeriodo', '=', 'empleado.emp_idTipoPeriodo_FK')
 		        ->whereBetween('FechaDeRecibo', array('2013-03-05', '2015-06-15'))
 		        ->select('idEmpleado', 'TipoPeriodo', 'Nombre', 'Nombre_Empresa', 'Nombre_Depto',  'FechaDePago', 'Pago', 'FechaDeRecibo', 'Monto', 
-		        	'PorPagar', 'Periodo', 'TipoDeRecibo', 'SUM(PorPagar) AS Restante')
-		        ->groupBy('Nombre')
+		        	'PorPagar', 'Periodo', 'TipoDeRecibo')
 		        ->orderBy('Nombre', 'desc')
 		        ->get();
 

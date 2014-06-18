@@ -220,7 +220,42 @@
                   <td>Tipo de Recibo</td>
                 </tr>
 
-              @foreach($empleados as $empleado)
+              <?php 
+              $nombre = $empleados[0]->Nombre;
+              ?>
+
+              @foreach($empleados as $empleado) 
+              
+                @if($empleado->Nombre != $nombre)
+
+                  @foreach($total as $t)
+                    
+                    @if($nombre == $t->Nombre)
+
+                      <tr>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                        <td class="total ">Total Pagado </td>
+                        <td>{{$t->Pagado}} </td>
+                        <td> </td>
+                        <td class="total ">Total Restante Por Pagar </td>
+                        <td>{{$t->Restante}} </td>
+                        <td> </td>
+                        <td> </td>
+                      </tr>
+
+                    @endif
+
+                  @endforeach
+
+                @endif
+
+                <?php $nombre = $empleado->Nombre ?>
+
                 <tr>
                   <td><input type="checkbox" value="{{$empleado->idEmpleado}}"></td>
                   <td>{{ $empleado->idEmpleado }} </td>
@@ -236,6 +271,31 @@
                   <td>{{ $empleado->Periodo }} </td>
                   <td>{{ $empleado->TipoDeRecibo }} </td>
                 </tr>
+
+              @endforeach
+
+              @foreach($total as $t)
+                
+                @if($nombre == $t->Nombre)
+
+                  <tr>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td class="total ">Total Pagado </td>
+                    <td>{{$t->Pagado}} </td>
+                    <td> </td>
+                    <td class="total ">Total Restante Por Pagar </td>
+                    <td>{{$t->Restante}} </td>
+                    <td> </td>
+                    <td> </td>
+                  </tr>
+
+                @endif
+
               @endforeach
 
               </table>

@@ -9,9 +9,34 @@ class ReportesController extends BaseController {
 	 */
 	public function index()
 	{
-		$empleados = Pagos::ObtenerPagosEmpleados('2013-03-05', '2015-06-15');
 
-		return View::make("reportes")->with('empleados', $empleados);
+		$empleados = DB::table('empleado')
+				->leftJoin('empresa', 'empresa.idEmpresa', '=', 'empleado.emp_idEmpresa_FK')
+		        ->leftJoin('departamento', 'departamento.idDepartamento', '=', 'empleado.emp_idDeparameto_FK')
+		        ->leftJoin('recibos', 'recibos.rec_idEmpleado_FK', '=', 'empleado.idEmpleado')
+		        ->leftJoin('pagos', 'pagos.pag_idRecibos_FK', '=', 'recibos.idRecibos')
+		        ->leftJoin('periodo', 'periodo.idPeriodo', '=', 'recibos.rec_idPeriodo_FK')
+		        ->leftJoin('tipoperiodo', 'tipoperiodo.idTipoPeriodo', '=', 'empleado.emp_idTipoPeriodo_FK')
+		        ->whereBetween('FechaDeRecibo', array('2013-03-05', '2015-06-15'))
+		        ->select('idEmpleado', 'TipoPeriodo', 'Nombre', 'Nombre_Empresa', 'Nombre_Depto',  'FechaDePago', 'Pago', 'FechaDeRecibo', 'Monto', 
+		        	'PorPagar', 'Periodo', 'TipoDeRecibo')
+		        ->orderBy('Nombre', 'desc')
+		        ->get();
+
+		$total = DB::table('empleado')
+				->leftJoin('empresa', 'empresa.idEmpresa', '=', 'empleado.emp_idEmpresa_FK')
+		        ->leftJoin('departamento', 'departamento.idDepartamento', '=', 'empleado.emp_idDeparameto_FK')
+		        ->leftJoin('recibos', 'recibos.rec_idEmpleado_FK', '=', 'empleado.idEmpleado')
+		        ->leftJoin('pagos', 'pagos.pag_idRecibos_FK', '=', 'recibos.idRecibos')
+		        ->leftJoin('periodo', 'periodo.idPeriodo', '=', 'recibos.rec_idPeriodo_FK')
+		        ->leftJoin('tipoperiodo', 'tipoperiodo.idTipoPeriodo', '=', 'empleado.emp_idTipoPeriodo_FK')
+		        ->whereBetween('FechaDeRecibo', array('2013-03-05', '2015-06-15'))
+		        ->select('Nombre', DB::Raw('SUM(PorPagar) as Restante'), DB::Raw('SUM(Pago) as Pagado'))
+		        ->groupBy('Nombre')
+		        ->orderBy('Nombre', 'desc')
+		        ->get();
+
+		return View::make("reportes")->with('empleados', $empleados)->with('total', $total);
 	}
 
 	public function reporteEmpleados($fechaIni, $fechaFin)
