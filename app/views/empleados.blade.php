@@ -29,6 +29,11 @@
         $('#btn-elim-b').click();
       });
 
+      $('.btn_elim').click(function(){
+        //alert(1);
+        $('#btn_cf_elim').attr('value',$(this).attr('value'));
+      });
+
       $('#myTable').dataTable();
 
     });
@@ -59,16 +64,13 @@
         });
     }
 
-          /*var departamento       = $('#sel_dep_v').attr('value');
-          var empresa            = $('#sel_emp_v').attr('value');
-          var tipo_periodo       = $('#sel_per_v').attr('value');
-          var empadmin           = $('#sel_empa_v').attr('value');
 
-
-          $('#sel_dep option[value="'+departamento+'"]').attr("selected", "selected");
-          $('#sel_emp option[value="'+empresa+'"]').attr("selected", "selected");
-          $('#sel_per option[value="'+tipo_periodo+'"]').attr("selected", "selected");
-          $('#sel_empa option[value="'+empadmin+'"]').attr("selected", "selected");*/
+    function delete_click(clicked_id)
+    {
+        $.post('eliminar_empleados/'+clicked_id, function(data){
+          window.location = "empleados";
+        });
+    }    
 
     </script>
 
@@ -94,7 +96,7 @@
         <button class="btn btn-default btn-info" type="button" data-toggle="modal" data-target="#myModalNuevo">Nuevo</button>
 
         
-        <!-- Ventana par agregar un empleado nuevo -->
+        <!-- Ventana para agregar un empleado nuevo -->
         <div class="modal fade" id="myModalNuevo" tabindex="-1" role="dialog" aria-labelledby="myModalNuevo" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -232,6 +234,26 @@
           </div>
         </div>
 
+        <!-- Ventana para confirmar eliminacion -->
+        <div class="modal fade" id="elima_modal" tabindex="-1" role="dialog" aria-labelledby="myModalNuevo" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Eliminar empleado</h4>
+              </div>
+              <div class="modal-body" style="padding-bottom: 0;">
+                Confirmación para eliminación de empleado:
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button class="btn btn-danger" type="button" value="" id="btn_cf_elim" onClick="delete_click(this.value)">Eliminar</button>
+              </div>
+            </div>
+          </div>
+        </div>        
+
         <button class="btn btn-default btn-danger" type="submit" id="btn-elim-a" >Eliminar</button>
 
       </div>
@@ -269,10 +291,11 @@
       <th>CLABE</th>
       <th>Sueldo</th>
       <th></th>
+      <th></th>
     </tr>
     </thead>
 
-    {{Form::open(array('url'=>'eliminar_empleados'))}}
+    {{Form::open(array('url'=>'eliminar_empleados', 'id'=>'frm_elim_emp'))}}
     @foreach($empleados as $empleado)
       <tr>
         <td><input type="checkbox" name="empleado[]" id="chk_emp-{{$empleado->idEmpleado}}" value="{{$empleado->idEmpleado}}"></td>
@@ -286,12 +309,17 @@
         <td>{{ $empleado->CLABE_Bancaria }} </td>
         <td>{{ $empleado->SueldoBase }} </td>
         <!-- <td><a href="editar_empleado/{{$empleado->idEmpleado}}"><button class="btn btn-default" type="button" id="btn-elim-a">Editar</button></a></td> -->
-        <td><button class="btn btn-warning" type="button" data-toggle="modal" data-target="#myModalE" 
-          id="{{ $empleado->idEmpleado }}" onClick="reply_click(this.id)">Editar</button></td>
+        <td>
+          <button class="btn btn-warning" type="button" data-toggle="modal" data-target="#myModalE" 
+          id="{{ $empleado->idEmpleado }}" onClick="reply_click(this.id)">Editar</button>
+        </td>
+          <td>
+            <button class="btn btn-danger btn_elim" type="button" value="{{ $empleado->idEmpleado }}" data-toggle="modal" data-target="#elima_modal" >Eliminar</button>
+          </td>
       </tr>
     @endforeach
 
-    <button class="btn btn-default btn-danger" type="submit" id="btn-elim-b" style="display:none;" >Eliminar</button>
+    <!-- <button class="btn btn-default btn-danger" type="submit" id="btn-elim-b" >Eliminar</button> -->
 
     {{Form::close()}}
   </table>
@@ -300,6 +328,9 @@
         <?php 
           $empleado = Empleado::find($empleado->idEmpleado);  
         ?>
+
+        <!-- Ventana para editar empleado -->
+
         <div class="modal fade" id="myModalE" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           {{Form::open(array('url'=>'actualizar_empleado'))}}
           <div class="modal-dialog">

@@ -43,7 +43,7 @@ Route::group(array('before' => 'auth.custom'), function(){
 	Route::post('actualizar_empleado' , 'EmpleadosController@actualizar_empleado');
 
 	Route::post('empleado/crear' , 'EmpleadosController@form_crear_empleado');
-	Route::post('eliminar_empleados' , 'EmpleadosController@form_eliminar_empleados');
+	Route::post('eliminar_empleados/{id}' , 'EmpleadosController@form_eliminar_empleados');
 	Route::get('pagos', 'PagosController@index');
 	Route::get('bonos', 'PagosController@bonos');
 	Route::get('reportes', 'ReportesController@index');
