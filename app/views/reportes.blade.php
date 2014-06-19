@@ -333,7 +333,7 @@
 
                   @foreach($total as $t)
                     
-                    @if($nombre_emp == $t->Nombre_Depto)
+                    @if($nombre_emp == $t->Nombre_Empresa)
 
                       <tr>
                         <td> </td>
