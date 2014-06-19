@@ -200,7 +200,10 @@
       <div class="panel panel-default">
         <div class="panel-heading">Reportes</div>
           <div class="panel-body">
-            @if (is_array($empleados))
+
+            <!--- Si se elige filtrar por Empleado -->
+
+            @if (isset($empleados))
                 
               <!-- Table -->
               <table class="table">
@@ -301,6 +304,190 @@
               </table>
                   
               @endif
+
+              <!--- Si se elige filtrar por Empresa -->
+
+              @if (isset($empresas))
+                
+              <!-- Table -->
+              <table class="table">
+                <tr>
+                  <td>Empresa</td>
+                  <td>Departamento</td>
+                  <td>Fecha de Pago</td>
+                  <td>Pago</td>
+                  <td>Fecha de Nomina</td>
+                  <td>Monto</td>
+                  <td>Por Pagar</td>
+                  <td>Periodo</td>
+                  <td>Tipo de Recibo</td>
+                </tr>
+
+              <?php 
+              $nombre_emp = $empresas[0]->Nombre_Empresa;
+              ?>
+
+              @foreach($empresas as $empresa) 
+              
+                @if($empresa->Nombre_Empresa != $nombre_emp)
+
+                  @foreach($total as $t)
+                    
+                    @if($nombre_emp == $t->Nombre_Depto)
+
+                      <tr>
+                        <td> </td>
+                        <td> </td>
+                        <td class="total ">Total Pagado </td>
+                        <td>{{$t->Pagado}} </td>
+                        <td class="total ">Total Restante Por Pagar </td>
+                        <td>{{$t->Restante}} </td>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                      </tr>
+
+                    @endif
+
+                  @endforeach
+
+                @endif
+
+                <?php $nombre_emp = $empresa->Nombre_Empresa ?>
+
+                <tr>
+                  <td>{{ $empresa->Nombre_Empresa }} </td>
+                  <td>{{ $empresa->Nombre_Depto }} </td>
+                  <td>{{ $empresa->FechaDePago }} </td>
+                  <td>{{ $empresa->Pago }} </td>
+                  <td>{{ $empresa->FechaDeRecibo }} </td>
+                  <td>{{ $empresa->Monto }} </td>
+                  <td>{{ $empresa->PorPagar }} </td>
+                  <td>{{ $empresa->Periodo }} </td>
+                  <td>{{ $empresa->TipoDeRecibo }} </td>
+                </tr>
+
+              @endforeach
+
+              @foreach($total as $t)
+                
+                @if($nombre_emp == $t->Nombre_Empresa)
+
+                  <tr>
+                    <tr>
+                        <td> </td>
+                        <td> </td>
+                        <td class="total ">Total Pagado </td>
+                        <td>{{$t->Pagado}} </td>
+                        <td class="total ">Total Restante Por Pagar </td>
+                        <td>{{$t->Restante}} </td>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                      </tr>
+                  </tr>
+
+                @endif
+
+              @endforeach
+
+              </table>
+                  
+              @endif
+
+              <!--- Si se elige filtrar por Departamento -->
+
+              @if (isset($departamentos))
+                
+              <!-- Table -->
+              <table class="table">
+                <tr>
+                  <td>Departamento</td>
+                  <td>Empresa</td>
+                  <td>Fecha de Pago</td>
+                  <td>Pago</td>
+                  <td>Fecha de Nomina</td>
+                  <td>Monto</td>
+                  <td>Por Pagar</td>
+                  <td>Periodo</td>
+                  <td>Tipo de Recibo</td>
+                </tr>
+
+              <?php 
+              $nombre_emp = $departamentos[0]->Nombre_Depto;
+              ?>
+
+              @foreach($departamentos as $departamento) 
+              
+                @if($departamento->Nombre_Depto != $nombre_emp)
+
+                  @foreach($total as $t)
+                    
+                    @if($nombre_emp == $t->Nombre_Depto)
+
+                      <tr>
+                        <tr>
+                        <td> </td>
+                        <td> </td>
+                        <td class="total ">Total Pagado </td>
+                        <td>{{$t->Pagado}} </td>
+                        <td class="total ">Total Restante Por Pagar </td>
+                        <td>{{$t->Restante}} </td>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                      </tr>
+                      </tr>
+
+                    @endif
+
+                  @endforeach
+
+                @endif
+
+                <?php $nombre_emp = $departamento->Nombre_Depto ?>
+
+                <tr>
+                  <td>{{ $departamento->Nombre_Depto }} </td>
+                  <td>{{ $departamento->Nombre_Empresa }} </td>
+                  <td>{{ $departamento->FechaDePago }} </td>
+                  <td>{{ $departamento->Pago }} </td>
+                  <td>{{ $departamento->FechaDeRecibo }} </td>
+                  <td>{{ $departamento->Monto }} </td>
+                  <td>{{ $departamento->PorPagar }} </td>
+                  <td>{{ $departamento->Periodo }} </td>
+                  <td>{{ $departamento->TipoDeRecibo }} </td>
+                </tr>
+
+              @endforeach
+
+              @foreach($total as $t)
+                
+                @if($nombre_emp == $t->Nombre_Depto)
+
+                  <tr>
+                    <tr>
+                        <td> </td>
+                        <td> </td>
+                        <td class="total ">Total Pagado </td>
+                        <td>{{$t->Pagado}} </td>
+                        <td class="total ">Total Restante Por Pagar </td>
+                        <td>{{$t->Restante}} </td>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                      </tr>
+                  </tr>
+
+                @endif
+
+              @endforeach
+
+              </table>
+                  
+              @endif
+
+
             </div>
           </div>
         </div>

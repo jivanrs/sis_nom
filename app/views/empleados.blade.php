@@ -271,7 +271,6 @@
       <th></th>
     </tr>
     </thead>
-    <?php $contador = 0; ?>
 
     {{Form::open(array('url'=>'eliminar_empleados'))}}
     @foreach($empleados as $empleado)
@@ -287,10 +286,9 @@
         <td>{{ $empleado->CLABE_Bancaria }} </td>
         <td>{{ $empleado->SueldoBase }} </td>
         <!-- <td><a href="editar_empleado/{{$empleado->idEmpleado}}"><button class="btn btn-default" type="button" id="btn-elim-a">Editar</button></a></td> -->
-        <td><button class="btn btn-warning type="button" data-toggle="modal" data-target="#myModalE" 
+        <td><button class="btn btn-warning" type="button" data-toggle="modal" data-target="#myModalE" 
           id="{{ $empleado->idEmpleado }}" onClick="reply_click(this.id)">Editar</button></td>
       </tr>
-    <?php $contador++; ?>
     @endforeach
 
     <button class="btn btn-default btn-danger" type="submit" id="btn-elim-b" style="display:none;" >Eliminar</button>
