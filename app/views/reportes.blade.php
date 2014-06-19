@@ -232,18 +232,18 @@
                     
                     @if($nombre == $t->Nombre)
 
-                      <tr>
+                      <tr class="total">
                         <td> </td>
                         <td> </td>
                         <td> </td>
                         <td> </td>
                         <td> </td>
                         <td> </td>
-                        <td class="total ">Total Pagado </td>
-                        <td>{{$t->Pagado}} </td>
+                        <td class="totalp ">Total Pagado </td>
+                        <td class="totalnum">{{$t->Pagado}} </td>
                         <td> </td>
-                        <td class="total ">Total Restante Por Pagar </td>
-                        <td>{{$t->Restante}} </td>
+                        <td class="totalr ">Total Restante Por Pagar </td>
+                        <td class="totalnum">{{$t->Restante}} </td>
                         <td> </td>
                         <td> </td>
                       </tr>
