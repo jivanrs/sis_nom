@@ -12,7 +12,12 @@ class PagosController extends BaseController {
 
 		$empleados = Pagos::PagosInfo();
 
-		return View::make("pagos")->with('empleados', $empleados);
+		$ultimaFecha = DB::table('Recibos')
+		        ->select('FechaDeRecibo')
+		        ->orderBy('FechaDeRecibo', 'desc')
+		        ->get();
+
+		return View::make("pagos")->with('empleados', $empleados)->with('ultimaFecha', $ultimaFecha[0]->FechaDeRecibo);
 	
 		
 	}

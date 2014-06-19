@@ -92,7 +92,12 @@
   <div class="row">
     <div class="panel panel-default mt20">
       <div class="panel-heading">
-        <div class="col-md-2 col-md-offset-9">
+        <div class="col-md-2">
+          @if(isset($ultimaFecha))
+            <label class="lblFecha">La utlima fecha de Nomina fue: {{$ultimaFecha}}</label>
+          @endif
+        </div>
+        <div class="col-md-2 col-md-offset-7">
           <button class="btn btn-info" type="submit" id="btn-gene-a" >Generar Nomina</button>
         </div>
         
