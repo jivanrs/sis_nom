@@ -25,7 +25,16 @@
         $('#btn-gene-a').click(function(){
           $('#btn-gene-b').click();
         });
+
+
+        $('.emp_chk').click(function(){
+          $("[nombre='btn_bono']").attr('id',$(this).attr('value'));
+
+        });
+
       });
+
+
       function reply_click(clicked_id)
       {
 
@@ -93,7 +102,9 @@
     <div class="panel panel-default mt20">
       <div class="panel-heading">
         <div class="col-md-2 col-md-offset-9">
-          <button class="btn btn-info" type="submit" id="btn-gene-a" >Generar Abono</button>
+          <!-- BOTON NUEVO -->
+          <button class="btn btn-info" type="button" data-toggle="modal" data-target="#generarBono"
+              id="" nombre="btn_bono" onClick="reply_click(this.id)">Generar Bono Especial</button>
         </div>
         
         <div class="col-md-1">
@@ -130,7 +141,7 @@
         {{Form::open(array('url'=>'generarNomina'))}}
         @foreach($empleados as $empleado)
           <tr>
-            <td><input type="checkbox" name="empleados[]" id="chk_emp-{{$empleado->idEmpleado}}" value="{{$empleado->idEmpleado}}"></td>
+            <td><input type="checkbox" name="empleados[]" id="chk_emp-{{$empleado->idEmpleado}}" value="{{$empleado->idEmpleado}}" class="emp_chk"></td>
             <td>{{ $empleado->Nombre }} </td>
             <td>{{ $empleado->Puesto }} </td>
             <td>{{ $empleado->Nombre_Depto }} </td>
@@ -140,7 +151,8 @@
             <td>{{ $empleado->Restante }} </td>
 
             <td><button class="btn btn-warning" type="button" data-toggle="modal" data-target="#hacerPago"
-              id="{{ $empleado->idEmpleado }}" onClick="reply_click(this.id)">Pagar Bono</button></td>
+              id="{{ $empleado->idEmpleado }}" onClick="reply_click(this.id)">Realizar Pago</button>
+            </td>
           </tr>
           <?php $contador++; ?>
         @endforeach
@@ -152,6 +164,44 @@
     </div>
   </div>
 
+ <!-- Ventana generar bono 
+      <div class="modal fade" id="generarBono" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <div class="panel-heading title-center">
+                <h3>Generar Bono Especial a Empleado</h3></div>
+              <table class="table table-striped">
+                {{Form::open(array('url'=>'generarReciboE'))}}
+
+                <tr>
+                  <td><span class="hacerpago">Empleado: </span> {{ Form::label('nombre', '', array('id' => 'nombre_in')) }}</td>
+                </tr>
+                <tr>
+                  <td><span class="hacerpago">Departamento: </span> {{ Form::label('Depto', '', array('id' => 'Nombre_Depto')) }} </td>
+                </tr>
+                <tr>
+                  <td><span class="hacerpago">Empresa: </span> {{ Form::label('Empresa', '', array('id' => 'Nombre_Empresa')) }}</td>
+                </tr>
+                <tr>
+                  <td><span class="hacerpago">Concepto de bono: </span> {{ Form::text('ConceptoBono', '', array('id' => 'ConceptoBono')) }}</td></tr>
+                <tr>
+                  <td><span class="hacerpago">{{Form::label('bono','Monto')}}</span>
+                  <span>{{Form::text('Pago','',array('id' => 'txtPago'))}}</span></td>
+                </tr>
+                <tr>
+                  <input type="hidden" name="empleado_id" id="empleado_id" value="">
+                  <td></td>
+                </tr>
+                  <td><span class="hacerpago"><button type="submit" class="btn btn-primary">Generar Bono</button></span></td>
+                </tr>
+                {{ Form::close() }}
+        
+            </table>
+            </div>
+          </div>
+        </div>
+      </div> FIN DEL MODAL -->
 
   <!-- Ventana par agregar un empleado nuevo -->
       <div class="modal fade" id="hacerPago" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -160,35 +210,35 @@
             <div class="modal-header">
               <div class="panel-heading title-center"><h3>Realizar Pago de Bono Especial</h3></div>
               <table class="table table-striped">
-                {{Form::open(array('url'=>'generarReciboEspecial'))}}
+                {{Form::open(array('url'=>'generarReciboE'))}}
 
-                <tr><td><span class="hacerpago">Empleado: </span> {{ Form::label('nombre', '', array('id' => 'nombre_in')) }} </td></tr>
-                <tr><td><span class="hacerpago">Departamento: </span> {{ Form::label('Depto', '', array('id' => 'Nombre_Depto')) }} </td></tr>
-                <tr><td><span class="hacerpago">Empresa: </span> {{ Form::label('Empresa', '', array('id' => 'Nombre_Empresa')) }}</td></tr>
-                 <tr><td><span class="hacerpago">Concepto del Bono: </span> {{ Form::text('Concepto Bono', '', array('id' => 'ConceptoBono')) }}</td></tr>
                 <tr>
-                  <td><span class="hacerpago">{{Form::label('bono','Realizar Bono')}}</span>
-                  <span>{{Form::text('Pago','',array('id' => 'txtPago'))}}</span></td>
-                </tr>
-                 <tr>
-                  <input type="hidden" name="empleado_id" id="empleado_id" value="">
-                  <td>
-                  </td>
+                  <td><span class="hacerpago">Empleado: </span> {{ Form::label('nombre', '', array('id' => 'nombre_in')) }}</td>
                 </tr>
                 <tr>
-                  <td><span class="hacerpago">Recibo</span>
+                  <td><span class="hacerpago">Departamento: </span> {{ Form::label('Depto', '', array('id' => 'Nombre_Depto')) }} </td>
+                </tr>
+                <tr>
+                  <td><span class="hacerpago">Empresa: </span> {{ Form::label('Empresa', '', array('id' => 'Nombre_Empresa')) }}</td>
+                </tr>
+                <tr>
+                  <td><span class="hacerpago">Bono a pagar:</span>
                     <span>
-
-                    <select name="recibo_id" id="dropDownListPPE">
-                      <option value="None">Seleccionar Opción</option>
-                    </select> 
-                    
+                      <select name="recibo_id" id="dropDownListPPE">
+                        <option value="None">Seleccionar Opción</option>
+                      </select> 
                     </span>
                   </td>
-                  <!--<td><div id="txtHint"><b></b></div></td>-->
+                </tr>
+                  <td><span class="hacerpago">{{Form::label('bono','Cantidad a pagar')}}</span>
+                  <span>{{Form::text('Pago','',array('id' => 'txtPago'))}}</span></td>
+                </tr>
+                <tr>
+                  <input type="hidden" name="empleado_id" id="empleado_id" value="">
+                  <td></td>
                 </tr>
 
-                  <td><span class="hacerpago"><button type="submit" class="btn btn-primary">Pagar Bono</button></span></td>
+                  <td><span class="hacerpago"><button type="submit" class="btn btn-primary">Realizar Pago</button></span></td>
                 </tr>
                 {{ Form::close() }}
         
