@@ -93,7 +93,7 @@
     <div class="panel panel-default mt20">
     <div class="panel-heading">
       <div class="col-md-2 col-md-offset-9">
-        <button class="btn btn-default btn-info" type="button" data-toggle="modal" data-target="#myModalNuevo">Nuevo</button>
+        <button class="btn btn-default btn-info" type="button" data-toggle="modal" data-target="#myModalNuevo">Nuevo Empleado</button>
 
         
         <!-- Ventana para agregar un empleado nuevo -->
@@ -278,7 +278,7 @@
   <table class="table table-striped" id="myTable">
     <thead>
     <tr>
-      <th></th>
+      <td></td>
       <th>Nombre</th>
       <th>Puesto</th>
       <th>Departamento</th>
@@ -296,24 +296,23 @@
     {{Form::open(array('url'=>'eliminar_empleados', 'id'=>'frm_elim_emp'))}}
     @foreach($empleados as $empleado)
       <tr>
-        <td><input type="checkbox" name="empleado[]" id="chk_emp-{{$empleado->idEmpleado}}" value="{{$empleado->idEmpleado}}"></td>
-        <td>{{ $empleado->Nombre }} </td>
-        <td>{{ $empleado->Puesto }} </td>
-        <td>{{ $empleado->Nombre_Depto }}</td>
-        <td>{{ $empleado->Nombre_Empresa }}</td>
-        <td>{{ $empleado->EmpAdministradora }}</td>
-        <td>{{ $empleado->Banco }} </td>
-        <td>{{ $empleado->Cta_Bancaria }} </td>
-        <td>{{ $empleado->CLABE_Bancaria }} </td>
-        <td>{{ $empleado->SueldoBase }} </td>
-        <!-- <td><a href="editar_empleado/{{$empleado->idEmpleado}}"><button class="btn btn-default" type="button" id="btn-elim-a">Editar</button></a></td> -->
-        <td>
-          <button class="btn btn-warning" type="button" data-toggle="modal" data-target="#myModalE" 
-          id="{{ $empleado->idEmpleado }}" onClick="reply_click(this.id)">Editar</button>
-        </td>
-          <td>
-            <button class="btn btn-danger btn_elim" type="button" value="{{ $empleado->idEmpleado }}" data-toggle="modal" data-target="#elima_modal" >Eliminar</button>
-          </td>
+      <td></td>
+      <td>{{ $empleado->Nombre }} </td>
+      <td>{{ $empleado->Puesto }} </td>
+      <td>{{ $empleado->Nombre_Depto }}</td>
+      <td>{{ $empleado->Nombre_Empresa }}</td>
+      <td>{{ $empleado->EmpAdministradora }}</td>
+      <td>{{ $empleado->Banco }} </td>
+      <td>{{ $empleado->Cta_Bancaria }} </td>
+      <td>{{ $empleado->CLABE_Bancaria }} </td>
+      <td>{{ $empleado->SueldoBase }} </td>
+      <td>
+        <button class="btn btn-warning" type="button" data-toggle="modal" data-target="#myModalE" 
+        id="{{ $empleado->idEmpleado }}" onClick="reply_click(this.id)">Editar</button>
+      </td>
+      <td>
+        <button class="btn btn-danger btn_elim" type="button" value="{{ $empleado->idEmpleado }}" data-toggle="modal" data-target="#elima_modal" >Eliminar</button>
+      </td>
       </tr>
     @endforeach
 

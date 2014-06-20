@@ -136,7 +136,7 @@
         {{Form::open(array('url'=>'generarNomina'))}}
         @foreach($empleados as $empleado)
           <tr>
-            <td><input type="checkbox" name="empleados[]" id="chk_emp-{{$empleado->idEmpleado}}" value="{{$empleado->idEmpleado}}"></td>
+            <td></td>
             <td>{{ $empleado->idEmpleado }} </td>
             <td>{{ $empleado->Nombre }} </td>
             <td>{{ $empleado->Puesto }} </td>

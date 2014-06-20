@@ -132,13 +132,12 @@
       <!-- Table -->
       <table class="table table-striped">
         <tr>
-          <td><input type="checkbox"></td>
+          <td></td>
           <td>Nombre</td>
           <td>Puesto</td>
           <td>Departamento</td>
           <td>Empresa</td>
-          <td>Sueldo Base</td>
-          <td>Sueldo Pendiente</td>
+          <td>Saldo Pendiente de Bonos</td>
           <td>Generar Bono</td>
           <td>Realizar Pago</td>
         </tr>
@@ -148,13 +147,11 @@
         {{Form::open(array('url'=>'generarNomina'))}}
         @foreach($empleados as $empleado)
           <tr>
-            <td><input type="checkbox" name="empleados[]" id="chk_emp-{{$empleado->idEmpleado}}" value="{{$empleado->idEmpleado}}" class="emp_chk"></td>
+            <td></td>
             <td>{{ $empleado->Nombre }} </td>
             <td>{{ $empleado->Puesto }} </td>
             <td>{{ $empleado->Nombre_Depto }} </td>
             <td>{{ $empleado->Nombre_Empresa }} </td>
-            <td>{{ $empleado->SueldoBase }} </td>
-
             <td>{{ $empleado->Restante }} </td>
             <td>
             <button class="btn btn-info" type="button" data-toggle="modal" data-target="#generarBono"
