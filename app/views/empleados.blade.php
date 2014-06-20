@@ -252,9 +252,7 @@
               </div>
             </div>
           </div>
-        </div>        
-
-        <button class="btn btn-default btn-danger" type="submit" id="btn-elim-a" >Eliminar</button>
+        </div> 
 
       </div>
       
