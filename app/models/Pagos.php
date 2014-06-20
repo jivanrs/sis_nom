@@ -44,6 +44,33 @@ class Pagos extends Eloquent
         return $pagos;
 	}
 
+	public function scopeBonosInfo()
+	{
+
+		$pagos = DB::table('empleado')
+		        ->leftJoin('empresa', 'empresa.idEmpresa', '=', 'empleado.emp_idEmpresa_FK')
+		        ->leftJoin('departamento', 'departamento.idDepartamento', '=', 'empleado.emp_idDeparameto_FK')
+		        ->leftJoin('tipoperiodo', 'tipoperiodo.idTipoPeriodo', '=', 'empleado.emp_idTipoPeriodo_FK')
+		        ->leftjoin(
+		        		DB::raw('(SELECT rec_idEmpleado_FK, SUM( PorPagar ) AS Restante
+						FROM `recibos`
+						INNER JOIN empleado ON rec_idEmpleado_FK = idEmpleado
+						WHERE TipoDeRecibo = 1
+						GROUP BY rec_idEmpleado_FK) AS recibos1'), 
+        				function($join)
+				        {
+				            $join->on('idEmpleado', '=', 'rec_idEmpleado_FK');
+				        })
+		        ->select('idEmpleado', 'Nombre', 'Nombre_Depto', 'Nombre_Empresa', 'Puesto', 'SueldoBase', 'Restante',
+		        	'emp_idTipoPeriodo_FK', 'emp_idEmpresa_FK','emp_idDeparameto_FK')
+		        ->orderBy('Restante', 'desc')
+		        ->where('Activo', true)
+		        //->whereNotNull('Restante') //Se puede usar para mostrar nada a mas a los que se les debe.
+		        ->get();
+
+        return $pagos;
+	}
+
 	public function scopeObtenerPagosEmpleados($fechaIni, $fechaFin){
 
 		$listaEmpleados = DB::table('empleado')

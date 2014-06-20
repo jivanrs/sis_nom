@@ -24,7 +24,7 @@ class PagosController extends BaseController {
 	public function bonos()
 	{
 
-		$empleados = Pagos::PagosInfo();
+		$empleados = Pagos::BonosInfo();
 
 		return View::make("bonos")->with('empleados', $empleados);
 	
@@ -75,11 +75,9 @@ class PagosController extends BaseController {
 
 	}
 
-	public function generarReciboEspecial(){
-
+	public function generarPagoBono(){
 
 		//Recibo
-		$idEmpleados = Input::get('idEmpleados');
 		$recibo_id = Input::get('recibo_id');
 		$recibo  = Recibos::where('idRecibos', $recibo_id)->first();
 		$recibo->ConceptoBono = Input::get('ConceptoBono');
@@ -98,48 +96,40 @@ class PagosController extends BaseController {
 		$pago_bono->save();
 
 
-		// if(is_array($idEmpleados))
-		// {
-
-		// 	foreach ($idEmpleados as $id) {
-
-		// 		$Empleado = Empleado::where('idEmpleado', $id)->first();
-		// 		$PorPagar = Input::get('Pago');
-		// 		$EmpleadoT = DB::table('empleado')
-		//         ->leftJoin('empadministradora', 'empadministradora.idEmpAdministradora', '=', 'empleado.emp_idEmpAdministradora_FK')
-		//         ->select('*')
-		//         ->where('idEmpleado', $id)
-		//         ->where('Activo', true)
-		//         ->first();
-		// 		$PorComision = $EmpleadoT->PorComision;
-
-		// 		$Recibos = new Recibos;
-				
-		// 		$Recibos->FechaDeRecibo 		= 	date('Y/m/d H:i:s');
-		// 		if (date('d') > 15) {
-		// 			$Recibos->rec_idPeriodo_FK	= 	2;
-		// 		}
-		// 		else{
-		// 			$Recibos->rec_idPeriodo_FK	= 	1;
-		// 		}
-
-
-		// 		$Recibos->rec_idEmpleado_FK		= 	$id;
-		// 		$Recibos->PorPagar				= 	$PorPagar;
-		// 		$Recibos->TipoDeRecibo			= 	1;
-		// 		$Recibos->Monto 				=   $PorPagar;
-		// 		$Recibos->ConceptoBono			=	Input::get('ConceptoBono');
-		// 		$Recibos->Comision				= 	$PorPagar * ($PorComision / 100);
-		// 		$Recibos->CPorPagar				= 	$PorPagar * ($PorComision / 100);
-		// 		$Recibos->save();	
-
-		// 	}
-
-		// }
-
 		return Redirect::to("/bonos");
 
 	}
+
+	public function generarReciboBono(){
+
+		$Empleado = Empleado::where('idEmpleado', Input::get('empleado_id_bono'))->first();
+			$EmpleadoT = DB::table('empleado')
+	        ->leftJoin('empadministradora', 'empadministradora.idEmpAdministradora', '=', 'empleado.emp_idEmpAdministradora_FK')
+	        ->select('*')
+	        ->where('idEmpleado', Input::get('empleado_id_bono'))
+	        ->where('Activo', true)
+	        ->first();
+			$PorComision = $EmpleadoT->PorComision;
+
+			$Recibos = new Recibos;
+			
+			$Recibos->FechaDeRecibo 		= 	date('Y/m/d H:i:s');
+			$Recibos->rec_idEmpleado_FK		= 	Input::get('empleado_id_bono');
+			$Recibos->PorPagar				= 	Input::get('Pago_bono');
+			$Recibos->rec_idPeriodo_FK      =   1;
+			$Recibos->TipoDeRecibo			= 	1;
+			$Recibos->Monto 				=   Input::get('Pago_bono');
+			$Recibos->ConceptoBono          =   Input::get('ConceptoBono');
+			$Recibos->Comision				= 	Input::get('Pago_bono') * ($PorComision / 100);
+			$Recibos->CPorPagar				= 	Input::get('Pago_bono') * ($PorComision / 100);
+
+			$Recibos->save();			
+
+		$empleados = Pagos::BonosInfo();
+		return View::make("bonos")->with('empleados', $empleados);
+
+	}
+
 
 	public function mostrarPorPagar($id){
 		
