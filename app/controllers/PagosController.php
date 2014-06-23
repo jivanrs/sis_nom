@@ -33,7 +33,7 @@ class PagosController extends BaseController {
 
 	public function generarNomina(){
 
-		$idEmpleados = DB::table('empleado')->lists('idEmpleado');
+		$idEmpleados = DB::table('empleado')->where('Activo', 1)->lists('idEmpleado');
 
 		if(is_array($idEmpleados))
 		{
@@ -48,7 +48,7 @@ class PagosController extends BaseController {
 		        ->where('idEmpleado', $id)
 		        ->where('Activo', true)
 		        ->first();
-		        
+
 				$PorComision = $EmpleadoT->PorComision;
 
 				$Recibos = new Recibos;
