@@ -216,6 +216,9 @@
                   <td>Departamento</td>
                   <td>Fecha de Pago</td>
                   <td>Pago</td>
+                  <td>Comision</td>
+                  <td>IVA</td>
+                  <td>Total</td>
                   <td>Fecha de Nomina</td>
                   <td>Monto</td>
                   <td>Por Pagar</td>
@@ -245,6 +248,9 @@
                         <td class="totalp ">Total Pagado </td>
                         <td class="totalnum">{{$t->Pagado}} </td>
                         <td> </td>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
                         <td class="totalr ">Total Restante Por Pagar </td>
                         <td class="totalnum">{{$t->Restante}} </td>
                         <td> </td>
@@ -268,6 +274,9 @@
                   <td>{{ $empleado->Nombre_Depto }} </td>
                   <td>{{ $empleado->FechaDePago }} </td>
                   <td>{{ $empleado->Pago }} </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
                   <td>{{ $empleado->FechaDeRecibo }} </td>
                   <td>{{ $empleado->Monto }} </td>
                   <td>{{ $empleado->PorPagar }} </td>
@@ -290,6 +299,9 @@
                     <td> </td>
                     <td class="total ">Total Pagado </td>
                     <td>{{$t->Pagado}} </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
                     <td> </td>
                     <td class="total ">Total Restante Por Pagar </td>
                     <td>{{$t->Restante}} </td>
@@ -414,16 +426,16 @@
                 </tr>
 
               <?php 
-              $nombre_emp = $departamentos[0]->Nombre_Depto;
+              $nombre_dep = $departamentos[0]->Nombre_Depto;
               ?>
 
               @foreach($departamentos as $departamento) 
               
-                @if($departamento->Nombre_Depto != $nombre_emp)
+                @if($departamento->Nombre_Depto != $nombre_dep)
 
                   @foreach($total as $t)
                     
-                    @if($nombre_emp == $t->Nombre_Depto)
+                    @if($nombre_dep == $t->Nombre_Depto)
 
                       <tr>
                         <tr>
@@ -431,9 +443,9 @@
                         <td> </td>
                         <td class="total ">Total Pagado </td>
                         <td>{{$t->Pagado}} </td>
+                        <td> </td>
                         <td class="total ">Total Restante Por Pagar </td>
                         <td>{{$t->Restante}} </td>
-                        <td> </td>
                         <td> </td>
                         <td> </td>
                       </tr>
@@ -445,7 +457,7 @@
 
                 @endif
 
-                <?php $nombre_emp = $departamento->Nombre_Depto ?>
+                <?php $nombre_dep = $departamento->Nombre_Depto ?>
 
                 <tr>
                   <td>{{ $departamento->Nombre_Depto }} </td>
@@ -463,7 +475,7 @@
 
               @foreach($total as $t)
                 
-                @if($nombre_emp == $t->Nombre_Depto)
+                @if($nombre_dep == $t->Nombre_Depto)
 
                   <tr>
                     <tr>
@@ -471,9 +483,9 @@
                         <td> </td>
                         <td class="total ">Total Pagado </td>
                         <td>{{$t->Pagado}} </td>
+                        <td> </td>
                         <td class="total ">Total Restante Por Pagar </td>
                         <td>{{$t->Restante}} </td>
-                        <td> </td>
                         <td> </td>
                         <td> </td>
                       </tr>

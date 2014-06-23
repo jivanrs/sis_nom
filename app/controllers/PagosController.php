@@ -48,6 +48,7 @@ class PagosController extends BaseController {
 		        ->where('idEmpleado', $id)
 		        ->where('Activo', true)
 		        ->first();
+		        
 				$PorComision = $EmpleadoT->PorComision;
 
 				$Recibos = new Recibos;
@@ -71,7 +72,14 @@ class PagosController extends BaseController {
 
 		}
 
-		return Redirect::to("/pagos");
+		$empleados = Pagos::PagosInfo();
+
+		$ultimaFecha = DB::table('Recibos')
+		        ->select('FechaDeRecibo')
+		        ->orderBy('FechaDeRecibo', 'desc')
+		        ->get();
+
+		return View::make("pagos")->with('empleados', $empleados)->with('ultimaFecha', $ultimaFecha[0]->FechaDeRecibo);
 
 	}
 
