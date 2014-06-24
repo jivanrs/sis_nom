@@ -209,7 +209,6 @@
               <table class="table">
                 <tr>
                   <td></td>
-                  <td>ID</td>
                   <td>Nombre</td>
                   <td>Tipo de Periodo</td>
                   <td>Empresa</td>
@@ -244,7 +243,6 @@
                         <td> </td>
                         <td> </td>
                         <td> </td>
-                        <td> </td>
                         <td class="totalp ">Total Pagado </td>
                         <td class="totalnum">{{$t->Pagado}} </td>
                         <td> </td>
@@ -256,6 +254,7 @@
                         <td> </td>
                         <td> </td>
                       </tr>
+                      <tr><td class="space"></td></tr>
 
                     @endif
 
@@ -266,20 +265,19 @@
                 <?php $nombre = $empleado->Nombre ?>
 
                 <tr>
-                  <td><input type="checkbox" value="{{$empleado->idEmpleado}}"></td>
-                  <td>{{ $empleado->idEmpleado }} </td>
+                  <td></td>
                   <td>{{ $empleado->Nombre }} </td>
                   <td>{{ $empleado->TipoPeriodo }} </td>
                   <td>{{ $empleado->Nombre_Empresa }} </td>
                   <td>{{ $empleado->Nombre_Depto }} </td>
                   <td>{{ $empleado->FechaDePago }} </td>
-                  <td>{{ $empleado->Pago }} </td>
-                  <td> </td>
-                  <td> </td>
+                  <td class="pago">{{ $empleado->Pago }} </td>
+                  <td class="comision"> </td>
+                  <td class="iva"> </td>
                   <td> </td>
                   <td>{{ $empleado->FechaDeRecibo }} </td>
-                  <td>{{ $empleado->Monto }} </td>
-                  <td>{{ $empleado->PorPagar }} </td>
+                  <td class="monto">{{ $empleado->Monto }} </td>
+                  <td class="porpagar">{{ $empleado->PorPagar }} </td>
                   <td>{{ $empleado->Periodo }} </td>
                   <td>{{ $empleado->TipoDeRecibo }} </td>
                 </tr>
