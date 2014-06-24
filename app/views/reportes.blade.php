@@ -225,7 +225,6 @@
                 <thead>
                   <tr>
                     <th></th>
-                    <th>ID</th>
                     <th>Nombre</th>
                     <th>Tipo de Periodo</th>
                     <th>Empresa</th>
@@ -261,7 +260,6 @@
                         <td> </td>
                         <td> </td>
                         <td> </td>
-                        <td> </td>
                         <td class="totalp ">Total Pagado </td>
                         <td class="totalnum">{{$t->Pagado}} </td>
                         <td> </td>
@@ -273,6 +271,7 @@
                         <td> </td>
                         <td> </td>
                       </tr>
+                      <tr><td class="space"></td></tr>
 
                     @endif
 
@@ -284,19 +283,18 @@
 
                 <tr>
                   <td></td>
-                  <td>{{ $empleado->idEmpleado }} </td>
                   <td>{{ $empleado->Nombre }} </td>
                   <td>{{ $empleado->TipoPeriodo }} </td>
                   <td>{{ $empleado->Nombre_Empresa }} </td>
                   <td>{{ $empleado->Nombre_Depto }} </td>
                   <td>{{ $empleado->FechaDePago }} </td>
-                  <td>{{ $empleado->Pago }} </td>
-                  <td> </td>
-                  <td> </td>
+                  <td class="pago">{{ $empleado->Pago }} </td>
+                  <td class="comision"> </td>
+                  <td class="iva"> </td>
                   <td> </td>
                   <td>{{ $empleado->FechaDeRecibo }} </td>
-                  <td>{{ $empleado->Monto }} </td>
-                  <td>{{ $empleado->PorPagar }} </td>
+                  <td class="monto">{{ $empleado->Monto }} </td>
+                  <td class="porpagar">{{ $empleado->PorPagar }} </td>
                   <td>{{ $empleado->Periodo }} </td>
                   <td>{{ $empleado->TipoDeRecibo }} </td>
                 </tr>
