@@ -11,6 +11,10 @@
     <script src="js/bootstrap.min.js"></script>
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="http:////cdn.datatables.net/1.10.0/js/jquery.dataTables.js"></script>
+
+    <link href="http://cdn.datatables.net/1.10.0/css/jquery.dataTables.css" rel="stylesheet">
+    
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -21,10 +25,9 @@
 
     <script>
       $(document).ready(function(){
-        
-        $('#btn-gene-a').click(function(){
-          $('#btn-gene-b').click();
-        });
+
+        $('#myTable').dataTable();
+
       });
       function reply_click(clicked_id)
       {
@@ -71,6 +74,12 @@
           });
 
       }
+
+      function btnGenNom(){
+
+        $('#btn-gene-b').click();
+        
+      }
     
     </script>
 
@@ -98,7 +107,7 @@
           @endif
         </div>
         <div class="col-md-2 col-md-offset-7">
-          <button class="btn btn-info" type="submit" id="btn-gene-a" >Generar Nomina</button>
+          <button class="btn btn-info" type="button" data-toggle="modal" data-target="#gene_modal">Generar Nomina</button>
         </div>
         
         <div class="col-md-1">
@@ -118,22 +127,26 @@
       </div>
 
       <!-- Table -->
-      <table class="table table-striped">
-        <tr>
-          <td></td>
-          <td>ID</td>
-          <td>Nombre</td>
-          <td>Puesto</td>
-          <td>Departamento</td>
-          <td>Empresa</td>
-          <td>Sueldo Base</td>
-          <td>Sueldo Pendiente</td>
-          <td>Realizar Pago</td>
-        </tr>
-
+      <table class="table table-striped" id="myTable">
+        <thead>
+          <tr>
+            <th></th>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Puesto</th>
+            <th>Departamento</th>
+            <th>Empresa</th>
+            <th>Sueldo Base</th>
+            <th>Sueldo Pendiente</th>
+            <th>Realizar Pago</th>
+          </tr>
+        </thead>
         <?php $contador = 0; ?>
 
         {{Form::open(array('url'=>'generarNomina'))}}
+        <button class="btn btn-default" type="submit" id="btn-gene-b" style="display:none;" >Generar Nomina</button>
+        {{Form::close()}}
+
         @foreach($empleados as $empleado)
           <tr>
             <td></td>
@@ -152,8 +165,7 @@
           <?php $contador++; ?>
         @endforeach
 
-        <button class="btn btn-default" type="submit" id="btn-gene-b" style="display:none;" >Generar Nomina</button>
-        {{Form::close()}}
+        
 
       </table>
     </div>
@@ -205,6 +217,26 @@
           </div>
         </div>
       </div> <!-- FIN DEL MODAL -->
+
+      <!-- Ventana para confirmar Generar Nomina -->
+        <div class="modal fade" id="gene_modal" tabindex="-1" role="dialog" aria-labelledby="myModalNuevo" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Generar Nomina</h4>
+              </div>
+              <div class="modal-body" style="padding-bottom: 0;">
+                La ultima nomina se realizo el <b>{{$ultimaFecha}}</b> <br/> ¿Seguro que quieres correr la nomina?
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button class="btn btn-danger" type="submit" value="" onClick="btnGenNom()">Generar Nomina</button>
+              </div>
+            </div>
+          </div>
+        </div> 
 
   </div>
 <!-- /container -->

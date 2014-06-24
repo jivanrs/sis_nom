@@ -277,20 +277,20 @@
   <!-- Table -->
   <table class="table table-striped" id="myTable">
     <thead>
-    <tr>
-      <td></td>
-      <th>Nombre</th>
-      <th>Puesto</th>
-      <th>Departamento</th>
-      <th>Empresa</th>
-      <th>Administradora</th>
-      <th>Banco</th>
-      <th>Cta Bancaria</th>
-      <th>CLABE</th>
-      <th>Sueldo</th>
-      <th></th>
-      <th></th>
-    </tr>
+      <tr>
+        <th></th>
+        <th>Nombre</th>
+        <th>Puesto</th>
+        <th>Departamento</th>
+        <th>Empresa</th>
+        <th>Administradora</th>
+        <th>Banco</th>
+        <th>Cta Bancaria</th>
+        <th>CLABE</th>
+        <th>Sueldo</th>
+        <th></th>
+        <th></th>
+      </tr>
     </thead>
 
     {{Form::open(array('url'=>'eliminar_empleados', 'id'=>'frm_elim_emp'))}}
