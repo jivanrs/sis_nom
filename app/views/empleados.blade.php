@@ -2,9 +2,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="http:////cdn.datatables.net/1.10.0/js/jquery.dataTables.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/dataTables.js"></script>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,7 +13,7 @@
     <link href="css/styles.css" rel="stylesheet">
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="http://cdn.datatables.net/1.10.0/css/jquery.dataTables.css" rel="stylesheet">
+    <link href="css/dataTables.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -24,10 +24,6 @@
 
     <script>
     $(document).ready(function(){
-      
-      $('#btn-elim-a').click(function(){
-        $('#btn-elim-b').click();
-      });
 
       $('.btn_elim').click(function(){
         //alert(1);
@@ -296,23 +292,23 @@
     {{Form::open(array('url'=>'eliminar_empleados', 'id'=>'frm_elim_emp'))}}
     @foreach($empleados as $empleado)
       <tr>
-      <td></td>
-      <td>{{ $empleado->Nombre }} </td>
-      <td>{{ $empleado->Puesto }} </td>
-      <td>{{ $empleado->Nombre_Depto }}</td>
-      <td>{{ $empleado->Nombre_Empresa }}</td>
-      <td>{{ $empleado->EmpAdministradora }}</td>
-      <td>{{ $empleado->Banco }} </td>
-      <td>{{ $empleado->Cta_Bancaria }} </td>
-      <td>{{ $empleado->CLABE_Bancaria }} </td>
-      <td>{{ $empleado->SueldoBase }} </td>
-      <td>
-        <button class="btn btn-warning" type="button" data-toggle="modal" data-target="#myModalE" 
-        id="{{ $empleado->idEmpleado }}" onClick="reply_click(this.id)">Editar</button>
-      </td>
-      <td>
-        <button class="btn btn-danger btn_elim" type="button" value="{{ $empleado->idEmpleado }}" data-toggle="modal" data-target="#elima_modal" >Eliminar</button>
-      </td>
+        <td></td>
+        <td>{{ $empleado->Nombre }} </td>
+        <td>{{ $empleado->Puesto }} </td>
+        <td>{{ $empleado->Nombre_Depto }}</td>
+        <td>{{ $empleado->Nombre_Empresa }}</td>
+        <td>{{ $empleado->EmpAdministradora }}</td>
+        <td>{{ $empleado->Banco }} </td>
+        <td>{{ $empleado->Cta_Bancaria }} </td>
+        <td>{{ $empleado->CLABE_Bancaria }} </td>
+        <td>{{ $empleado->SueldoBase }} </td>
+        <td>
+          <button class="btn btn-warning" type="button" data-toggle="modal" data-target="#myModalE" 
+          id="{{ $empleado->idEmpleado }}" onClick="reply_click(this.id)">Editar</button>
+        </td>
+        <td>
+          <button class="btn btn-danger btn_elim" type="button" value="{{ $empleado->idEmpleado }}" data-toggle="modal" data-target="#elima_modal" >Eliminar</button>
+        </td>
       </tr>
     @endforeach
 
@@ -320,6 +316,7 @@
 
     {{Form::close()}}
   </table>
+
 </div>
 
         <?php 

@@ -6,14 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sistema de nomina Danilo Black</title>
+
     <link href="css/styles.css" rel="stylesheet">
+    <link href="css/dataTables.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/dataTables.js"></script>
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <script src="http:////cdn.datatables.net/1.10.0/js/jquery.dataTables.js"></script>
-
-    <link href="http://cdn.datatables.net/1.10.0/css/jquery.dataTables.css" rel="stylesheet">
+    
     
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -77,7 +79,9 @@
 
       function btnGenNom(){
 
-        $('#btn-gene-b').click();
+        $.post('generarNomina', function(data){
+          window.location = "pagos";
+        });
         
       }
     
@@ -156,19 +160,17 @@
             <td>{{ $empleado->Nombre_Depto }} </td>
             <td>{{ $empleado->Nombre_Empresa }} </td>
             <td>{{ $empleado->SueldoBase }} </td>
-
             <td>{{ $empleado->Restante }} </td>
-
             <td><button class="btn btn-warning" type="button" data-toggle="modal" data-target="#hacerPago"
               id="{{ $empleado->idEmpleado }}" onClick="reply_click(this.id)">Hacer Pago</button></td>
           </tr>
           <?php $contador++; ?>
         @endforeach
 
-        
-
       </table>
+
     </div>
+
   </div>
 
 
@@ -178,6 +180,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <div class="panel-heading title-center"><h3>Realizar Pago a Empleado</h3></div>
+
               <table class="table table-striped">
                 {{Form::open(array('url'=>'realizarPago'))}}
 
@@ -213,6 +216,7 @@
                 {{ Form::close() }}
         
             </table>
+
             </div>
           </div>
         </div>
@@ -241,9 +245,5 @@
   </div>
 <!-- /container -->
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
   </body>
 </html>

@@ -9,8 +9,11 @@
     <link href="css/styles.css" rel="stylesheet">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/dataTables.js"></script>
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/dataTables.css" rel="stylesheet">
+    
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -25,6 +28,8 @@
         $('#btn-gene-a').click(function(){
           $('#btn-gene-b').click();
         });
+
+        $('#myTable').dataTable();
 
       });
 
@@ -130,17 +135,19 @@
       </div>
 
       <!-- Table -->
-      <table class="table table-striped">
-        <tr>
-          <td></td>
-          <td>Nombre</td>
-          <td>Puesto</td>
-          <td>Departamento</td>
-          <td>Empresa</td>
-          <td>Saldo Pendiente de Bonos</td>
-          <td>Generar Bono</td>
-          <td>Realizar Pago</td>
-        </tr>
+      <table class="table table-striped" id="myTable">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Nombre</th>
+            <th>Puesto</th>
+            <th>Departamento</th>
+            <th>Empresa</th>
+            <th>Saldo Pendiente de Bonos</th>
+            <th>Generar Bono</th>
+            <th>Realizar Pago</th>
+          </tr>
+        </thead>
 
         <?php $contador = 0; ?>
 
@@ -260,9 +267,5 @@
   </div>
 <!-- /container -->
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
   </body>
 </html>

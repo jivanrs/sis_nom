@@ -5,9 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sistema de nomina Danilo Black</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <link href="css/styles.css" rel="stylesheet">
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/dataTables.css" rel="stylesheet">
+    <script src="js/dataTables.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -15,6 +18,18 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <script>
+
+      $(document).ready(function(){
+
+        $('#myTable').dataTable();
+
+      });
+
+    </script>
+
+
   </head>
   <body>
   <!--Header-->
@@ -206,25 +221,27 @@
             @if (isset($empleados))
                 
               <!-- Table -->
-              <table class="table">
-                <tr>
-                  <td></td>
-                  <td>ID</td>
-                  <td>Nombre</td>
-                  <td>Tipo de Periodo</td>
-                  <td>Empresa</td>
-                  <td>Departamento</td>
-                  <td>Fecha de Pago</td>
-                  <td>Pago</td>
-                  <td>Comision</td>
-                  <td>IVA</td>
-                  <td>Total</td>
-                  <td>Fecha de Nomina</td>
-                  <td>Monto</td>
-                  <td>Por Pagar</td>
-                  <td>Periodo</td>
-                  <td>Tipo de Recibo</td>
-                </tr>
+              <table class="table" id="myTable">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Tipo de Periodo</th>
+                    <th>Empresa</th>
+                    <th>Departamento</th>
+                    <th>Fecha de Pago</th>
+                    <th>Pago</th>
+                    <th>Comision</th>
+                    <th>IVA</th>
+                    <th>Total</th>
+                    <th>Fecha de Nomina</th>
+                    <th>Monto</th>
+                    <th>Por Pagar</th>
+                    <th>Periodo</th>
+                    <th>Tipo de Recibo</th>
+                  </tr>
+                </thead>
 
               <?php 
               $nombre = $empleados[0]->Nombre;
@@ -240,7 +257,7 @@
 
                       <tr class="total">
                         <td> </td>
-                        <td> </td>
+                        <td><label hidden="true" value="<?php echo $nombre ?>"><?php echo $nombre ?></label></td>
                         <td> </td>
                         <td> </td>
                         <td> </td>
@@ -266,7 +283,7 @@
                 <?php $nombre = $empleado->Nombre ?>
 
                 <tr>
-                  <td><input type="checkbox" value="{{$empleado->idEmpleado}}"></td>
+                  <td></td>
                   <td>{{ $empleado->idEmpleado }} </td>
                   <td>{{ $empleado->Nombre }} </td>
                   <td>{{ $empleado->TipoPeriodo }} </td>
@@ -292,7 +309,7 @@
 
                   <tr>
                     <td> </td>
-                    <td> </td>
+                    <td><label hidden="true" value="<?php echo $nombre ?>"><?php echo $nombre ?></label></td>
                     <td> </td>
                     <td> </td>
                     <td> </td>
@@ -506,9 +523,5 @@
 </div>
 <!-- /container -->
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
   </body>
 </html>
