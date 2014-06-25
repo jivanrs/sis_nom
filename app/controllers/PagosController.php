@@ -13,6 +13,7 @@ class PagosController extends BaseController {
 		$empleados = Pagos::PagosInfo();
 
 		$ultimaFecha = DB::table('Recibos')
+				->where('TipoDeRecibo', 0)
 		        ->select('FechaDeRecibo')
 		        ->orderBy('FechaDeRecibo', 'desc')
 		        ->get();

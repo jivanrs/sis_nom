@@ -10,6 +10,7 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/dataTables.css" rel="stylesheet">
+    <script src="js/mask.js"></script>
     <script src="js/dataTables.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -24,6 +25,9 @@
       $(document).ready(function(){
 
         $('#myTable').dataTable();
+
+        $('.money').mask("#.##0,00", {reverse: true, maxlength: false});
+
 
       });
 
@@ -255,23 +259,42 @@
                     @if($nombre == $t->Nombre)
 
                       <tr class="total">
-                        <td> </td>
+                        <td></td>
                         <td><label hidden="true" value="<?php echo $nombre ?>"><?php echo $nombre ?></label></td>
                         <td> </td>
                         <td> </td>
                         <td> </td>
                         <td class="totalp ">Total Pagado </td>
-                        <td class="totalnum">{{$t->Pagado}} </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
+                        <td class="totalnum"> $<?php echo number_format($t->Pagado, 2) ?> </td>
+                        <td> $<?php echo number_format($t->ComisionPT, 2) ?> </td>
+                        <td> $<?php echo number_format($t->IVA, 2) ?> </td>
+                        <td> $<?php echo number_format($t->Pagado + $t->ComisionPT + $t->IVA, 2) ?></td>
                         <td> </td>
                         <td class="totalr ">Total Restante Por Pagar </td>
-                        <td class="totalnum">{{$t->Restante}} </td>
+                        <td class="totalnum"> $<?php echo number_format($t->Restante, 2) ?></td>
                         <td> </td>
                         <td> </td>
                       </tr>
-                      <tr><td class="space"></td></tr>
+                      <tr>
+                        <td class="space"></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
 
                     @endif
 
@@ -288,13 +311,13 @@
                   <td>{{ $empleado->Nombre_Empresa }} </td>
                   <td>{{ $empleado->Nombre_Depto }} </td>
                   <td>{{ $empleado->FechaDePago }} </td>
-                  <td class="pago">{{ $empleado->Pago }} </td>
-                  <td class="comision"> </td>
-                  <td class="iva"> </td>
-                  <td> </td>
+                  <td class="pago"> $<?php echo number_format($empleado->Pago , 2 ) ?></td>
+                  <td class="comision"> $<?php echo number_format($empleado->ComisionP , 2 ) ?></td>
+                  <td class="iva"> $<?php echo number_format($empleado->IVA  , 2 ) ?> </td>
+                  <td > $<?php echo number_format($empleado->Pago + $empleado->ComisionP + $empleado->IVA , 2 ) ?> </td>
                   <td>{{ $empleado->FechaDeRecibo }} </td>
-                  <td class="monto">{{ $empleado->Monto }} </td>
-                  <td class="porpagar">{{ $empleado->PorPagar }} </td>
+                  <td class="monto"> $<?php echo number_format($empleado->Monto, 2 ) ?> </td>
+                  <td class="porpagar"> $<?php echo number_format($empleado->PorPagar , 2 ) ?>  </td>
                   <td>{{ $empleado->Periodo }} </td>
                   <td>{{ $empleado->TipoDeRecibo }} </td>
                 </tr>
@@ -305,23 +328,42 @@
                 
                 @if($nombre == $t->Nombre)
 
-                  <tr>
-                    <td> </td>
+                  <tr class="total">
+                    <td></td>
                     <td><label hidden="true" value="<?php echo $nombre ?>"><?php echo $nombre ?></label></td>
                     <td> </td>
                     <td> </td>
                     <td> </td>
+                    <td class="totalp ">Total Pagado </td>
+                    <td class="totalnum"> $<?php echo number_format($t->Pagado, 2) ?> </td>
+                    <td> $<?php echo number_format($t->ComisionPT, 2) ?> </td>
+                    <td> $<?php echo number_format($t->IVA, 2) ?> </td>
+                    <td> $<?php echo number_format($t->Pagado + $t->ComisionPT + $t->IVA, 2) ?></td>
                     <td> </td>
-                    <td class="total ">Total Pagado </td>
-                    <td>{{$t->Pagado}} </td>
+                    <td class="totalr ">Total Restante Por Pagar </td>
+                    <td class="totalnum"> $<?php echo number_format($t->Restante, 2) ?></td>
                     <td> </td>
                     <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td class="total ">Total Restante Por Pagar </td>
-                    <td>{{$t->Restante}} </td>
-                    <td> </td>
-                    <td> </td>
+                  </tr>
+                  <tr>
+                    <td class="space"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                   </tr>
 
                 @endif
