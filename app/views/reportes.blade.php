@@ -28,7 +28,6 @@
       $('#fechaFin').datepicker();
 
       $('#myTable').dataTable();
-      $('.money').mask("#.##0,00", {reverse: true, maxlength: false});
 
     });
     </script>
@@ -80,7 +79,7 @@
               <label>DESDE:</label>
             </div>
             <div class="col-md-7">
-              <input type="text" id="fechaIni" data-date-format="mm/dd/yy" value="02/16/12" class="span2">
+              <input type="text" id="fechaIni" data-date-format="mm/dd/yy" value="06/16/14" class="span2">
             </div>
           </div>
           <div class="col-md-4">
@@ -88,7 +87,7 @@
               <label>HASTA:</label>
             </div>
             <div class="col-md-7">
-              <input type="text" id="fechaFin" data-date-format="mm/dd/yy" value="02/16/12" class="span2">
+              <input type="text" id="fechaFin" data-date-format="mm/dd/yy" value="06/16/14" class="span2">
             </div>
           </div>
 
