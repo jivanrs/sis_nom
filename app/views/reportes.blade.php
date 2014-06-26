@@ -5,14 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sistema de nomina Danilo Black</title>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    
     <link href="css/styles.css" rel="stylesheet">
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/dataTables.css" rel="stylesheet">
+    <link href="css/datepicker.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="js/mask.js"></script>
     <script src="js/dataTables.js"></script>
-    
+    <script src="js/datepicker.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -20,23 +22,19 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
     <script>
+    $(document).ready(function(){
+      $('#fechaIni').datepicker();
+      $('#fechaFin').datepicker();
 
-      $(document).ready(function(){
+      $('#myTable').dataTable();
+      $('.money').mask("#.##0,00", {reverse: true, maxlength: false});
 
-        $('#myTable').dataTable();
-
-        $('.money').mask("#.##0,00", {reverse: true, maxlength: false});
-
-
-      });
-
+    });
     </script>
 
-
   </head>
-  <body>
+<body>
   <!--Header-->
 <div class="header">
   <div class="content-header">
@@ -78,134 +76,22 @@
           </div>
 
           <div class="col-md-4">
-            <label>DESDE:</label>
-            <div class="btn-group">
-              <button class="btn btn-default" type="button">Año</button>
-              <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
-                <span class="caret"></span><span class="sr-only">Toggle Dropdown</span></button>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="#">2012</a></li>
-                <li><a href="#">2013</a></li>
-                <li><a href="#">2014</a></li>
-              </ul>
+            <div class="col-md-3">
+              <label>DESDE:</label>
             </div>
-
-            <div class="btn-group">
-              <button class="btn btn-default" type="button">Mes</button>
-              <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
-                <span class="caret"></span><span class="sr-only">Toggle Dropdown</span>
-              </button>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Enero</a></li>
-                <li><a href="#">Febrero</a></li>
-                <li><a href="#">Marzo</a></li>
-                <li><a href="#">Abril</a></li>
-                <li><a href="#">Mayo</a></li>
-                <li><a href="#">Junio</a></li>
-                <li><a href="#">Julio</a></li>
-                <li><a href="#">Agosto</a></li>
-                <li><a href="#">Septiembre</a></li>
-                <li><a href="#">Octubre</a></li>
-                <li><a href="#">Noviembre</a></li>
-                <li><a href="#">Diciembre</a></li>
-              </ul>
+            <div class="col-md-7">
+              <input type="text" id="fechaIni" data-date-format="mm/dd/yy" value="02/16/12" class="span2">
             </div>
-
-            <div class="btn-group">
-              <button class="btn btn-default" type="button">Día</button>
-              <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
-                <span class="caret"></span><span class="sr-only">Toggle Dropdown</span>
-              </button>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="#">01</a></li>
-                <li><a href="#">02</a></li>
-                <li><a href="#">03</a></li>
-                <li><a href="#">04</a></li>
-                <li><a href="#">05</a></li>
-                <li><a href="#">06</a></li>
-                <li><a href="#">07</a></li>
-                <li><a href="#">08</a></li>
-                <li><a href="#">09</a></li>
-                <li><a href="#">10</a></li>
-                <li><a href="#">11</a></li>
-                <li><a href="#">12</a></li>
-                <li><a href="#">13</a></li>
-                <li><a href="#">14</a></li>
-                <li><a href="#">15</a></li>
-                <li><a href="#">16</a></li>
-                <li><a href="#">17</a></li>
-                <li><a href="#">18</a></li>
-                <li><a href="#">19</a></li>
-                <li><a href="#">20</a></li>
-                <li><a href="#">21</a></li>
-                <li><a href="#">22</a></li>
-                <li><a href="#">23</a></li>
-                <li><a href="#">24</a></li>
-                <li><a href="#">25</a></li>
-                <li><a href="#">26</a></li>
-                <li><a href="#">27</a></li>
-                <li><a href="#">28</a></li>
-                <li><a href="#">29</a></li>
-                <li><a href="#">30</a></li>
-                <li><a href="#">31</a></li>
-              </ul>
-            </div>
-
           </div>
-
           <div class="col-md-4">
-
-            <label>HASTA:</label>
-            <div class="btn-group">
-              <button class="btn btn-default" type="button">Año</button>
-              <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
-                <span class="caret"></span><span class="sr-only">Toggle Dropdown</span>
-              </button>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="#">2012</a></li>
-                <li><a href="#">2013</a></li>
-                <li><a href="#">2014</a></li>
-              </ul>
+            <div class="col-md-3">
+              <label>HASTA:</label>
             </div>
-
-            <div class="btn-group">
-              <button class="btn btn-default" type="button">Mes</button>
-              <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
-                <span class="caret"></span><span class="sr-only">Toggle Dropdown</span>
-              </button>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Enero</a></li>
-                <li><a href="#">Febrero</a></li>
-                <li><a href="#">Marzo</a></li>
-                <li><a href="#">Abril</a></li>
-                <li><a href="#">Mayo</a></li>
-                <li><a href="#">Junio</a></li>
-                <li><a href="#">Julio</a></li>
-                <li><a href="#">Agosto</a></li>
-                <li><a href="#">Septiembre</a></li>
-                <li><a href="#">Octubre</a></li>
-                <li><a href="#">Noviembre</a></li>
-                <li><a href="#">Diciembre</a></li>
-              </ul>
+            <div class="col-md-7">
+              <input type="text" id="fechaFin" data-date-format="mm/dd/yy" value="02/16/12" class="span2">
             </div>
-
-            <div class="btn-group">
-              <button class="btn btn-default" type="button">Día</button>
-              <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
-                <span class="caret"></span><span class="sr-only">Toggle Dropdown</span>
-              </button>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Lunes</a></li>
-                <li><a href="#">Martes</a></li>
-                <li><a href="#">Miercoles</a></li>
-                <li><a href="#">Jueves</a></li>
-                <li><a href="#">Viernes</a></li>
-                <li><a href="#">Sabado</a></li>
-                <li><a href="#">Domingo</a></li>
-              </ul>
-            </div>
-
           </div>
+
 
           <div class="col-md-1">
           <button type="input" class="btn btn-primary">Enviar</button>
@@ -570,6 +456,11 @@
         </div>
 </div>
 <!-- /container -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
 
   </body>
 </html>

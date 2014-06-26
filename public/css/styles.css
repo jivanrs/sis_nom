@@ -90,7 +90,7 @@ table.dataTable thead .sorting, table.dataTable thead  {background-color: #f5f5f
 .dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter {margin: 0 20px 10px;}
 .dataTables_wrapper .dataTables_length label, .dataTables_wrapper .dataTables_filter label{font-weight: normal !important;}
 table.dataTable thead th, table.dataTable thead td{padding-left:5px !important; padding-right: 8px !important;}
-table.dataTable tbody th, table.dataTable tbody td{width: 150px;}
+
 
 /*Reportes*/
 .total{background: #ffcfcf !important;}
