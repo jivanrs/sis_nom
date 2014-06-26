@@ -12,6 +12,7 @@
     <link href="css/dataTables.css" rel="stylesheet">
     <script src="js/mask.js"></script>
     <script src="js/dataTables.js"></script>
+    
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -319,7 +320,14 @@
                   <td class="monto"> $<?php echo number_format($empleado->Monto, 2 ) ?> </td>
                   <td class="porpagar"> $<?php echo number_format($empleado->PorPagar , 2 ) ?>  </td>
                   <td>{{ $empleado->Periodo }} </td>
-                  <td>{{ $empleado->TipoDeRecibo }} </td>
+                  <td><?php 
+                    if($empleado->TipoDeRecibo == 0){
+                      echo "Nómina";
+                    }
+                    else{
+                      echo "Bono";
+                    }
+                  ?></td>
                 </tr>
 
               @endforeach
