@@ -28,37 +28,29 @@
       $('#fechaFin').datepicker();
       $('#myTable').dataTable();
     
-      $('#btn_reporte').click(function(){
-      
-      var e = document.getElementById("tipoReporte");
-      var tipoReporte = e.options[e.selectedIndex].value;
+      $('#btn_reporte').click(function(e){  
+          e.preventDefault();
+          var usuario = 2;
+          var tipo_reporte  = $( "#tipoReporte option:selected" ).text();
+          var fecha_inicio  = $( "#fechaIni").attr('value');
+          var fecha_fin     = $( "#fechaFin").attr('value');
 
-      var fechaIni = document.getElementById("fechaIni").value;
+          if (tipo_reporte == 'Empleado') {
+            $.post('reportes_empleados_aj', {user_id: '2', fecha_inicio: fecha_inicio, fecha_fin: fecha_fin} ,function(data){
+            });   
+          }
 
-      var fechaFin = document.getElementById("fechaFin").value;
+          if (tipo_reporte == 'Departamento') {
+            alert('hola, edmundo');
+          }
 
-      if (tipoReporte = 'Empleado') {
+          if (tipo_reporte == 'Emoresa') {
+            alert('hola, edmundo');
+          }
 
-        alert('Empleado');
-        // $.post('reportes/empleados/'+fechaIni+'/'+FechaFin, function(data){         
-        // window.location = "reportes";
-        // });
-      };
-      if (tipoReporte = 'Departamento') {
-        alert("Departameto");
-        // $.post('reportes/departamentos/'+fechaIni+'/'+FechaFin, function(data){
-        //   window.location = "reportes";
-        //});
-      };
-      if (tipoReporte = 'Empresa') {
-        alert(Empresa);
-        // $.post('reportes/empresas/'+fechaIni+'/'+FechaFin, function(data){
-        //   window.location = "reportes";
-        //});
-      };
-      });
+      }); //Click
 
-    });
+    }); //Document ready
     </script>
 
   </head>
@@ -118,7 +110,7 @@
 
 
           <div class="col-md-1">
-          <button class="btn btn-danger" id="btn_reporte" type="submit" value="" onClick="filtro_reporte()">Filtrar</button>
+          <button class="btn btn-danger" id="btn_reporte" type="submit" value="">Filtrar</button>
           </div>
 
         </div>

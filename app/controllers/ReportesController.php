@@ -12,8 +12,11 @@ class ReportesController extends BaseController {
 		return View::make("reportes");
 	}
 
-	public function reporteEmpleados($fechaIni, $fechaFin)
-	{
+	public function reportes_empleados_aj()
+	{	
+		$fecha_inicio 	= Input::get('fecha_inicio');
+		$fecha_fin 		= Input::get('fecha_fin');
+		$user_id 		= Input::get('user_id');
 		
 		$empleados = DB::table('empleado')
 				->leftJoin('empresa', 'empresa.idEmpresa', '=', 'empleado.emp_idEmpresa_FK')
@@ -22,7 +25,7 @@ class ReportesController extends BaseController {
 		        ->leftJoin('pagos', 'pagos.pag_idRecibos_FK', '=', 'recibos.idRecibos')
 		        ->leftJoin('periodo', 'periodo.idPeriodo', '=', 'recibos.rec_idPeriodo_FK')
 		        ->leftJoin('tipoperiodo', 'tipoperiodo.idTipoPeriodo', '=', 'empleado.emp_idTipoPeriodo_FK')
-		        ->whereBetween('FechaDeRecibo', array($fechaIni, $fechaFin))
+		        ->whereBetween('FechaDeRecibo', array($fecha_inicio, $fecha_fin))
 		        ->select('idEmpleado', 'TipoPeriodo', 'Nombre', 'Nombre_Empresa', 'Nombre_Depto',  'FechaDePago', 'Pago', 
 		        	DB::Raw('Pagos.Comision as ComisionP'), 'IVA', 'FechaDeRecibo', 'Monto', 'PorPagar', 'Periodo', 'TipoDeRecibo')
 		        ->orderBy('Nombre', 'desc')
@@ -35,14 +38,19 @@ class ReportesController extends BaseController {
 		        ->leftJoin('pagos', 'pagos.pag_idRecibos_FK', '=', 'recibos.idRecibos')
 		        ->leftJoin('periodo', 'periodo.idPeriodo', '=', 'recibos.rec_idPeriodo_FK')
 		        ->leftJoin('tipoperiodo', 'tipoperiodo.idTipoPeriodo', '=', 'empleado.emp_idTipoPeriodo_FK')
-		        ->whereBetween('FechaDeRecibo', array($fechaIni, $fechaFin))
+		        ->whereBetween('FechaDeRecibo', array($fecha_inicio, $fecha_fin))
 		        ->select('Nombre', DB::Raw('SUM(PorPagar) as Restante'), DB::Raw('SUM(Pago) as Pagado'), 
 		        	DB::Raw('SUM(Pagos.Comision) as ComisionPT'), DB::Raw('SUM(IVA) as IVA'))
 		        ->groupBy('Nombre')
 		        ->orderBy('Nombre', 'desc')
 		        ->get();
-
-		return View::make("reportes")->with('empleados', $empleados)->with('total', $total);
+		
+		if(Request::ajax()){
+			// return Empleado::where('idEmpleado', $user_id)->first();
+			return $empleados;
+		} else {
+			return 2;
+		}
 
 	}
 

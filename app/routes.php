@@ -64,6 +64,8 @@ Route::group(array('before' => 'auth.custom'), function(){
 	Route::get('datosReciboBono/{id}', 'PagosController@datosPago');
 	
 
+	Route::post('reportes_empleados_aj', 'ReportesController@reportes_empleados_aj');
+
 	Route::get('empleadoData/{id}', 'EmpleadosController@empleadoData');
 });
 
