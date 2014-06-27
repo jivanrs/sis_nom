@@ -117,7 +117,6 @@
                   <tr>
                     <th></th>
                     <th>Nombre</th>
-                    <th>Tipo de Periodo</th>
                     <th>Empresa</th>
                     <th>Departamento</th>
                     <th>Fecha de Pago</th>
@@ -125,10 +124,10 @@
                     <th>Comision</th>
                     <th>IVA</th>
                     <th>Total</th>
-                    <th>Fecha de Nomina</th>
+                    <th>Mes del Periodo</th>
+                    <th>Periodo</th>
                     <th>Monto</th>
                     <th>Por Pagar</th>
-                    <th>Periodo</th>
                     <th>Tipo de Recibo</th>
                   </tr>
                 </thead>
@@ -150,24 +149,19 @@
                         <td><label hidden="true" value="<?php echo $nombre ?>"><?php echo $nombre ?></label></td>
                         <td> </td>
                         <td> </td>
-                        <td> </td>
-                        <td class="totalp ">Total Pagado </td>
+                        <td class="totalp">Total Pagado </td>
                         <td class="totalnum"> $<?php echo number_format($t->Pagado, 2) ?> </td>
-                        <td> $<?php echo number_format($t->ComisionPT, 2) ?> </td>
-                        <td> $<?php echo number_format($t->IVA, 2) ?> </td>
-                        <td> $<?php echo number_format($t->Pagado + $t->ComisionPT + $t->IVA, 2) ?></td>
+                        <td class="totalnum"> $<?php echo number_format($t->ComisionPT, 2) ?> </td>
+                        <td class="totalnum"> $<?php echo number_format($t->IVA, 2) ?> </td>
+                        <td class="totalp"> $<?php echo number_format($t->Pagado + $t->ComisionPT + $t->IVA, 2) ?></td>
+                        <td> </td>
                         <td> </td>
                         <td class="totalr ">Total Restante Por Pagar </td>
                         <td class="totalnum"> $<?php echo number_format($t->Restante, 2) ?></td>
                         <td> </td>
-                        <td> </td>
                       </tr>
                       <tr>
                         <td class="space"></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -194,18 +188,17 @@
                 <tr>
                   <td></td>
                   <td>{{ $empleado->Nombre }} </td>
-                  <td>{{ $empleado->TipoPeriodo }} </td>
                   <td>{{ $empleado->Nombre_Empresa }} </td>
                   <td>{{ $empleado->Nombre_Depto }} </td>
                   <td>{{ $empleado->FechaDePago }} </td>
                   <td class="pago"> $<?php echo number_format($empleado->Pago , 2 ) ?></td>
                   <td class="comision"> $<?php echo number_format($empleado->ComisionP , 2 ) ?></td>
                   <td class="iva"> $<?php echo number_format($empleado->IVA  , 2 ) ?> </td>
-                  <td > $<?php echo number_format($empleado->Pago + $empleado->ComisionP + $empleado->IVA , 2 ) ?> </td>
+                  <td class="comision"> $<?php echo number_format($empleado->Pago + $empleado->ComisionP + $empleado->IVA , 2 ) ?> </td>
                   <td>{{ $empleado->FechaDeRecibo }} </td>
+                  <td>{{ $empleado->Periodo }} </td>
                   <td class="monto"> $<?php echo number_format($empleado->Monto, 2 ) ?> </td>
                   <td class="porpagar"> $<?php echo number_format($empleado->PorPagar , 2 ) ?>  </td>
-                  <td>{{ $empleado->Periodo }} </td>
                   <td><?php 
                     if($empleado->TipoDeRecibo == 0){
                       echo "Nómina";
@@ -228,23 +221,19 @@
                     <td> </td>
                     <td> </td>
                     <td> </td>
-                    <td class="totalp ">Total Pagado </td>
+                    <td class="totalp">Total Pagado </td>
                     <td class="totalnum"> $<?php echo number_format($t->Pagado, 2) ?> </td>
-                    <td> $<?php echo number_format($t->ComisionPT, 2) ?> </td>
-                    <td> $<?php echo number_format($t->IVA, 2) ?> </td>
-                    <td> $<?php echo number_format($t->Pagado + $t->ComisionPT + $t->IVA, 2) ?></td>
+                    <td class="totalnum"> $<?php echo number_format($t->ComisionPT, 2) ?> </td>
+                    <td class="totalnum"> $<?php echo number_format($t->IVA, 2) ?> </td>
+                    <td class="totalp"> $<?php echo number_format($t->Pagado + $t->ComisionPT + $t->IVA, 2) ?></td>
+                    <td> </td>
                     <td> </td>
                     <td class="totalr ">Total Restante Por Pagar </td>
                     <td class="totalnum"> $<?php echo number_format($t->Restante, 2) ?></td>
                     <td> </td>
-                    <td> </td>
                   </tr>
                   <tr>
                     <td class="space"></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
