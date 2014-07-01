@@ -28,7 +28,7 @@
       $('#fechaFin').datepicker();
       $('#myTable').dataTable();
     
-      $('#btn_reporte').click(function(e){  
+     /* $('#btn_reporte').click(function(e){  
           e.preventDefault();
           var usuario = 2;
           var tipo_reporte  = $( "#tipoReporte option:selected" ).text();
@@ -48,7 +48,7 @@
             alert('hola, edmundo');
           }
 
-      }); //Click
+      });*/ //Click
 
     }); //Document ready
     </script>
@@ -82,10 +82,12 @@
         <div class="col-md-12">
           <div class="col-md-3">
             <label>FILTRAR POR:</label>
+            {{Form::open(array('url'=>'reportes'))}}
+            <a href="reportes?"></a>
             <div class="btn-group">
-              <select id="tipoReporte" class="form-control">
+              <select name="tipo_Reporte" id="tipoReporte" class="form-control">
                 <option value="Empleado">Empleado</option>
-                <option value="Departameto">Departamento</option>
+                <option value="Departamento">Departamento</option>
                 <option value="Empresa">Empresa</option>
               </select>
             </div>
@@ -96,7 +98,7 @@
               <label>DESDE:</label>
             </div>
             <div class="col-md-7">
-              <input type="text" id="fechaIni" data-date-format="mm/dd/yy" value="06/16/14" class="span2">
+              <input name="fechaIni" type="text" id="fechaIni" data-date-format="mm/dd/yy" value="06/16/14" class="span2">
             </div>
           </div>
           <div class="col-md-4">
@@ -104,15 +106,14 @@
               <label>HASTA:</label>
             </div>
             <div class="col-md-7">
-              <input type="text" id="fechaFin" data-date-format="mm/dd/yy" value="06/16/14" class="span2">
+              <input name="fechaFin" type="text" id="fechaFin" data-date-format="mm/dd/yy" value="06/16/14" class="span2">
             </div>
           </div>
-
 
           <div class="col-md-1">
           <button class="btn btn-danger" id="btn_reporte" type="submit" value="">Filtrar</button>
           </div>
-
+          {{ Form::close() }}
         </div>
       </form>
       </div>
@@ -478,7 +479,7 @@
                   <tr class="total">
                         <td> </td>
                         <td></td>
-                        <td><label hidden="true" value="<?php echo $nombre_emp ?>"><?php echo $nombre_emp ?></label></td>
+                        <td><label hidden="true" value="<?php echo $nombre_dep ?>"><?php echo $nombre_dep ?></label></td>
                         <td class="totalp ">Total Pagado </td>
                         <td class="totalnum"> $<?php echo number_format($t->Pagado, 2) ?> </td>
                         <td> $<?php echo number_format($t->ComisionPT, 2) ?> </td>

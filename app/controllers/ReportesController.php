@@ -10,27 +10,57 @@ class ReportesController extends BaseController {
 	public function index()
 	{
 
-		return View::make("reportes");
-	}
-
-	public function reportes_empleados_aj()
-	{	
 		$fecha_inicio 	= Input::get('fecha_inicio');
 		$fecha_fin 		= Input::get('fecha_fin');
-		$user_id 		= Input::get('user_id');
-		
-		$empleados = DB::table('empleado')
-				->set('SET lc_time_names = "es_ES";')	
+		$tipo_Reporte 	= Input::get('tipo_Reporte');
+
+		if($tipo_Reporte == "Empleado")
+		{
+			
+
+			$empleados = DB::table('empleado')
+					->leftJoin('empresa', 'empresa.idEmpresa', '=', 'empleado.emp_idEmpresa_FK')
+			        ->leftJoin('departamento', 'departamento.idDepartamento', '=', 'empleado.emp_idDeparameto_FK')
+			        ->leftJoin('recibos', 'recibos.rec_idEmpleado_FK', '=', 'empleado.idEmpleado')
+			        ->leftJoin('pagos', 'pagos.pag_idRecibos_FK', '=', 'recibos.idRecibos')
+			        ->leftJoin('periodo', 'periodo.idPeriodo', '=', 'recibos.rec_idPeriodo_FK')
+			        ->leftJoin('tipoperiodo', 'tipoperiodo.idTipoPeriodo', '=', 'empleado.emp_idTipoPeriodo_FK')
+			        //->whereBetween('FechaDeRecibo', array($fecha_inicio, $fecha_fin))
+			        ->select('idEmpleado', 'Nombre', 'Nombre_Empresa', 'Nombre_Depto',  'FechaDePago', 'Pago', 
+			        	DB::Raw('Pagos.Comision as ComisionP'), 'IVA', DB::RAW('DATE_FORMAT(FechaDeRecibo,  "%M %Y") as FechaDeRecibo'), 'Monto', 'PorPagar', 'Periodo', 'TipoDeRecibo')
+			        ->orderBy('Nombre', 'desc')
+			        ->get();
+
+			$total = DB::table('empleado')
+					->leftJoin('empresa', 'empresa.idEmpresa', '=', 'empleado.emp_idEmpresa_FK')
+			        ->leftJoin('departamento', 'departamento.idDepartamento', '=', 'empleado.emp_idDeparameto_FK')
+			        ->leftJoin('recibos', 'recibos.rec_idEmpleado_FK', '=', 'empleado.idEmpleado')
+			        ->leftJoin('pagos', 'pagos.pag_idRecibos_FK', '=', 'recibos.idRecibos')
+			        ->leftJoin('periodo', 'periodo.idPeriodo', '=', 'recibos.rec_idPeriodo_FK')
+			        ->leftJoin('tipoperiodo', 'tipoperiodo.idTipoPeriodo', '=', 'empleado.emp_idTipoPeriodo_FK')
+			        //->whereBetween('FechaDeRecibo', array($fecha_inicio, $fecha_fin))
+			        ->select('Nombre', DB::Raw('SUM(PorPagar) as Restante'), DB::Raw('SUM(Pago) as Pagado'), 
+			        	DB::Raw('SUM(Pagos.Comision) as ComisionPT'), DB::Raw('SUM(IVA) as IVA'))
+			        ->groupBy('Nombre')
+			        ->orderBy('Nombre', 'desc')
+			        ->get();
+			
+			return View::make("reportes")->with('empleados', $empleados)->with('total', $total);
+		}
+
+		if($tipo_Reporte == "Empresa")
+		{
+			$listaEmpresa = DB::table('empleado')
 				->leftJoin('empresa', 'empresa.idEmpresa', '=', 'empleado.emp_idEmpresa_FK')
 		        ->leftJoin('departamento', 'departamento.idDepartamento', '=', 'empleado.emp_idDeparameto_FK')
 		        ->leftJoin('recibos', 'recibos.rec_idEmpleado_FK', '=', 'empleado.idEmpleado')
 		        ->leftJoin('pagos', 'pagos.pag_idRecibos_FK', '=', 'recibos.idRecibos')
 		        ->leftJoin('periodo', 'periodo.idPeriodo', '=', 'recibos.rec_idPeriodo_FK')
 		        ->leftJoin('tipoperiodo', 'tipoperiodo.idTipoPeriodo', '=', 'empleado.emp_idTipoPeriodo_FK')
-		        //->whereBetween('FechaDeRecibo', array('2013-03-05', '2015-06-15'))
-		        ->select('idEmpleado', 'Nombre', 'Nombre_Empresa', 'Nombre_Depto',  'FechaDePago', 'Pago', 
-		        	DB::Raw('Pagos.Comision as ComisionP'), 'IVA', DB::RAW('DATE_FORMAT(FechaDeRecibo,  "%M %Y") as FechaDeRecibo'), 'Monto', 'PorPagar', 'Periodo', 'TipoDeRecibo')
-		        ->orderBy('Nombre', 'desc')
+		        //->whereBetween('FechaDeRecibo', array($fechaIni, $fechaFin))
+		        ->select('Nombre_Empresa', 'Nombre_Depto',  'FechaDePago', 'Pago', 'FechaDeRecibo', 'Monto', 
+		        	DB::Raw('Pagos.Comision as ComisionP'), 'IVA', 'PorPagar', 'Periodo', 'TipoDeRecibo')
+		        ->orderBy('Nombre_Empresa', 'desc')
 		        ->get();
 
 		$total = DB::table('empleado')
@@ -40,20 +70,56 @@ class ReportesController extends BaseController {
 		        ->leftJoin('pagos', 'pagos.pag_idRecibos_FK', '=', 'recibos.idRecibos')
 		        ->leftJoin('periodo', 'periodo.idPeriodo', '=', 'recibos.rec_idPeriodo_FK')
 		        ->leftJoin('tipoperiodo', 'tipoperiodo.idTipoPeriodo', '=', 'empleado.emp_idTipoPeriodo_FK')
-		        ->whereBetween('FechaDeRecibo', array($fecha_inicio, $fecha_fin))
-		        ->select('Nombre', DB::Raw('SUM(PorPagar) as Restante'), DB::Raw('SUM(Pago) as Pagado'), 
-		        	DB::Raw('SUM(Pagos.Comision) as ComisionPT'), DB::Raw('SUM(IVA) as IVA'))
-		        ->groupBy('Nombre')
-		        ->orderBy('Nombre', 'desc')
+		        //->whereBetween('FechaDeRecibo', array($fechaIni, $fechaFin))
+		        ->select('Nombre_Empresa', DB::Raw('SUM(PorPagar) as Restante'), DB::Raw('SUM(Pago) as Pagado')
+		        	, DB::Raw('SUM(Pagos.Comision) as ComisionPT'), DB::Raw('SUM(IVA) as IVA'))
+		        ->groupBy('Nombre_Empresa')
+		        ->orderBy('Nombre_Empresa', 'desc')
 		        ->get();
-		
-		if(Request::ajax()){
-			// return Empleado::where('idEmpleado', $user_id)->first();
-			return $empleados;
-		} else {
-			return 2;
+
+		return View::make("reportes")->with('empresas', $listaEmpresa)->with('total', $total);
 		}
 
+		if($tipo_Reporte == "Departamento")
+		{
+			$listaDepto = DB::table('empleado')
+					->leftJoin('empresa', 'empresa.idEmpresa', '=', 'empleado.emp_idEmpresa_FK')
+			        ->leftJoin('departamento', 'departamento.idDepartamento', '=', 'empleado.emp_idDeparameto_FK')
+			        ->leftJoin('recibos', 'recibos.rec_idEmpleado_FK', '=', 'empleado.idEmpleado')
+			        ->leftJoin('pagos', 'pagos.pag_idRecibos_FK', '=', 'recibos.idRecibos')
+			        ->leftJoin('periodo', 'periodo.idPeriodo', '=', 'recibos.rec_idPeriodo_FK')
+			        ->leftJoin('tipoperiodo', 'tipoperiodo.idTipoPeriodo', '=', 'empleado.emp_idTipoPeriodo_FK')
+			        //->whereBetween('FechaDeRecibo', array($fechaIni, $fechaFin))
+			        ->select('Nombre_Empresa', 'Nombre_Depto',  'FechaDePago', 'Pago', 'FechaDeRecibo', 'Monto', 
+			        	DB::Raw('Pagos.Comision as ComisionP'), 'IVA', 'PorPagar', 'Periodo', 'TipoDeRecibo')
+			        ->orderBy('Nombre_Depto', 'desc') 
+			        ->get();
+
+			$total = DB::table('empleado')
+					->leftJoin('empresa', 'empresa.idEmpresa', '=', 'empleado.emp_idEmpresa_FK')
+			        ->leftJoin('departamento', 'departamento.idDepartamento', '=', 'empleado.emp_idDeparameto_FK')
+			        ->leftJoin('recibos', 'recibos.rec_idEmpleado_FK', '=', 'empleado.idEmpleado')
+			        ->leftJoin('pagos', 'pagos.pag_idRecibos_FK', '=', 'recibos.idRecibos')
+			        ->leftJoin('periodo', 'periodo.idPeriodo', '=', 'recibos.rec_idPeriodo_FK')
+			        ->leftJoin('tipoperiodo', 'tipoperiodo.idTipoPeriodo', '=', 'empleado.emp_idTipoPeriodo_FK')
+			        //->whereBetween('FechaDeRecibo', array($fechaIni, $fechaFin))
+			        ->select('Nombre_Depto', DB::Raw('SUM(PorPagar) as Restante'), DB::Raw('SUM(Pago) as Pagado')
+			        	, DB::Raw('SUM(Pagos.Comision) as ComisionPT'), DB::Raw('SUM(IVA) as IVA'))
+			        ->groupBy('Nombre_Depto')
+			        ->orderBy('Nombre_Depto', 'desc')
+			        ->get();
+
+			return View::make("reportes")->with('departamentos', $listaDepto)->with('total', $total);
+		}
+
+		return View::make("reportes");
+	}
+
+	public function reportes_empleados_aj()
+	{	
+		
+
+		return false;
 
 	}
 
