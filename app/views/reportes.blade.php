@@ -98,7 +98,7 @@
               <label>DESDE:</label>
             </div>
             <div class="col-md-7">
-              <input name="fechaIni" type="text" id="fechaIni" data-date-format="mm/dd/yy" value="06/16/14" class="span2">
+              <input name="fechaIni" type="text" id="fechaIni" data-date-format="yyyy-mm-dd" value="2014-06-15" class="span2">
             </div>
           </div>
           <div class="col-md-4">
@@ -106,7 +106,7 @@
               <label>HASTA:</label>
             </div>
             <div class="col-md-7">
-              <input name="fechaFin" type="text" id="fechaFin" data-date-format="mm/dd/yy" value="06/16/14" class="span2">
+              <input name="fechaFin" type="text" id="fechaFin" data-date-format="yyyy-mm-dd" value="2014-06-15" class="span2">
             </div>
           </div>
 
@@ -126,7 +126,7 @@
 
             <!--- Si se elige filtrar por Empleado -->
 
-            @if (isset($empleados))
+            @if (isset($empleados) && !empty($empleados))
                 
               <!-- Table -->
               <table class="table" id="myTable">
@@ -276,7 +276,7 @@
 
               <!--- Si se elige filtrar por Empresa -->
 
-              @if (isset($empresas))
+              @if (isset($empresas) && !empty($empresas))
                 
               <!-- Table -->
               <table class="table" id="myTable">
@@ -389,7 +389,7 @@
 
               <!--- Si se elige filtrar por Departamento -->
 
-              @if (isset($departamentos))
+              @if (isset($departamentos) && !empty($departamentos))
                 
               <!-- Table -->
               <table class="table" id="myTable">

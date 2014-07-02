@@ -10,8 +10,8 @@ class ReportesController extends BaseController {
 	public function index()
 	{
 
-		$fecha_inicio 	= Input::get('fecha_inicio');
-		$fecha_fin 		= Input::get('fecha_fin');
+		$fechaIni 	= Input::get('fechaIni');
+		$fechaFin 		= Input::get('fechaFin');
 		$tipo_Reporte 	= Input::get('tipo_Reporte');
 
 		if($tipo_Reporte == "Empleado")
@@ -25,7 +25,7 @@ class ReportesController extends BaseController {
 			        ->leftJoin('pagos', 'pagos.pag_idRecibos_FK', '=', 'recibos.idRecibos')
 			        ->leftJoin('periodo', 'periodo.idPeriodo', '=', 'recibos.rec_idPeriodo_FK')
 			        ->leftJoin('tipoperiodo', 'tipoperiodo.idTipoPeriodo', '=', 'empleado.emp_idTipoPeriodo_FK')
-			        //->whereBetween('FechaDeRecibo', array($fecha_inicio, $fecha_fin))
+			        ->whereBetween('FechaDeRecibo', array($fechaIni, $fechaFin))
 			        ->select('idEmpleado', 'Nombre', 'Nombre_Empresa', 'Nombre_Depto',  'FechaDePago', 'Pago', 
 			        	DB::Raw('Pagos.Comision as ComisionP'), 'IVA', DB::RAW('DATE_FORMAT(FechaDeRecibo,  "%M %Y") as FechaDeRecibo'), 'Monto', 'PorPagar', 'Periodo', 'TipoDeRecibo')
 			        ->orderBy('Nombre', 'desc')
@@ -38,7 +38,7 @@ class ReportesController extends BaseController {
 			        ->leftJoin('pagos', 'pagos.pag_idRecibos_FK', '=', 'recibos.idRecibos')
 			        ->leftJoin('periodo', 'periodo.idPeriodo', '=', 'recibos.rec_idPeriodo_FK')
 			        ->leftJoin('tipoperiodo', 'tipoperiodo.idTipoPeriodo', '=', 'empleado.emp_idTipoPeriodo_FK')
-			        //->whereBetween('FechaDeRecibo', array($fecha_inicio, $fecha_fin))
+			        ->whereBetween('FechaDeRecibo', array($fechaIni, $fechaFin))
 			        ->select('Nombre', DB::Raw('SUM(PorPagar) as Restante'), DB::Raw('SUM(Pago) as Pagado'), 
 			        	DB::Raw('SUM(Pagos.Comision) as ComisionPT'), DB::Raw('SUM(IVA) as IVA'))
 			        ->groupBy('Nombre')
